@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:35:03 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/24 08:57:41 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/01/24 09:34:59 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int		main(void)
 	// %hd, %hi, %ho, %hu, %hx, %hX, %hhd, %hhi, %hho, %hhu, %hhx, %hhX, \
 	// %ld, %li, %lo, %lu, %lx, %lX, %lld, %lli, %llo, %llu, %llx, %llX, \
 	// %f, %lf,  %Lf, %%");
-	ft_printf("'%-014.15s', %+10.4s\n", "helloworld", "levonka");
-	printf("'%-014.15s', %+10.4s\n", "helloworld", "levonka");
+	ft_printf("'%-014.15s', '%15.4s'\n", "helloworld", "levonka");
+	printf("'%-014.15s', '%15.4s'\n", "helloworld", "levonka");
 	// printf("%05.5s");
 	// ft_printf("%05.1lld");
 	// ft_printf("how are u doing? %ld\n", LONG_MAX + 1);

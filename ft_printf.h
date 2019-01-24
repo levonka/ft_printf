@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 16:55:21 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/24 08:58:17 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/01/24 09:33:09 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ int		ft_flagsvalidator(char flag);
 int		ft_numvalidator(const char *format, size_t *i);
 
 void	ft_print_dispatcher(t_type *node, va_list args);
+
+void	ft_flagminus(t_type *node, char *to, char *from, int *i);
+void	ft_flagzero(t_type *node, char *str, int *i);
+
+void	ft_print_string(t_type *node, char *str, int i);
 void	ft_putnbr_long(long long n);
 
 #endif

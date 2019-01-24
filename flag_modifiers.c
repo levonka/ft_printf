@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flag_modifiers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 09:32:22 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/24 09:32:40 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/01/24 10:24:25 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 void	ft_flagzero(t_type *node, char *str, int *i)
 {
+	int flag_minus;
+	int flag_zero;
+
+	flag_minus = ft_isflag_in_struct(node, '-');
+	flag_zero = ft_isflag_in_struct(node, '0');
 	while (*i < node->width)
 	{
-		if (ft_isflag_in_struct(node, '-') == FAIL)
-			str[*i] = ft_isflag_in_struct(node, '0') == SUCCESS ? '0' : ' ';
+		if (flag_minus == FAIL)
+			str[*i] = (flag_zero == SUCCESS ? '0' : ' ');
 		else
 			str[*i] = ' ';
 		*i = *i + 1;
@@ -27,9 +32,13 @@ void	ft_flagzero(t_type *node, char *str, int *i)
 void	ft_flagminus(t_type *node, char *to, char *from, int *i)
 {
 	int		len;
+	int		flag_minus;
+	int		j;
 
-	len = ft_strlen(from) - 1;
-	if (ft_isflag_in_struct(node, '-') == FAIL)
+	j = 0;
+	len = ft_strlen(from);
+	flag_minus = ft_isflag_in_struct(node, '-');
+	if (flag_minus == FAIL)
 		while (len >= 0)
 		{
 			to[*i] = from[len];
@@ -37,5 +46,9 @@ void	ft_flagminus(t_type *node, char *to, char *from, int *i)
 			len = len - 1;
 		}
 	else
-		ft_strncpy(to, from, len + 1);
+		while(from[j] != '\0')
+		{
+			to[j] = from[j];
+			++j;
+		}
 }

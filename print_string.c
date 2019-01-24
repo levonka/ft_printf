@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 08:13:33 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/24 09:33:20 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/01/24 10:23:51 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_print_string(t_type *node, char *str, int i)
 	int		len;
 	char	*str2;
 
-	len = ft_strlen(str) - 1;
+	len = ft_strlen(str);
 	while (node->precision <= len && node->precision != -1)
 	{
 		str[len] = '\0';

@@ -1,0 +1,5 @@
+.DS_*
+some.c
+some2.c
+.ft_printf_2.c
+*.o

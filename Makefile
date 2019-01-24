@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+         #
+#    By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/08 15:24:16 by agottlie          #+#    #+#              #
-#    Updated: 2019/01/24 07:59:22 by yharwyn-         ###   ########.fr        #
+#    Updated: 2019/01/24 08:14:31 by agottlie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ NAME = printf
 
 FLAGS = -Wall -Wextra
 
-SRC = ft_printf.c searchers.c validators.c print_functions.c
+SRC = *.c
 
-OBJ = ft_printf.o searchers.o validators.o print_functions.o
+OBJ = *.o
 
 INC = ft_printf.h
 

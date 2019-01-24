@@ -6,7 +6,7 @@
 #    By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/08 15:24:16 by agottlie          #+#    #+#              #
-#    Updated: 2019/01/24 08:14:31 by agottlie         ###   ########.fr        #
+#    Updated: 2019/01/24 08:59:51 by agottlie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ $(NAME):
 	@make clean
 
 ex:
-	gcc -Wall -Wextra examples.c
+	gcc -Wall -Wextra .examples.c
 
 clean:
 	@/bin/rm -f $(OBJ)

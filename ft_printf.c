@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:35:03 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/24 07:50:56 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/24 08:57:41 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int		main(void)
 	// %f, %lf,  %Lf, %%");
 	ft_printf("'%-014.15s', %+10.4s\n", "helloworld", "levonka");
 	printf("'%-014.15s', %+10.4s\n", "helloworld", "levonka");
-	printf("HI Sergey\n");
 	// printf("%05.5s");
 	// ft_printf("%05.1lld");
 	// ft_printf("how are u doing? %ld\n", LONG_MAX + 1);
@@ -39,10 +38,7 @@ int		ft_solver(va_list args, const char *format, size_t *i)
 	ft_precisionsearcher(node, format, i);
 	if (ft_typesearcher(node, format, i) == SUCCESS)
 	{
-		// printf("\n[flags:\t%s]\n", node->flags);
-		// printf("[width:\t%d]\n", node->width);
-		// printf("[pre-n:\t%d]\n", node->precision);
-		// printf("[type:\t%s]\n\n", node->type);
+		//	ft_diag_print(node);
 		ft_print_dispatcher(node, args);
 		ft_freenode(node);
 		return (SUCCESS);
@@ -93,4 +89,12 @@ void	ft_freenode(t_type *node)
 	free(node->flags);
 	free(node->type);
 	free(node);
+}
+
+void	ft_diag_print(t_type *node)
+{
+	printf("\n[flags:\t%s]\n", node->flags);
+	printf("[width:\t%d]\n", node->width);
+	printf("[pre-n:\t%d]\n", node->precision);
+	printf("[type:\t%s]\n\n", node->type);
 }

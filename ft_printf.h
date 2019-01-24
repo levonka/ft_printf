@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 16:55:21 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/23 16:52:34 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/24 08:58:17 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int		ft_printf(const char *format, ...);
 int		ft_solver(va_list args, const char *format, size_t *i);
 t_type	*ft_create_ttr();
 void	ft_freenode(t_type *node);
-
-int		ft_typefinder(t_type *node, const char *format, size_t *i);
+void	ft_diag_print(t_type *node);
 
 int		ft_isflag_in_struct(t_type *node, char flag);
 int		ft_flagssearcher(t_type *node, const char *format, size_t *i);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   finders.c                                          :+:      :+:    :+:   */
+/*   searchers.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 10:30:23 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/23 08:26:57 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/01/23 17:09:00 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		ft_widthsearcher(t_type *node, const char *format, size_t *i)
 		free(number);
 		return (SUCCESS);
 	}
-	node->width = 0;
+	node->width = -1;
 	return (FAIL);
 }
 
@@ -78,9 +78,15 @@ int		ft_precisionsearcher(t_type *node, const char *format, size_t *i)
 	char	*number;
 
 	j = 0;
+
 	while (format[*i] == '.' && format[*i] != '\0')
 	{
 		*i = *i + 1;
+		if (ft_isdigit(format[*i]) == 0 && format[*i] != '.')
+		{
+			node->precision = 0;
+			return (SUCCESS);
+		}
 		if ((len = ft_numvalidator(format, i)) > 0)
 		{
 			number = ft_strsubi(format, *i - len, *i - 1);
@@ -89,7 +95,7 @@ int		ft_precisionsearcher(t_type *node, const char *format, size_t *i)
 			return (SUCCESS);
 		}
 	}
-	node->precision = 0;
+	node->precision = -1;
 	return (FAIL);
 }
 

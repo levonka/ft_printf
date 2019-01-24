@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:35:03 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/23 12:23:20 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/01/23 17:51:46 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int		main(void)
 	// %hd, %hi, %ho, %hu, %hx, %hX, %hhd, %hhi, %hho, %hhu, %hhx, %hhX, \
 	// %ld, %li, %lo, %lu, %lx, %lX, %lld, %lli, %llo, %llu, %llx, %llX, \
 	// %f, %lf,  %Lf, %%");
-	ft_printf("%0 +-#48945............4565s");
+	ft_printf("'%-014.15s', %+10.4s\n", "helloworld", "levonka");
+	printf("'%-014.15s', %+10.4s\n", "helloworld", "levonka");
 	// printf("%05.5s");
 	// ft_printf("%05.1lld");
 	// ft_printf("how are u doing? %ld\n", LONG_MAX + 1);
@@ -37,18 +38,18 @@ int		ft_solver(va_list args, const char *format, size_t *i)
 	ft_precisionsearcher(node, format, i);
 	if (ft_typesearcher(node, format, i) == SUCCESS)
 	{
-		printf("\n[flags:\t%s]\n", node->flags);
-		printf("[width:\t%d]\n", node->width);
-		printf("[pre-n:\t%d]\n", node->precision);
-		printf("[type:\t%s]\n\n", node->type);
-		// ft_print_dispatcher(node, args);
+		// printf("\n[flags:\t%s]\n", node->flags);
+		// printf("[width:\t%d]\n", node->width);
+		// printf("[pre-n:\t%d]\n", node->precision);
+		// printf("[type:\t%s]\n\n", node->type);
+		ft_print_dispatcher(node, args);
 		ft_freenode(node);
 		return (SUCCESS);
 	}
 	else
 		printf("SOMETHING WRONG\n");
 	// printf("<i = %zu\n\n", *i);
-	// ft_freenode(node);
+	ft_freenode(node);			//	doesn't work if type not defined
 	return (FAIL);
 }
 

@@ -3,3 +3,4 @@ some.c
 some2.c
 .ft_printf_2.c
 *.o
+ft_printf.c

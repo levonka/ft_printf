@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:35:03 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/24 11:24:25 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/01/25 10:52:52 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ int		main(void)
 	// printf("'%-010.5d'\n", 123);
 	// ft_printf("'%-01.1d'\n", 123);
 	// printf("'%-01.1d'\n", 123);
+	// ft_printf("'%-015.2c', '%15.4c'\n", 'h', 'a');
+	// printf("'%-015.2c', '%15.4c'\n", 'd', 'a');
+	ft_printf("'%-012.c'\n", 'c');
+	printf("'%-012.c'\n", 'c');
+	ft_printf("'%+012.s'\n", "helloworld");
+	printf("'%+012.s'\n", "helloworld");
+	// printf("%05.5s");
+	// ft_printf("%05.1lld");
 	// ft_printf("how are u doing? %ld\n", LONG_MAX + 1);
 	// printf("how are u doing? %ld\n", LONG_MAX + 1);
 	return (0);
@@ -44,7 +52,7 @@ int		ft_solver(va_list args, const char *format, size_t *i)
 	ft_precisionsearcher(node, format, i);
 	if (ft_typesearcher(node, format, i) == SUCCESS)
 	{
-		//	ft_diag_print(node);
+			// ft_diag_print(node);
 		ft_print_dispatcher(node, args);
 		ft_freenode(node);
 		return (SUCCESS);

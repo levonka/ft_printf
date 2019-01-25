@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_string.c                                     :+:      :+:    :+:   */
+/*   print_int.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/24 08:13:33 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/24 10:40:17 by agottlie         ###   ########.fr       */
+/*   Created: 2019/01/24 10:34:40 by agottlie          #+#    #+#             */
+/*   Updated: 2019/01/24 11:22:15 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_print_string(t_type *node, char *str, int i)
+void	ft_print_int(t_type *node, char *str, int i)
 {
 	int		len;
 	char	*str2;
 
 	len = ft_strlen(str);
-	while (node->precision <= len && node->precision != -1)
+	if ((node->width != -1 && node->width >= len + 1) ||
+		(node->precision != -1 && node->precision >= len + 1))
 	{
-		str[len] = '\0';
-		--len;
-	}
-	if (node->width != -1 && node->width >= len + 1)
-	{
-		str2 = ft_strnew(node->width);
-		ft_flagzero(node, str2, &i);
+		str2 = (node->width > node->precision) ? ft_strnew(node->width) : ft_strnew(node->precision);
+		ft_flagzero_int(node, str2, &i);
 		ft_flagminus(node, str2, str, &i);
 		ft_putstr(str2);
 		free(str2);

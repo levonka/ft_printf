@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:35:03 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/24 10:23:33 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/24 11:24:25 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,14 @@ int		main(void)
 	// %f, %lf,  %Lf, %%");
 	// ft_printf("'%-015.2s', '%15.4s'\n", "helloworld", "levonka");
 	// printf("'%-015.2s', '%15.4s'\n", "helloworld", "levonka");
-	ft_printf("'%-012.9s'\n", "helloworld");
-	printf("'%-012.9s'\n", "helloworld");
-	// printf("%05.5s");
-	// ft_printf("%05.1lld");
+	// ft_printf("'%-012.9s'\n", "helloworld");
+	// printf("'%-012.9s'\n", "helloworld");
+	ft_printf("'%5.3d'\n", 123);
+	printf("%%5.3d\n'%5.3d'\n", 123);
+	// ft_printf("'%-010.5d'\n", 123);
+	// printf("'%-010.5d'\n", 123);
+	// ft_printf("'%-01.1d'\n", 123);
+	// printf("'%-01.1d'\n", 123);
 	// ft_printf("how are u doing? %ld\n", LONG_MAX + 1);
 	// printf("how are u doing? %ld\n", LONG_MAX + 1);
 	return (0);

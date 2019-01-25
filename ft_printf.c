@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:35:03 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/24 10:23:33 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/25 09:40:45 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ int		main(void)
 	// %hd, %hi, %ho, %hu, %hx, %hX, %hhd, %hhi, %hho, %hhu, %hhx, %hhX, \
 	// %ld, %li, %lo, %lu, %lx, %lX, %lld, %lli, %llo, %llu, %llx, %llX, \
 	// %f, %lf,  %Lf, %%");
-	// ft_printf("'%-015.2s', '%15.4s'\n", "helloworld", "levonka");
-	// printf("'%-015.2s', '%15.4s'\n", "helloworld", "levonka");
-	ft_printf("'%-012.9s'\n", "helloworld");
-	printf("'%-012.9s'\n", "helloworld");
+	// ft_printf("'%-015.2c', '%15.4c'\n", 'h', 'a');
+	// printf("'%-015.2c', '%15.4c'\n", 'd', 'a');
+	ft_printf("'%-012.c'\n", 'c');
+	printf("'%-012.c'\n", 'c');
+	ft_printf("'%+012.s'\n", "helloworld");
+	printf("'%+012.s'\n", "helloworld");
+
 	// printf("%05.5s");
 	// ft_printf("%05.1lld");
 	// ft_printf("how are u doing? %ld\n", LONG_MAX + 1);
@@ -40,7 +43,7 @@ int		ft_solver(va_list args, const char *format, size_t *i)
 	ft_precisionsearcher(node, format, i);
 	if (ft_typesearcher(node, format, i) == SUCCESS)
 	{
-		//	ft_diag_print(node);
+			// ft_diag_print(node);
 		ft_print_dispatcher(node, args);
 		ft_freenode(node);
 		return (SUCCESS);

@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_string.c                                     :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/24 08:13:33 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/25 08:55:39 by yharwyn-         ###   ########.fr       */
+/*   Created: 2019/01/24 10:34:59 by yharwyn-          #+#    #+#             */
+/*   Updated: 2019/01/25 10:07:02 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_print_string(t_type *node, char *str, int i)
+
+void	ft_print_char(t_type *node, int c, int i)
 {
 	int		len;
+	char	converse;
 	char	*str2;
+	char 	*str;
 
+	str = ft_strnew(1);
+	node->precision == 0 ? node->precision = 1 : 0; //strange bug with .{0} precision
+	converse = c;
+	str[0] = converse;
 	len = ft_strlen(str);
 	while (node->precision <= len && node->precision != -1)
 	{

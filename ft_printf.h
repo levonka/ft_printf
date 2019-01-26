@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 16:55:21 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/25 12:33:57 by yharwyn-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -26,7 +14,7 @@ enum { FAIL = -1, SUCCESS = 0 };
 typedef struct		s_type
 {
 	char			*type;
-	char			*flags;
+	char			flags[5];
 	int				width;
 	int				precision;
 	int				status;
@@ -54,7 +42,9 @@ void	ft_flagminus(t_type *node, char *to, char *from, int *i);
 void	ft_flagzero(t_type *node, char *str, int *i);
 
 void	ft_print_string(t_type *node, char *str, int i);
-void	ft_putnbr_long(long long n);
+
+void	ft_print_int(t_type *node, char *str, int i);
+void	ft_zerofiller(t_type *node, char *str, int len, int *i);
 
 void	ft_print_char(t_type *node, int c, int i);
 

@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   flag_modifiers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 09:32:22 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/24 10:24:25 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/26 12:26:26 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	ft_addflag(t_type *node, char flag)
+{
+	int		i;
+
+	i = 0;
+	if (ft_isflag_in_struct(node, flag) == FAIL)
+	{
+		while (node->type[i] != '\0')
+			++i;
+		node->type[i] = flag;
+	}
+}
 
 void	ft_flagzero(t_type *node, char *str, int *i)
 {

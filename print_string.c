@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 08:13:33 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/25 08:55:39 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/25 10:53:05 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_print_string(t_type *node, char *str, int i)
 		ft_flagminus(node, str2, str, &i);
 		ft_putstr(str2);
 		free(str2);
+		free(str);
 		return ;
 	}
 	ft_putstr(str);

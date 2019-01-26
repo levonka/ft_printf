@@ -6,8 +6,9 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:35:03 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/26 12:50:27 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/26 15:45:00 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
+/* ************************************************************************** */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
@@ -97,7 +98,6 @@ t_type	*ft_create_ttr()
 
 void	ft_freenode(t_type *node)
 {
-	free(node->flags);
 	free(node->type);
 	free(node);
 }

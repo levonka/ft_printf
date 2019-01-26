@@ -14,7 +14,7 @@ enum { FAIL = -1, SUCCESS = 0 };
 typedef struct		s_type
 {
 	char			*type;
-	char			*flags;
+	char			flags[5];
 	int				width;
 	int				precision;
 	int				status;
@@ -40,11 +40,11 @@ void	ft_print_dispatcher(t_type *node, va_list args);
 
 void	ft_flagminus(t_type *node, char *to, char *from, int *i);
 void	ft_flagzero(t_type *node, char *str, int *i);
-void	ft_flagzero_int(t_type *node, char *str, int *i);
 
 void	ft_print_string(t_type *node, char *str, int i);
 
 void	ft_print_int(t_type *node, char *str, int i);
+void	ft_zerofiller(t_type *node, char *str, int len, int *i);
 
 void	ft_print_char(t_type *node, int c, int i);
 

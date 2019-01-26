@@ -6,11 +6,24 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 09:32:22 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/24 11:22:34 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/01/26 12:26:26 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	ft_addflag(t_type *node, char flag)
+{
+	int		i;
+
+	i = 0;
+	if (ft_isflag_in_struct(node, flag) == FAIL)
+	{
+		while (node->type[i] != '\0')
+			++i;
+		node->type[i] = flag;
+	}
+}
 
 void	ft_flagzero(t_type *node, char *str, int *i)
 {
@@ -20,26 +33,6 @@ void	ft_flagzero(t_type *node, char *str, int *i)
 	flag_minus = ft_isflag_in_struct(node, '-');
 	flag_zero = ft_isflag_in_struct(node, '0');
 	while (*i < node->width)
-	{
-		if (flag_minus == FAIL)
-			str[*i] = (flag_zero == SUCCESS ? '0' : ' ');
-		else
-			str[*i] = ' ';
-		*i = *i + 1;
-	}
-}
-
-void	ft_flagzero_int(t_type *node, char *str, int *i)
-{
-	int flag_minus;
-	int flag_zero;
-	int len;
-
-	flag_minus = ft_isflag_in_struct(node, '-');
-	flag_zero = ft_isflag_in_struct(node, '0');
-	len = (node->precision > node->width) ? node->precision : node->width;
-	printf("len = %d\n", len);
-	while (*i < node->precision)
 	{
 		if (flag_minus == FAIL)
 			str[*i] = (flag_zero == SUCCESS ? '0' : ' ');

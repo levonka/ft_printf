@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   searchers.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 10:30:23 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/25 09:37:04 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/25 17:40:07 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ft_flagssearcher(t_type *node, const char *format, size_t *i)
 	int		j;
 
 	j = 0;
-	node->flags = ft_strnew(5);
+	// node->flags = ft_strnew(5);
 	while (format[*i] != '\0')
 	{
 		if (ft_flagsvalidator(format[*i]) == SUCCESS)

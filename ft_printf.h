@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 16:55:21 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/25 09:08:54 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/25 12:33:57 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ void	ft_print_string(t_type *node, char *str, int i);
 void	ft_putnbr_long(long long n);
 
 void	ft_print_char(t_type *node, int c, int i);
+
+void	ft_print_hex(t_type *node, int hex, int i);
 
 #endif

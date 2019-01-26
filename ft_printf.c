@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:35:03 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/25 09:40:45 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/26 12:50:27 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,16 @@ int		main(void)
 	// %f, %lf,  %Lf, %%");
 	// ft_printf("'%-015.2c', '%15.4c'\n", 'h', 'a');
 	// printf("'%-015.2c', '%15.4c'\n", 'd', 'a');
-	ft_printf("'%-012.c'\n", 'c');
-	printf("'%-012.c'\n", 'c');
-	ft_printf("'%+012.s'\n", "helloworld");
-	printf("'%+012.s'\n", "helloworld");
+	// ft_printf("'%-012.x'\n", 255);
+	// printf("'%-012.x'\n", 255);
+	int *ptr;
+	// ft_printf("'%-012.x'\n", 255);
+	printf("'%0x'\n", ptr);
+	printf("'%p'\n", ptr);
+
+
+	// ft_printf("'%+012.s'\n", "helloworld");
+	// printf("'%+012.s'\n", "helloworld");
 
 	// printf("%05.5s");
 	// ft_printf("%05.1lld");

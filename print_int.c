@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:34:40 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/26 14:44:12 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/01/27 19:30:24 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,33 @@ void	ft_flagsp_num(char *str, int len)
 	str[0] = ' ';
 }
 
+void	ft_flagplus_num(t_type *node, char *str, int minus, int len)
+{
+	int		i;
+
+	i = 0;
+	if (ft_isflag_in_struct(node, '+') == 0 && minus == -1)
+	{
+		if (ft_isdigit(str[0]))
+		{
+			// --len;
+			(str[len - 1] == ' ') ? str[len - 1] = '\0' : 0;
+			while (len > 0)
+			{
+				ft_swap(&str[len], &str[len - 1]);
+				--len;
+			}
+			str[0] = '+';
+		}
+		else
+		{
+			while (str[i] == ' ' && str[i] != '\0')
+				++i;
+			str[(i == 0) ? 0 : i - 1] = '+';
+		}
+	}
+}
+
 void	ft_print_int(t_type *node, char *str, int i)
 {
 	int		len;
@@ -152,24 +179,26 @@ void	ft_print_int(t_type *node, char *str, int i)
 	char	*str2;
 
 	minus = ft_isnegative(str);
-	len = ft_strlen(str);
-	if ((node->width != -1 && node->width >= len + 1) ||
-		(node->precision != -1 && node->precision >= len + 1))
+	// printf("%d\n", minus);
+	if ((node->width != -1 && node->width >= (int)ft_strlen(str) + 1) ||
+		(node->precision != -1 && node->precision >= (int)ft_strlen(str) + 1))
 	{
 		len = ((node->width > node->precision) ? node->width : node->precision);
 		str2 = ft_strnew(len + 1);
 		ft_zerofiller(node, str2, len, &i);
-		// printf("'%s'\n", str2);
 		ft_fillin_num(node, str2, str, len);
-		// printf("'%s'\n", str2);
 		(minus == 0) ? ft_flagminus_num(str2, len) : 0;
+		ft_flagplus_num(node, str2, minus, len);
 		printf("'%s'\n", str2);
 		free(str2);
 		free(str);
 		return ;
 	}
-	ft_isflag_in_struct(node, ' ') == 0 ? ft_flagsp_num(str, len) : 0;
+	len = ft_strlen(str) + 1;
+	(ft_isflag_in_struct(node, ' ') == 0 || ft_isflag_in_struct(node, '+') == 0) ?
+	ft_flagsp_num(str, len) : 0;
 	(minus == 0) ? ft_flagminus_num(str, len) : 0;
+	ft_flagplus_num(node, str, minus, len);
 	printf("'%s'\n", str);
 	// ft_putstr(str);
 	free(str);

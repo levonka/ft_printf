@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 14:56:19 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/27 19:13:30 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/27 19:41:03 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,10 +147,51 @@ int		main(void)
 	// printf("'%-010.5d'\n", 123);
 	// ft_printf("'%-01.1d'\n", 123);
 	// printf("'%-01.1d'\n", 123);
+	// ft_printf("% 6.4d", 123);
+	// printf("'% 6.4d'\n\n", 123);
+	// ft_printf("%6.4d", -123);
+	// printf("'%6.4d'\n\n", -123);
+	// // ПРОВЕРЕННЫЕ			// 18:48 27
+	// ft_printf("%4.6d", -123);
+	// printf("'%4.6d'\n\n", -123);
+	// ft_printf("%.4d", -123);
+	// printf("'%.4d'\n\n", -123);
+	// ft_printf("% -0d", -123);
+	// printf("'% -0d'\n\n", -123);
+	// ft_printf("%+-6.4d", -123);
+	// printf("'%+-6.4d'\n\n", -123);
+	// ft_printf("% +6.4d", -123);
+	// printf("'% +6.4d'\n\n", -123);
+	// ft_printf("%+ 6.4d", 123);
+	// printf("'%+ 6.4d'\n\n", 123);
+	// ft_printf("%+6.5d", 123);
+	// printf("'%+6.5d'\n\n", 123);
+	// ft_printf("%-010.5d", 123);
+	// printf("'%-010.5d'\n\n", 123);
+	// ft_printf("%-01.1d", 123);
+	// printf("'%-01.1d'\n\n", 123);
+	// ft_printf("%d", 123);
+	// printf("'%d'\n\n", 123);
+	// ft_printf("% +d", 123);
+	// printf("'% +d'\n\n", 123);
+	// ft_printf("%d", 123);
+	// printf("'%d'\n\n", 123);
+	// // ПРОВЕРЕННЫЕ
+	// ft_printf("%+-6.4d", 123);
+	// printf("'%+-6.4d'\n\n", 123);
+	// ft_printf("%+-6.6d", 123);
+	// printf("'%+-6.6d'\n\n", 123);
+	// printf("================================== TO DO \n");
+
+
+
 	// printf("%05.5s");
 	// ft_printf("%05.1lld");
 	// ft_printf("how are u doing? %ld\n", LONG_MAX + 1);
 	// printf("how are u doing? %ld\n", LONG_MAX + 1);
+	
+// ====================================== SEREGA
+
 	int *ptr;
 	char *str;
 

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 08:31:19 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/25 12:33:38 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/27 19:00:45 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +21,7 @@ void	ft_print_dispatcher(t_type *node, va_list args)
 	else if (ft_strcmp(node->type, "c") == 0)
 		ft_print_char(node, va_arg(args, int), 0);
 	else if (ft_strcmp(node->type, "x") == 0)
-		ft_print_hex(node, va_arg(args, int), 0);
+		ntoa_dispatcher(node, va_arg(args, int), 0);
+	else if (ft_strcmp(node->type, "p") == 0)
+		ntoa_dispatcher(node, va_arg(args, int), 0);
 }

@@ -49,5 +49,6 @@ void	ft_zerofiller(t_type *node, char *str, int len, int *i);
 void	ft_print_char(t_type *node, int c, int i);
 
 void	ft_print_hex(t_type *node, int hex, int i);
+void	ntoa_dispatcher(t_type *node, unsigned int x, int i);
 
 #endif

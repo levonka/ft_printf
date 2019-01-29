@@ -5,77 +5,6 @@
 
 #include <unistd.h>
 
-void    ft_putchar(char c)
-{
-    write(1, &c, 1);
-}
-
-void    print_ascii(const char *addr, int i)
-{
-    int j;
-    int len;
-
-    j = 0;
-    if ((i + 1) % 16 == 0)
-        len = 16;
-    else
-        len = (i + 1) % 16;
-    while (j < 16 - len)
-    {
-        ft_putchar(' ');
-        ft_putchar(' ');
-        if (j % 2)
-            ft_putchar(' ');
-        j++;
-    }
-    if ((16 - len) % 2)
-        ft_putchar(' ');
-    j = 0;
-    while (j < len)
-    {
-        if (*(addr + i / 16 * 16 + j) >= 32 && *(addr + i / 16 * 16 + j) <= 126)
-            ft_putchar(*(addr + i / 16 * 16 + j));
-        else
-            ft_putchar('.');
-        j++;
-    }
-    ft_putchar('\n');
-}
-
-void    print_hex(unsigned char value, int index)
-{
-    if (index < 2)
-    {
-        print_hex(value / 16, index + 1);
-        if (value % 16 >= 10)
-            ft_putchar('a' + value % 16 % 10);
-        else
-            ft_putchar('0' + value % 16);
-    }
-}
-
-void    print_memory(const void *addr, size_t size)
-{
-    char    *ptr;
-    size_t  i;
-
-    if (addr && size > 0)
-    {
-        ptr = (char*)addr;
-        i = 0;
-        while (i < size)
-        {
-            print_hex(*(ptr + i), 0);
-            if (i % 2)
-                ft_putchar(' ');
-            if ((i + 1) % 16 == 0 || (i + 1) == size)
-                print_ascii(addr, i);
-            i++;
-        }
-    }
-}
-
-
 int		main(void)
 {
 	// ft_printf("flags test\n%s, %p, %d, %i, %o, %u, %x, %X, \
@@ -87,110 +16,129 @@ int		main(void)
 	// ft_printf("'%-012.9s'\n", "helloworld");
 	// printf("'%-012.9s'\n", "helloworld");
 
-	int *ptr;
+	// ft_printf("%010d\n", 123450);
+	// printf("%010d\n", 123450);
 
-	int a = 3;
 
-	ptr = &a;
+	// int *ptr;
 
-	size_t i;
+	// int a = 3;
 
-	while(i < sizeof(ptr))
-	{
+	// ptr = &a;
+
+	// size_t i;
+
+	// while(i < sizeof(ptr))
+	// {
 		
-	}
+	// }
 
-	for (i=0; i<sizeof ptr; i++)
-		ft_printf("%x", ((unsigned char *)&ptr)[i]);
-	putchar('\n');
+	// for (i=0; i<sizeof ptr; i++)
+	// 	ft_printf("%x", ((unsigned char *)&ptr)[i]);
+	// putchar('\n');
+
+	// printf("'%+8.5X'\n", 30);
+
+	ft_printf("%+12.8X\n", 30101);
+	printf("%+12.8X\n", 30101);
 
 
+	// ft_printf("%.8d\n", 30101);
+	// printf("%12.8d\n", 30101);
 
+	// ft_printf("'%010d'\n", 123450); //1st
+	// printf("'%010d'\n", 123450);
+	
+	// ft_printf("'%06d'\n", 12345);
+	// printf("'%06d'\n", 12345);
 
 	// print_memory(ptr, 1000);
-	printf("%p\n", ptr);
+	// ft_printf("%p\n", ptr);
+	// printf("%p\n", ptr);
 
 
-	// ft_printf("%6d", 123);
+	// ft_printf("'%6d'\n", 123);
 	// printf("'%6d'\n\n", 123);
-	// ft_printf("%.6d", 123);
+	// ft_printf("'%.6d'\n", 123);
 	// printf("'%.6d'\n\n", 123);
-	// ft_printf("%3.6d", 123);
+	// ft_printf("'%3.6d'\n", 123);
 	// printf("'%3.6d'\n\n", 123);
-	// ft_printf("%6.3d", 123);
+	// ft_printf("'%6.3d'\n", 123);
 	// printf("'%6.3d'\n\n", 123);
-	// ft_printf("%6.5d", 123);
+	// ft_printf("'%6.5d'\n", 123);
 	// printf("'%6.5d'\n\n", 123);
-	// ft_printf("%.2d", 123);
+	// ft_printf("'%.2d'\n", 123);
 	// printf("'%.2d'\n\n", 123);
-	// ft_printf("%4.6d", 123);
+	// ft_printf("'%4.6d'\n", 123);
 	// printf("'%4.6d'\n\n", 123);
 	// printf("================================== FLAGS\n");
-	// ft_printf("% d", 123);
+	// ft_printf("'% d'\n", 123);
 	// printf("'% d'\n\n", 123);
-	// ft_printf("%0d", 123);
+	// ft_printf("'%0d'\n", 123);
 	// printf("'%0d'\n\n", 123);
-	// ft_printf("%-d", 123);
+	// ft_printf("'%-d'\n", 123);
 	// printf("'%-d'\n\n", 123);
-	// ft_printf("%+d", 123);
+	// ft_printf("'%+d'\n", 123);
 	// printf("'%+d'\n\n", 123);
-	// ft_printf("% +d", 123);
+
+	// ft_printf("'%06d'\n", 12345);
+	// printf("%06d\n", 12345);
+
+	// ft_printf("'% +d'\n", 123);
 	// printf("'% +d'\n\n", 123);
-	// ft_printf("%- d", 123);
+	// ft_printf("'%- d'\n", 123);
 	// printf("'%- d'\n\n", 123);
-	// ft_printf("%-6d", 123);
+	// ft_printf("'%-6d'\n", 123);
 	// printf("'%-6d'\n\n", 123);
-	// ft_printf("%-.6d", 123);
+	// ft_printf("'%-.6d'\n", 123);
 	// printf("'%-.6d'\n\n", 123);
-	// ft_printf("%-.6d", 123);
+	// ft_printf("'%-.6d'\n", 123);
 	// printf("'%-.6d'\n\n", 123);
-	// ft_printf("%-3.6d", 123);
+	// ft_printf("'%-3.6d'\n", 123);
 	// printf("'%-3.6d'\n\n", 123);
-	// ft_printf("%-6.3d", 123);
-	// printf("'%-6.3d'\n\n", 123);
-	// ft_printf("%-6.5d", 123);
+	// ft_printf("'%-6.3d'\n", 123);			/////BUG
+	// printf("'%-6.3d'\n\n", 123);			/////BUG
+	// ft_printf("'%-6.5d'\n", 123);
 	// printf("'%-6.5d'\n\n", 123);
-	// ft_printf("%-d", 123);
+	// ft_printf("'%-d'\n", 123);
 	// printf("'%-d'\n\n", 123);
 
 
-	// ft_printf("'%-010.5d'\n", 123);
-	// printf("'%-010.5d'\n", 123);
+	// ft_printf("'%-010.5d'\n", 123);			///bug
+	// printf("'%-010.5d'\n", 123);			///bug
 	// ft_printf("'%-01.1d'\n", 123);
 	// printf("'%-01.1d'\n", 123);
-	// ft_printf("% 6.4d", 123);
+	// ft_printf("'% 6.4d'\n", 123);
 	// printf("'% 6.4d'\n\n", 123);
-	// ft_printf("%6.4d", -123);
+	// ft_printf("'%6.4d'\n", -123);
 	// printf("'%6.4d'\n\n", -123);
 	// // ПРОВЕРЕННЫЕ			// 18:48 27
-	// ft_printf("%4.6d", -123);
+	// ft_printf("'%4.6d'\n", -123);
 	// printf("'%4.6d'\n\n", -123);
-	// ft_printf("%.4d", -123);
+	// ft_printf("'%.4d'\n", -123);
 	// printf("'%.4d'\n\n", -123);
-	// ft_printf("% -0d", -123);
+	// ft_printf("'% -0d'\n", -123);
 	// printf("'% -0d'\n\n", -123);
-	// ft_printf("%+-6.4d", -123);
+	// ft_printf("'%+-6.4d'\n", -123);
 	// printf("'%+-6.4d'\n\n", -123);
-	// ft_printf("% +6.4d", -123);
+	// ft_printf("'% +6.4d'\n", -123);
 	// printf("'% +6.4d'\n\n", -123);
-	// ft_printf("%+ 6.4d", 123);
+	// ft_printf("'%+ 6.4d'\n", 123);
 	// printf("'%+ 6.4d'\n\n", 123);
-	// ft_printf("%+6.5d", 123);
+	// ft_printf("'%+6.5d'\n", 123);
 	// printf("'%+6.5d'\n\n", 123);
-	// ft_printf("%-010.5d", 123);
-	// printf("'%-010.5d'\n\n", 123);
-	// ft_printf("%-01.1d", 123);
+	// ft_printf("'%-01.1d'\n", 123);
 	// printf("'%-01.1d'\n\n", 123);
-	// ft_printf("%d", 123);
+	// ft_printf("'%d'\n", 123);
 	// printf("'%d'\n\n", 123);
-	// ft_printf("% +d", 123);
+	// ft_printf("'% +d'\n", 123);
 	// printf("'% +d'\n\n", 123);
-	// ft_printf("%d", 123);
+	// ft_printf("'%d'\n", 123);	
 	// printf("'%d'\n\n", 123);
 	// // ПРОВЕРЕННЫЕ
-	// ft_printf("%+-6.4d", 123);
+	// ft_printf("'%+-6.4d'\n", 123);
 	// printf("'%+-6.4d'\n\n", 123);
-	// ft_printf("%+-6.6d", 123);
+	// ft_printf("'%+-6.6d'\n", 123);
 	// printf("'%+-6.6d'\n\n", 123);
 	// printf("================================== TO DO \n");
 

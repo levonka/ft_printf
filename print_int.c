@@ -6,11 +6,43 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:34:40 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/27 19:43:58 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/29 17:18:19 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+// void	ft_zerofiller(t_type *node, char *str, int len, int *i)
+// {
+// 	int		pr_copy;
+
+// 	pr_copy = node->precision;
+// 	if (ft_isflag_in_struct(node, '-') == SUCCESS)
+// 		while (*i < node->precision)
+// 		{
+// 			str[*i] = '0';
+// 			*i = *i + 1;
+// 		}
+// 	else
+// 		while (pr_copy > 0)
+// 		{
+// 			str[len - 1] = '0';
+// 			--len;
+// 			--pr_copy;
+// 		}
+// 	while (*i < len)
+// 	{
+// 		if ((ft_isflag_in_struct(node, '0') == SUCCESS)
+// 			|| ((size_t)node->precision < ft_strlen(str)))
+// 		{
+// 			 if (ft_isflag_in_struct(node, '-'))
+// 				str[*i] = '0';
+// 		}
+// 		else
+// 			str[*i] = ' ';
+// 		*i = *i + 1;
+// 	}
+// }
 
 void	ft_zerofiller(t_type *node, char *str, int len, int *i)
 {
@@ -32,17 +64,14 @@ void	ft_zerofiller(t_type *node, char *str, int len, int *i)
 		}
 	while (*i < len)
 	{
-		// if ((ft_isflag_in_struct(node, '0') == SUCCESS)
-			// && ((size_t)node->precision < ft_strlen(str)))
-		// {
-			// printf("helllllll\n");
-			// str[*i] = '0';
-		// }
-		// else
+		if ((ft_isflag_in_struct(node, '0') == SUCCESS))
+			 str[*i] = (ft_isflag_in_struct(node, '-')) ? '0' : ' ';
+		else
 			str[*i] = ' ';
 		*i = *i + 1;
 	}
 }
+
 
 void	ft_fillin_num(t_type *node, char *to, char *from, int len)
 {
@@ -188,7 +217,7 @@ void	ft_print_int(t_type *node, char *str, int i)
 		ft_fillin_num(node, str2, str, len);
 		(minus == 0) ? ft_flagminus_num(str2, len) : 0;
 		ft_flagplus_num(node, str2, minus, len);
-		ft_putendl(str2);
+		ft_putstr(str2);
 		free(str2);
 		free(str);
 		return ;
@@ -198,6 +227,37 @@ void	ft_print_int(t_type *node, char *str, int i)
 	ft_flagsp_num(str, len) : 0;
 	(minus == 0) ? ft_flagminus_num(str, len) : 0;
 	ft_flagplus_num(node, str, minus, len);
-	ft_putendl(str);
+	ft_putstr(str);
+	free(str);
+}
+
+
+void	ft_print_x(t_type *node, char *str, int i)
+{
+	int		len;
+	int		minus;
+	char	*str2;
+
+	minus = ft_isnegative(str);
+	if ((node->width != -1 && node->width >= (int)ft_strlen(str) + 1) ||
+		(node->precision != -1 && node->precision >= (int)ft_strlen(str) + 1))
+	{
+		len = ((node->width > node->precision) ? node->width : node->precision);
+		str2 = ft_strnew(len + 1);
+		ft_zerofiller(node, str2, len, &i);
+		ft_fillin_num(node, str2, str, len);
+		(minus == 0) ? ft_flagminus_num(str2, len) : 0;
+		ft_flagplus_num(node, str2, minus, len);
+		ft_putstr(str2);
+		free(str2);
+		free(str);
+		return ;
+	}
+	len = ft_strlen(str) + 1;
+	(ft_isflag_in_struct(node, ' ') == 0 || ft_isflag_in_struct(node, '+') == 0) ?
+	ft_flagsp_num(str, len) : 0;
+	(minus == 0) ? ft_flagminus_num(str, len) : 0;
+	ft_flagplus_num(node, str, minus, len);
+	ft_putstr(str);
 	free(str);
 }

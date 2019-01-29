@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 14:56:19 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/27 19:41:03 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/29 08:21:31 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,29 @@ int		main(void)
 	// printf("'%-015.2s', '%15.4s'\n", "helloworld", "levonka");
 	// ft_printf("'%-012.9s'\n", "helloworld");
 	// printf("'%-012.9s'\n", "helloworld");
+
+	int *ptr;
+
+	int a = 3;
+
+	ptr = &a;
+
+	size_t i;
+
+	while(i < sizeof(ptr))
+	{
+		
+	}
+
+	for (i=0; i<sizeof ptr; i++)
+		ft_printf("%x", ((unsigned char *)&ptr)[i]);
+	putchar('\n');
+
+
+
+
+	// print_memory(ptr, 1000);
+	printf("%p\n", ptr);
 
 
 	// ft_printf("%6d", 123);
@@ -192,8 +215,8 @@ int		main(void)
 	
 // ====================================== SEREGA
 
-	int *ptr;
-	char *str;
+	// int *ptr;
+	// char *str;
 
 
 	 // int a;
@@ -205,16 +228,13 @@ int		main(void)
 
 
 
-	// size_t i;
 	// int (*ptr_to_main)() = main;
 	// for (i=0; i<sizeof ptr_to_main; i++)
 	// 	printf("%.2x", ((unsigned char *)&ptr_to_main)[i]);
 	// putchar('\n');
 
 
-	// for (i=0; i<sizeof ptr; i++)
-	// 	ft_printf("%x", ((unsigned char *)&ptr)[i]);
-	// putchar('\n');
+
 
 
 	// printf("%x\n", ((unsigned char *)&ptr));
@@ -226,7 +246,7 @@ int		main(void)
 //      printf( "%hhu" , a[i] );
 
 
- 	print_memory(ptr, sizeof(ptr));
+ 	// print_memory(ptr, sizeof(ptr));
 
 	// ft_printf("%p\n", &ptr);
 	// printf("%p\n", &ptr);

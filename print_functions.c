@@ -26,4 +26,6 @@ void	ft_print_dispatcher(t_type *node, va_list args)
 		ft_ntoa_dispatcher(node, va_arg(args, int), 16);
 	else if (cmp(t, "p") == 0)
 		ft_ntoa_dispatcher(node, va_arg(args, int), 16);
+	// else if (cmp(t, "o") == 0)
+	// 	ft_ntoa_dispatcher(node, va_arg(args, int), 8);
 }

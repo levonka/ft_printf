@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:34:40 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/29 17:23:26 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/29 17:34:28 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,13 +158,13 @@ void	ft_flagplus_num(t_type *node, char *str, int minus, int len)
 				ft_swap(&str[len], &str[len - 1]);
 				--len;
 			}
-			str[0] = ((cmp(node->type, "u") || cmp(node->type, "lu") || cmp(node->type, "llu") || cmp(node->type, "hu") || cmp(node->type, "hhu")) ? ' ' : '+');
+			str[0] = ((cmp(node->type, "u") || cmp(node->type, "lu") || cmp(node->type, "llu") || cmp(node->type, "hu") || cmp(node->type, "hhu") || cmp(node->type, "x") || cmp(node->type, "X") || cmp(node->type, "o") || cmp(node->type, "O")) ? ' ' : '+');
 		}
 		else
 		{
 			while (str[i] == ' ' && str[i] != '\0')
 				++i;
-			str[(i == 0) ? 0 : i - 1] = ((cmp(node->type, "u")  || cmp(node->type, "lu") || cmp(node->type, "llu") || cmp(node->type, "hu") || cmp(node->type, "hhu")) ? ' ' : '+');
+			str[(i == 0) ? 0 : i - 1] = ((cmp(node->type, "u")  || cmp(node->type, "lu") || cmp(node->type, "llu") || cmp(node->type, "hu") || cmp(node->type, "hhu") || cmp(node->type, "x") || cmp(node->type, "X") || cmp(node->type, "o") || cmp(node->type, "O")) ? ' ' : '+');
 		}
 	}
 }

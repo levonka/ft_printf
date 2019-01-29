@@ -6,8 +6,8 @@ int		main(void)
 	// |%hd, |%hi, %ho, %hu, %hx, %hX, |%hhd, |%hhi, %hho, %hhu, %hhx, %hhX, \
 	// |%ld, |%li, %lo, %lu, %lx, %lX, |%lld, |%lli, %llo, %llu, %llx, %llX, \
 	// %f, %lf,  %Lf, %%");
-	ft_printf("'%-015.2s',\n'%15.4s'\n", "helloworld", "levonka");
-	printf("\n\n'%-015.2s',\n'%15.4s'\n", "helloworld", "levonka");
+	// ft_printf("'%-015.2s',\n'%15.4s'\n", "helloworld", "levonka");
+	// printf("\n\n'%-015.2s',\n'%15.4s'\n", "helloworld", "levonka");
 	// ft_printf("'%-012.9s'\n", "helloworld");
 	// printf("'%-012.9s'\n", "helloworld");
 	// ft_printf("%010d\n", 123450);
@@ -33,8 +33,8 @@ int		main(void)
 
 	// printf("'%+8.5X'\n", 30);
 
-	ft_printf("%+12.8X\n", 30101);
-	printf("%+12.8X\n", 30101);
+	// ft_printf("%+12.8X\n", 30101);
+	// printf("%+12.8X\n", 30101);
 
 
 	// ft_printf("%.8d\n", 30101);
@@ -214,6 +214,8 @@ int		main(void)
 	// printf("%p\n", &ptr);
 	// printf("%p\n", &str);
 	// printf("%0x\n", uip);
+	ft_printf("%+o\n", 123);
+	printf("%+x\n", 123);
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:30:59 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/01/29 17:18:28 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/29 17:42:47 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_ntoa_dispatcher(t_type *node, uintmax_t n, int base)
 
 	str = ft_ntoa_base(n, base);
 
-	printf("%s\n", node->flags);
+	// printf("%s\n", node->flags);
 	ft_print_x(node, str, 0);
 
 	// printf("%s\n", str);

@@ -6,43 +6,11 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:34:40 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/29 17:18:19 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/29 17:23:26 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-// void	ft_zerofiller(t_type *node, char *str, int len, int *i)
-// {
-// 	int		pr_copy;
-
-// 	pr_copy = node->precision;
-// 	if (ft_isflag_in_struct(node, '-') == SUCCESS)
-// 		while (*i < node->precision)
-// 		{
-// 			str[*i] = '0';
-// 			*i = *i + 1;
-// 		}
-// 	else
-// 		while (pr_copy > 0)
-// 		{
-// 			str[len - 1] = '0';
-// 			--len;
-// 			--pr_copy;
-// 		}
-// 	while (*i < len)
-// 	{
-// 		if ((ft_isflag_in_struct(node, '0') == SUCCESS)
-// 			|| ((size_t)node->precision < ft_strlen(str)))
-// 		{
-// 			 if (ft_isflag_in_struct(node, '-'))
-// 				str[*i] = '0';
-// 		}
-// 		else
-// 			str[*i] = ' ';
-// 		*i = *i + 1;
-// 	}
-// }
 
 void	ft_zerofiller(t_type *node, char *str, int len, int *i)
 {
@@ -190,13 +158,13 @@ void	ft_flagplus_num(t_type *node, char *str, int minus, int len)
 				ft_swap(&str[len], &str[len - 1]);
 				--len;
 			}
-			str[0] = '+';
+			str[0] = ((cmp(node->type, "u") || cmp(node->type, "lu") || cmp(node->type, "llu") || cmp(node->type, "hu") || cmp(node->type, "hhu")) ? ' ' : '+');
 		}
 		else
 		{
 			while (str[i] == ' ' && str[i] != '\0')
 				++i;
-			str[(i == 0) ? 0 : i - 1] = '+';
+			str[(i == 0) ? 0 : i - 1] = ((cmp(node->type, "u")  || cmp(node->type, "lu") || cmp(node->type, "llu") || cmp(node->type, "hu") || cmp(node->type, "hhu")) ? ' ' : '+');
 		}
 	}
 }

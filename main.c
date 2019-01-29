@@ -1,21 +1,15 @@
 #include "ft_printf.h"
-#include <inttypes.h>
-
-#include <string.h>
-
-#include <unistd.h>
 
 int		main(void)
 {
-	// ft_printf("flags test\n%s, %p, %d, %i, %o, %u, %x, %X, \
-	// %hd, %hi, %ho, %hu, %hx, %hX, %hhd, %hhi, %hho, %hhu, %hhx, %hhX, \
-	// %ld, %li, %lo, %lu, %lx, %lX, %lld, %lli, %llo, %llu, %llx, %llX, \
+	// ft_printf("flags test\n|%s, %p, |%d, |%i, %o, %u, %x, %X, \
+	// |%hd, |%hi, %ho, %hu, %hx, %hX, |%hhd, |%hhi, %hho, %hhu, %hhx, %hhX, \
+	// |%ld, |%li, %lo, %lu, %lx, %lX, |%lld, |%lli, %llo, %llu, %llx, %llX, \
 	// %f, %lf,  %Lf, %%");
-	// ft_printf("'%-015.2s', '%15.4s'\n", "helloworld", "levonka");
-	// printf("'%-015.2s', '%15.4s'\n", "helloworld", "levonka");
+	ft_printf("'%-015.2s',\n'%15.4s'\n", "helloworld", "levonka");
+	printf("\n\n'%-015.2s',\n'%15.4s'\n", "helloworld", "levonka");
 	// ft_printf("'%-012.9s'\n", "helloworld");
 	// printf("'%-012.9s'\n", "helloworld");
-
 	// ft_printf("%010d\n", 123450);
 	// printf("%010d\n", 123450);
 
@@ -59,6 +53,38 @@ int		main(void)
 
 	// ft_printf("'%6d'\n", 123);
 	// printf("'%6d'\n\n", 123);
+	// long	longg = -9223372036854775807LL;
+	// unsigned int	ui = UINT_MAX;
+	// unsigned long long	ul = ULLONG_MAX + 1;
+	// short int	si = SHRT_MIN - 1;
+	// signed char		sc = 256;
+	// unsigned short		uc = USHRT_MAX + 1;
+	// ================================== %d and %i
+	// ft_printf("'%30.15u'\n", ui);
+	// printf("'%30.15u'\n\n", ui);
+	// ft_printf("'%.30llu'\n", ul);
+	// printf("'%.30llu'\n\n", ul);
+	// ft_printf("'%+10hd'\n", si);
+	// printf("'%+10hd'\n\n", si);
+	// ft_printf("'%+10hu'\n", uc);
+	// printf("'%+10hu'\n\n", uc);
+	// ft_printf("'%+10.1hhd'\n", sc);
+	// printf("'%+10.1hhd'\n\n", sc);
+	// ft_printf("'%30ld'\n", longg);
+	// printf("'%30ld'\n\n", longg);
+	// ft_printf("'%30.25lld'\n", longg);
+	// printf("'%30.25lld'\n\n", longg);
+	// ft_printf("'%.30lld'\n", longg);
+	// printf("'%.30lld'\n", longg);
+
+
+
+
+
+
+	// ================================== %d and %i
+	// ft_printf("'%6d'\n", INT_MAX + 1);
+	// printf("'%6d'\n\n", INT_MAX + 1);
 	// ft_printf("'%.6d'\n", 123);
 	// printf("'%.6d'\n\n", 123);
 	// ft_printf("'%3.6d'\n", 123);
@@ -188,7 +214,6 @@ int		main(void)
 	// printf("%p\n", &ptr);
 	// printf("%p\n", &str);
 	// printf("%0x\n", uip);
-
 
 	return (0);
 }

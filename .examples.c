@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <limits.h>
 
 int		main(void)
 {
@@ -60,6 +61,18 @@ int		main(void)
 	/* Много знаков точности не влияют на исход */
 	printf("%.........................5d", 32);	//	'00032'
 
+	printf("\n\n");
 
+	printf("signed char from \t%d to %d\n", SCHAR_MIN, SCHAR_MAX);
+	printf("unsigned char from \t0 to %d\n", UCHAR_MAX);
+	printf("short from \t\t%d to %d\n", SHRT_MIN, SHRT_MAX);
+	printf("signed int from \t%d to %d\n", INT_MIN, INT_MAX);
+	printf("unsigned int from \t0 to %u\n", UINT_MAX);
+	printf("long int from \t\t%ld to %ld\n", LONG_MIN, LONG_MAX);
+	printf("unsigned long from \t0 to %lu\n", ULONG_MAX);
+	printf("long long int from \t%lld to %lld\n", LLONG_MIN, LLONG_MAX);
+	printf("unsgined long long from 0 to %llu\n", ULLONG_MAX);
+
+	printf("\n\n");
 	return (0);
 }

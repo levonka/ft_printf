@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:34:40 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/27 19:30:24 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/01/29 14:50:58 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,13 +161,13 @@ void	ft_flagplus_num(t_type *node, char *str, int minus, int len)
 				ft_swap(&str[len], &str[len - 1]);
 				--len;
 			}
-			str[0] = '+';
+			str[0] = ((cmp(node->type, "u") || cmp(node->type, "lu") || cmp(node->type, "llu") || cmp(node->type, "hu") || cmp(node->type, "hhu")) ? ' ' : '+');
 		}
 		else
 		{
 			while (str[i] == ' ' && str[i] != '\0')
 				++i;
-			str[(i == 0) ? 0 : i - 1] = '+';
+			str[(i == 0) ? 0 : i - 1] = ((cmp(node->type, "u")  || cmp(node->type, "lu") || cmp(node->type, "llu") || cmp(node->type, "hu") || cmp(node->type, "hhu")) ? ' ' : '+');
 		}
 	}
 }
@@ -179,7 +179,6 @@ void	ft_print_int(t_type *node, char *str, int i)
 	char	*str2;
 
 	minus = ft_isnegative(str);
-	// printf("%d\n", minus);
 	if ((node->width != -1 && node->width >= (int)ft_strlen(str) + 1) ||
 		(node->precision != -1 && node->precision >= (int)ft_strlen(str) + 1))
 	{
@@ -189,7 +188,7 @@ void	ft_print_int(t_type *node, char *str, int i)
 		ft_fillin_num(node, str2, str, len);
 		(minus == 0) ? ft_flagminus_num(str2, len) : 0;
 		ft_flagplus_num(node, str2, minus, len);
-		printf("'%s'\n", str2);
+		ft_putstr(str2);
 		free(str2);
 		free(str);
 		return ;
@@ -199,7 +198,6 @@ void	ft_print_int(t_type *node, char *str, int i)
 	ft_flagsp_num(str, len) : 0;
 	(minus == 0) ? ft_flagminus_num(str, len) : 0;
 	ft_flagplus_num(node, str, minus, len);
-	printf("'%s'\n", str);
-	// ft_putstr(str);
+	ft_putstr(str);
 	free(str);
 }

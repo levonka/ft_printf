@@ -3,38 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:35:03 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/27 16:19:12 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/29 17:14:18 by agottlie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-// int		main(void)
-// {
-// 	// ft_printf("flags test\n%s, %p, %d, %i, %o, %u, %x, %X, \
-// 	// %hd, %hi, %ho, %hu, %hx, %hX, %hhd, %hhi, %hho, %hhu, %hhx, %hhX, \
-// 	// %ld, %li, %lo, %lu, %lx, %lX, %lld, %lli, %llo, %llu, %llx, %llX, \
-// 	// %f, %lf,  %Lf, %%");
-// 	// ft_printf("'%-015.2c', '%15.4c'\n", 'h', 'a');
-// 	// printf("'%-015.2c', '%15.4c'\n", 'd', 'a');
-// 	// ft_printf("'%-012.x'\n", 255);
-// 	// printf("'%-012.x'\n", 255);
-// 	// ft_printf("'%-012.x'\n", 255);
-
-
-// 	// ft_printf("'%+012.s'\n", "helloworld");
-// 	// printf("'%+012.s'\n", "helloworld");
-
-// 	// printf("%05.5s");
-// 	// ft_printf("%05.1lld");
-// 	// ft_printf("how are u doing? %ld\n", LONG_MAX + 1);
-// 	// printf("how are u doing? %ld\n", LONG_MAX + 1);
-// 	return (0);
-// }
 
 int		ft_solver(va_list args, const char *format, size_t *i)
 {
@@ -96,6 +72,7 @@ t_type	*ft_create_ttr()
 void	ft_freenode(t_type *node)
 {
 	free(node->type);
+	free(node->flags);
 	free(node);
 }
 

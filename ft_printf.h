@@ -1,20 +1,24 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include <stdio.h>
-#include <stdarg.h>
-#include <assert.h>
-#include <limits.h>
-#include "libft/libft.h"
+# include <stdio.h>
+# include <stdarg.h>
+# include <assert.h>
+# include <limits.h>
+# include "libft/libft.h"
 
 enum { FAIL = -1, SUCCESS = 0 };
 
-#define ISFAILED(f) if ((f) == FAIL) return (FAIL);
+# define ISFAILED(f) if ((f) == FAIL) return (FAIL);
+/*
+** MIN will give us min value of type (ex: MIN(char) = -256)
+*/
+# define MIN(x) (1LL << (sizeof(x) * 8 - 1))
 
 typedef struct		s_type
 {
 	char			*type;
-	char			flags[5];
+	char			*flags;
 	int				width;
 	int				precision;
 	int				status;
@@ -37,6 +41,7 @@ int		ft_flagsvalidator(char flag);
 int		ft_numvalidator(const char *format, size_t *i);
 
 void	ft_print_dispatcher(t_type *node, va_list args);
+int		cmp(char *type, char *c);
 
 void	ft_flagminus(t_type *node, char *to, char *from, int *i);
 void	ft_flagzero(t_type *node, char *str, int *i);
@@ -44,7 +49,12 @@ void	ft_flagzero(t_type *node, char *str, int *i);
 void	ft_print_string(t_type *node, char *str, int i);
 
 void	ft_print_int(t_type *node, char *str, int i);
-void	ft_zerofiller(t_type *node, char *str, int len, int *i);
+
+char	*ft_itoa_ll(long n);
+
+char	*ft_itoa_ui(unsigned int n);
+
+char	*ft_itoa_ull(unsigned long n);
 
 void	ft_print_char(t_type *node, int c, int i);
 

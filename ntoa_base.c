@@ -117,6 +117,10 @@ void ntoa_dispatcher(t_type *node, unsigned int nb, int i)
 {
 	char nums[11];
 	char *str;
+	t_type *f;	//	DELETE. THIS IS FOR COMPILATOR
+	int	g;		//	DELETE. THIS IS FOR COMPILATOR
+	f = node;	//	DELETE. THIS IS FOR COMPILATOR
+	g = i;		//	DELETE. THIS IS FOR COMPILATOR
 
 	nums_array_filler(nums, 0);
 	str = ft_uitoa(nb, 16, nums);

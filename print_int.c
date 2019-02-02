@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:34:40 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/01 13:33:50 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/02 14:44:45 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,14 @@ void	ft_zerofiller(t_type *node, char *str, int len, int *i)
 		}
 	while (*i < len)
 	{
-		// if ((ft_isflag_in_struct(node, '0') == SUCCESS)
-			// && ((size_t)node->precision < ft_strlen(str)))
-		// {
-			// printf("helllllll\n");
-			// str[*i] = '0';
-		// }
-		// else
+		if ((ft_isflag_in_struct(node, '0') == SUCCESS))
+			 str[*i] = (ft_isflag_in_struct(node, '-')) ? '0' : ' ';
+		else
 			str[*i] = ' ';
 		*i = *i + 1;
 	}
 }
+
 
 void	ft_fillin_num(t_type *node, char *to, char *from, int len)
 {
@@ -161,13 +158,13 @@ void	ft_flagplus_num(t_type *node, char *str, int minus, int len)
 				ft_swap(&str[len], &str[len - 1]);
 				--len;
 			}
-			str[0] = ((cmp(node->type, "u") || cmp(node->type, "lu") || cmp(node->type, "llu") || cmp(node->type, "hu") || cmp(node->type, "hhu")) ? ' ' : '+');
+			str[0] = ((cmp(node->type, "u") || cmp(node->type, "lu") || cmp(node->type, "llu") || cmp(node->type, "hu") || cmp(node->type, "hhu") || cmp(node->type, "x") || cmp(node->type, "X") || cmp(node->type, "o") || cmp(node->type, "O")) ? ' ' : '+');
 		}
 		else
 		{
 			while (str[i] == ' ' && str[i] != '\0')
 				++i;
-			str[(i == 0) ? 0 : i - 1] = ((cmp(node->type, "u")  || cmp(node->type, "lu") || cmp(node->type, "llu") || cmp(node->type, "hu") || cmp(node->type, "hhu")) ? ' ' : '+');
+			str[(i == 0) ? 0 : i - 1] = ((cmp(node->type, "u")  || cmp(node->type, "lu") || cmp(node->type, "llu") || cmp(node->type, "hu") || cmp(node->type, "hhu") || cmp(node->type, "x") || cmp(node->type, "X") || cmp(node->type, "o") || cmp(node->type, "O")) ? ' ' : '+');
 		}
 	}
 }
@@ -200,5 +197,36 @@ void	ft_print_int(t_type *node, char *str, int i)
 	(minus == 0) ? ft_flagminus_num(str, len) : 0;
 	ft_flagplus_num(node, str, minus, len);
 	write(1, str, ft_strlen(str));
+	free(str);
+}
+
+
+void	ft_print_x(t_type *node, char *str, int i)
+{
+	int		len;
+	int		minus;
+	char	*str2;
+
+	minus = ft_isnegative(str);
+	if ((node->width != -1 && node->width >= (int)ft_strlen(str) + 1) ||
+		(node->precision != -1 && node->precision >= (int)ft_strlen(str) + 1))
+	{
+		len = ((node->width > node->precision) ? node->width : node->precision);
+		str2 = ft_strnew(len + 1);
+		ft_zerofiller(node, str2, len, &i);
+		ft_fillin_num(node, str2, str, len);
+		(minus == 0) ? ft_flagminus_num(str2, len) : 0;
+		ft_flagplus_num(node, str2, minus, len);
+		ft_putstr(str2);
+		free(str2);
+		free(str);
+		return ;
+	}
+	len = ft_strlen(str) + 1;
+	(ft_isflag_in_struct(node, ' ') == 0 || ft_isflag_in_struct(node, '+') == 0) ?
+	ft_flagsp_num(str, len) : 0;
+	(minus == 0) ? ft_flagminus_num(str, len) : 0;
+	ft_flagplus_num(node, str, minus, len);
+	ft_putstr(str);
 	free(str);
 }

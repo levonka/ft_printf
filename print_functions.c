@@ -25,7 +25,9 @@ void	ft_print_dispatcher(t_type *node, va_list args)
 	else if (cmp(t, "f"))
 		ft_print_float(node, va_arg(args, double), 0);
 	else if (cmp(t, "x") == 0)
-		ntoa_dispatcher(node, va_arg(args, int), 0);
+		ft_ntoa_dispatcher(node, va_arg(args, int), 16);
 	else if (cmp(t, "p") == 0)
-		ntoa_dispatcher(node, va_arg(args, int), 0);
+		ft_ntoa_dispatcher(node, va_arg(args, int), 16);
+	// else if (cmp(t, "o") == 0)
+	// 	ft_ntoa_dispatcher(node, va_arg(args, int), 8);
 }

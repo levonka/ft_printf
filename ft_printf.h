@@ -61,8 +61,8 @@ char	*ft_itoa_ull(unsigned long n);
 
 void	ft_print_float(t_type *node, double n, int i);
 
-void	ft_print_hex(t_type *node, int hex, int i);
-void	ntoa_dispatcher(t_type *node, unsigned int x, int i);
+void	ft_print_x(t_type *node, char *str, int i);
+void	ft_ntoa_dispatcher(t_type *node, uintmax_t n, int base);
 
 double	ft_atof(char *s);
 char	*ft_ftoa(double n, int afterpoint);

@@ -6,13 +6,15 @@
 #    By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/08 15:24:16 by agottlie          #+#    #+#              #
-#    Updated: 2019/01/27 19:29:19 by agottlie         ###   ########.fr        #
+#    Updated: 2019/02/01 13:24:02 by agottlie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = printf
 
 FLAGS = -Wall -Wextra
+
+FLAGS2 = -Wno-format-invalid-specifier -Wno-format -Wno-macro-redefined -Wno-implicitly-unsigned-literal
 
 SRC = *.c
 
@@ -29,6 +31,11 @@ all: $(NAME)
 $(NAME):
 	@gcc $(FLAGS) -c $(SRC) -I $(INC)
 	@gcc $(FLAGS) -Llibft -lft -I$(INC) -o $(NAME) $(OBJ)
+	@make clean
+
+hi:
+	@gcc $(FLAGS2) -c $(SRC) -I $(INC)
+	@gcc $(FLAGS2) -Llibft -lft -I$(INC) -o $(NAME) $(OBJ)
 	@make clean
 
 ex:

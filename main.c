@@ -6,10 +6,24 @@ int		main(void)
 	// |%hd, |%hi, %ho, %hu, %hx, %hX, |%hhd, |%hhi, %hho, %hhu, %hhx, %hhX, \
 	// |%ld, |%li, %lo, %lu, %lx, %lX, |%lld, |%lli, %llo, %llu, %llx, %llX, \
 	// %f, %lf,  %Lf, %%");
-	ft_printf("'%-015.2s',\n'%15.4s'\n", "helloworld", "levonka");
-	printf("\n\n'%-015.2s',\n'%15.4s'\n", "helloworld", "levonka");
+	// ft_printf("'%-015.2s',\n'%15.4s'\n", "helloworld", "levonka");
+	// printf("\n\n'%-015.2s',\n'%15.4s'\n", "helloworld", "levonka");
 	// ft_printf("'%-012.9s'\n", "helloworld");
 	// printf("'%-012.9s'\n", "helloworld");
+
+	// char *arr;
+	// double	d = 233879456233879431.54;
+	// arr = ft_ftoa(d, 5);
+	printf("\n\"%x\"\n", 42);
+	// ft_printf("\n\"%.30f\"\n", d);
+
+	// printf("%012i\n", -42);		//	bug
+	// ft_printf("%012i\n", -42);		//	bug
+	// printf("%012i\n", 42);		//	bug
+	// ft_printf("%012i\n", 42);		//	bug
+
+	// ft_printf("\n\"%+ .20f\"\n", d);		// bug (d = 233.04)
+	// ft_printf("\n\"%+-.f\"\n", d);		// bug (d = -233.04)
 
 	// long	longg = -9223372036854775807LL;
 	// unsigned int	ui = UINT_MAX;

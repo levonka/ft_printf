@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:34:40 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/29 14:50:58 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/01 13:33:50 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,10 +185,11 @@ void	ft_print_int(t_type *node, char *str, int i)
 		len = ((node->width > node->precision) ? node->width : node->precision);
 		str2 = ft_strnew(len + 1);
 		ft_zerofiller(node, str2, len, &i);
+		printf("'%s'\n", str2);
 		ft_fillin_num(node, str2, str, len);
 		(minus == 0) ? ft_flagminus_num(str2, len) : 0;
 		ft_flagplus_num(node, str2, minus, len);
-		ft_putstr(str2);
+		write(1, str2, ft_strlen(str2));
 		free(str2);
 		free(str);
 		return ;
@@ -198,6 +199,6 @@ void	ft_print_int(t_type *node, char *str, int i)
 	ft_flagsp_num(str, len) : 0;
 	(minus == 0) ? ft_flagminus_num(str, len) : 0;
 	ft_flagplus_num(node, str, minus, len);
-	ft_putstr(str);
+	write(1, str, ft_strlen(str));
 	free(str);
 }

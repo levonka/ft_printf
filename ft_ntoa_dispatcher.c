@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:30:59 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/01/29 17:42:47 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/01/31 17:40:21 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,29 @@ char		*ft_ntoa_base(uintmax_t n, int base)
 	return (res);
 }
 
+void turnoff_fl(char *flags, char c)
+{
+	int i;
+	char buf;
+
+	i = -1;
+	while(flags[++i] != '\0')
+	{
+		if (flags[i] == c)
+		{
+			if (flags[i + 1] == '\0')
+				flags[i] = '\0';
+			else
+			{
+				buf = flags[i];
+				flags[i] = flags[i + 1];
+				flags[i + 1] = buf;
+			}
+		}
+	}
+	// return (0);
+}
+
 void	ft_ntoa_dispatcher(t_type *node, uintmax_t n, int base)
 {
 	char *str;
@@ -66,6 +89,17 @@ void	ft_ntoa_dispatcher(t_type *node, uintmax_t n, int base)
 	str = ft_ntoa_base(n, base);
 
 	// printf("%s\n", node->flags);
+	// printf("%s\n", node->type);
+	// cmp(node->type, 'x') ? ft_lower
+	node->precision > 0 ? turnoff_fl(node->flags, '0') : printf("no\n");
+	printf("%s\n", node->flags);
+	turnoff_fl(node->flags, '+');
+	// turnoff_fl(node->flags, '+');
+
+	// turnoff_fl(node->flags, '0');
+	// node->flags
+	printf("%s\n", node->flags);
+
 	ft_print_x(node, str, 0);
 
 	// printf("%s\n", str);

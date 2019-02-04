@@ -61,4 +61,5 @@ void	ft_print_char(t_type *node, int c, int i);
 void	ft_print_x(t_type *node, char *str, int i);
 void	ft_ntoa_dispatcher(t_type *node, uintmax_t n, int base);
 
+int		cmp(char *type, char *c);
 #endif

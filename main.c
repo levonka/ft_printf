@@ -1,7 +1,86 @@
 #include "ft_printf.h"
+#include <fcntl.h>
 
-int		main(void)
+// #define BUFF_SIZE 1000
+
+void	read_it(int fd, char **line)
 {
+
+	char			buff[BUFF_SIZE + 1];
+	int				n;
+
+	while ((n = read(fd, buff, BUFF_SIZE)))
+		buff[n] = '\0';
+	*line = ft_strnew(BUFF_SIZE);
+	*line = ft_strjoin((*line), buff);
+
+}
+
+char *parse_str(char *str)
+{
+	int i = 0;
+	int j = 0;
+
+	char *parse1;
+
+	parse1 = ft_strnew(50);
+	while(str[i] != ',' && str[i] != '\0')
+	{
+		if (str[i] == '"')
+			i++;
+		if (str[i] == ',')
+			return(parse1);
+		parse1[j] = str[i];
+		i++;
+		j++;
+	}
+	return (parse1);
+}
+
+char *parse_arg(char *str)
+{
+	int i = 0;
+	int j = 0;
+
+	char *parse2;
+
+	parse2 = ft_strnew(50);
+	i = ft_strlen(str) - ft_strlen(ft_strchr(str, ','));
+	i +=2;
+	while(str[i] != '\0')
+	{
+		parse2[j] = str[i];
+		i++;
+		j++;
+	}
+	return (parse2);
+}
+
+
+int		main(int argc, char *argv[])
+{
+
+	
+	// char	*line;
+	// int		fd;
+	// char	*parse1;
+	// char	*parse2;
+
+	// argc < 1 ? printf("ERR\n") : 0;
+
+	// fd = open(argv[1], O_RDONLY);
+	// read_it(fd, &line);
+	// parse1 = parse_str(line);
+	// parse2 = parse_arg(line);
+	// ft_printf(parse1, parse2);
+
+
+
+
+
+
+
+
 	// ft_printf("flags test\n|%s, %p, |%d, |%i, %o, %u, %x, %X, \
 	// |%hd, |%hi, %ho, %hu, %hx, %hX, |%hhd, |%hhi, %hho, %hhu, %hhx, %hhX, \
 	// |%ld, |%li, %lo, %lu, %lx, %lX, |%lld, |%lli, %llo, %llu, %llx, %llX, \
@@ -78,8 +157,9 @@ int		main(void)
 	// printf("'%.30lld'\n", longg);
 
 
-
-
+	// char a[5] = "Hello";
+	// printf("%010s", a);
+	// ft_printf("%010s", a);
 
 
 	// ================================== %d and %i
@@ -214,8 +294,9 @@ int		main(void)
 	// printf("%p\n", &ptr);
 	// printf("%p\n", &str);
 	// printf("%0x\n", uip);
-	ft_printf("%+o\n", 123);
-	printf("%+x\n", 123);
+	// ft_printf("%+o\n", 123);
+	ft_printf("%-10x\n", 123);
+	printf("%-10x\n", 123);
 
 	return (0);
 }

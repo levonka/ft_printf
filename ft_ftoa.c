@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 14:53:39 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/01 16:48:53 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/05 09:24:18 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,20 @@ char *ft_ftoa(double n, int afterpoint)
     double	floatpart = n - (double)intpart;
     char	*res;
 
-    res = malloc(sizeof(char) * 200);		// изменить
+
+    if (n == -1.00 / 0.00)
+    	return (ft_strdup("-inf"));
+    else if (n == 1.00 / 0.00)
+    	return (ft_strdup("inf"));
+    else if (n != n)
+        return (ft_strdup("nan"));
+
+    res = malloc(sizeof(char) * 300);		// изменить
     int i = intToStr(intpart, res, 0);
     if (afterpoint != 0)
     {
         res[i] = '.';
         floatpart = floatpart * pow(10, afterpoint);
-    	printf("vot >'%f'\n", floatpart);
         floatToStr(floatpart, res + i + 1, afterpoint);
     }
     return (res);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ntoa_dispatcher.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:30:59 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/01/29 17:42:47 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/02 14:59:10 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ intmax_t	ft_abs(intmax_t n)
 		return (-n);
 	return (n);
 }
-
 
 int			ft_nlen(intmax_t n, int base)
 {
@@ -34,7 +33,6 @@ int			ft_nlen(intmax_t n, int base)
 	}
 	return (len);
 }
-
 
 char		*ft_ntoa_base(uintmax_t n, int base)
 {

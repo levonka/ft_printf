@@ -1,4 +1,4 @@
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 static char		*modif_larg_with_zero(t_arg *data)
 {

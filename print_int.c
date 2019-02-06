@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   print_int.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/24 10:34:40 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/06 11:05:55 by yharwyn-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -106,12 +95,14 @@ int		ft_isnegative(char *str)
 	return (FAIL);
 }
 
-void	ft_flagminus_num(char *str, int len)
+void	ft_flagminus_num(t_type *node, char *str, int len)
 {
 	int		i;
 
 	i = 0;
-	if (ft_isdigit(str[0]))
+	if (str[0] == '0' && node->precision == -1)
+		str[0] = '-';
+	else if (ft_isdigit(str[0]))
 	{
 		len -= (str[ft_strlen(str) - 1] == ' ') ? 1 : 0;
 		while (len > 0)
@@ -182,9 +173,9 @@ void	ft_print_int(t_type *node, char *str, int i)
 		len = ((node->width > node->precision) ? node->width : node->precision);
 		str2 = ft_strnew(len + 1);
 		ft_zerofiller(node, str2, len, &i);
-		printf("'%s'\n", str2);
 		ft_fillin_num(node, str2, str, len);
-		(minus == 0) ? ft_flagminus_num(str2, len) : 0;
+		(minus == 0) ? ft_flagminus_num(node, str2, len) : 0;
+		// printf("%s\n", str2);
 		ft_flagplus_num(node, str2, minus, len);
 		write(1, str2, ft_strlen(str2));
 		free(str2);
@@ -194,9 +185,8 @@ void	ft_print_int(t_type *node, char *str, int i)
 	len = ft_strlen(str) + 1;
 	(ft_isflag_in_struct(node, ' ') == 0 || ft_isflag_in_struct(node, '+') == 0) ?
 	ft_flagsp_num(str, len) : 0;
-	(minus == 0) ? ft_flagminus_num(str, len) : 0;
+	(minus == 0) ? ft_flagminus_num(node, str, len) : 0;
 	ft_flagplus_num(node, str, minus, len);
 	write(1, str, ft_strlen(str));
 	free(str);
 }
-

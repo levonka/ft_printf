@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 12:24:07 by dkovalch          #+#    #+#             */
-/*   Updated: 2019/02/01 13:25:28 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/05 17:28:35 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@
 #include "ft_printf.h"
 
 //Test switchers - comment some of then to turn the tests off
-#define	CHAR		//aka chars
+// #define	CHAR		//aka chars
 // #define	PER			//aka percent(%)
-#define	NUM			//aka numbers
+// #define	NUM			//aka numbers
 // #define	PTR			//aka pointers
 // #define	STRANGE		//aka undefined tests
-// #define STR			//aka strings
+#define STR			//aka strings
 // #define WSTR		//aka wide strings
-#define	LENGTH		//aka hh, h, l ,ll , z, j
+// #define	LENGTH		//aka hh, h, l ,ll , z, j
 
 int	main(void)
 {
@@ -56,8 +56,8 @@ int	main(void)
 	PRINTF("|%-2.3c|(%3d)\t|%-2.5c|(%3d)\t|%-2.0c|(%3d)", a, a, a+5,a+5,a+10,a+10);
 	PRINTF("|%+3c|(%3d)\t|%+3c|(%3d)\t|%+c|(%3d)", a, a, a+5, a+5, a+10, a+10);
 	PRINTF("|%3.4c|(%3d)\t|%+3.4c|(%3d)\t|%.4c|(%3d)", a, a, a+5, a+5, a+10, a+10);
-	PRINTF("|%-3w|(%3w)\t|%3Z|(%3Z)\t|%Q|(%3Q)");
-	PRINTF("|%3h|\t|%3l|\t|%3hhll|\t|%3llhhllQ|\t|%3z|\t|%3j|\t|%3J|");
+	// PRINTF("|%-3w|(%3w)\t|%3Z|(%3Z)\t|%Q|(%3Q)");
+	// PRINTF("|%3h|\t|%3l|\t|%3hhll|\t|%3llhhllQ|\t|%3z|\t|%3j|\t|%3J|");
 	PRINTF("|%-3c|\t|%3c|\t|%c|\t|%-03c|\t|%03c|\t|%.c|\t|%.5c|\t|%.C|\t|%.5C|", 0,0,0,0,0,0,0,0,0);
 	}
 #endif
@@ -66,7 +66,7 @@ int	main(void)
 	TITLE("Percent options:\n");
 	PRINTF("|%-6%|   |%6%|   |%6.2%|   |%-06%|   |%-06.3%|");
 #endif
-	
+
 #ifdef STR
 	TITLE("Strings:\n");
 	PRINTF("|%s|", NULL);

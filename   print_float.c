@@ -6,11 +6,17 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:36:54 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/04 17:57:04 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/06 11:22:25 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+// int		nancases(char *n)
+// {
+	// const char base[][] = {"-inf", "inf", "nan"};
+
+// }
 
 void	ft_print_float(t_type *node, double n, int i)
 {
@@ -28,7 +34,7 @@ void	ft_print_float(t_type *node, double n, int i)
 		str2 = ft_strnew(len + 1);
 		ft_zerofiller(node, str2, len, &i);
 		ft_fillin_num(node, str2, str, len);
-		(minus == 0) ? ft_flagminus_num(str2, len) : 0;
+		(minus == 0) ? ft_flagminus_num(node, str2, len) : 0;
 		ft_flagplus_num(node, str2, minus, len);
 		write(1, str2, ft_strlen(str2));
 		free(str2);
@@ -38,7 +44,7 @@ void	ft_print_float(t_type *node, double n, int i)
 	len = ft_strlen(str) + 1;
 	(ft_isflag_in_struct(node, ' ') == 0 || ft_isflag_in_struct(node, '+') == 0) ?
 	ft_flagsp_num(str, len) : 0;
-	(minus == 0) ? ft_flagminus_num(str, len) : 0;
+	(minus == 0) ? ft_flagminus_num(node, str, len) : 0;
 	ft_flagplus_num(node, str, minus, len);
 	write(1, str, ft_strlen(str));
 	free(str);

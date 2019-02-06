@@ -3,6 +3,8 @@
 
 # include <stdio.h>
 # include <stdarg.h>
+# include <float.h>
+# include <limits.h>
 # include "libft/libft.h"
 
 enum { FAIL = -1, SUCCESS = 0 };
@@ -52,7 +54,7 @@ void	ft_print_int(t_type *node, char *str, int i);
 int		ft_isnegative(char *str);
 void	ft_zerofiller(t_type *node, char *str, int len, int *i);
 void	ft_fillin_num(t_type *node, char *to, char *from, int len);
-void	ft_flagminus_num(char *str, int len);
+void	ft_flagminus_num(t_type *node, char *str, int len);
 void	ft_flagplus_num(t_type *node, char *str, int minus, int len);
 void	ft_flagsp_num(char *str, int len);
 

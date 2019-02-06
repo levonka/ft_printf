@@ -40,7 +40,7 @@ int		ft_typevalidator(t_type *node, int len, size_t *i);
 int		ft_flagsvalidator(char flag);
 int		ft_numvalidator(const char *format, size_t *i);
 
-void	ft_print_dispatcher(t_type *node, va_list args);
+int		ft_print_dispatcher(t_type *node, va_list args);
 int		cmp(char *type, char *c);
 
 void	ft_flagminus(t_type *node, char *to, char *from, int *i);
@@ -50,7 +50,7 @@ void	ft_print_string(t_type *node, char *str, int i);
 
 void	ft_print_char(t_type *node, int c, int i);
 
-void	ft_print_int(t_type *node, char *str, int i);
+int		ft_print_int(t_type *node, char *str, int i);
 int		ft_isnegative(char *str);
 void	ft_zerofiller(t_type *node, char *str, int len, int *i);
 void	ft_fillin_num(t_type *node, char *to, char *from, int len);

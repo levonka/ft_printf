@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:34:40 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/05 16:54:52 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/06 11:55:23 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ void	ft_flagplus_num(t_type *node, char *str, int minus, int len)
 	}
 }
 
-void	ft_print_int(t_type *node, char *str, int i)
+int		ft_print_int(t_type *node, char *str, int i)
 {
 	int		len;
 	int		minus;
@@ -189,9 +189,10 @@ void	ft_print_int(t_type *node, char *str, int i)
 		// printf("%s\n", str2);
 		ft_flagplus_num(node, str2, minus, len);
 		write(1, str2, ft_strlen(str2));
+		len = ft_strlen(str2);
 		free(str2);
 		free(str);
-		return ;
+		return (len);
 	}
 	len = ft_strlen(str) + 1;
 	(ft_isflag_in_struct(node, ' ') == 0 || ft_isflag_in_struct(node, '+') == 0) ?
@@ -199,7 +200,9 @@ void	ft_print_int(t_type *node, char *str, int i)
 	(minus == 0) ? ft_flagminus_num(node, str, len) : 0;
 	ft_flagplus_num(node, str, minus, len);
 	write(1, str, ft_strlen(str));
+	len = ft_strlen(str);
 	free(str);
+	return (len);
 }
 
 

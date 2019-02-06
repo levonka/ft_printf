@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:35:03 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/29 17:14:18 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/06 13:57:18 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		ft_solver(va_list args, const char *format, size_t *i)
 {
 	t_type	*node;
+	int		len;
 
 	node = ft_create_ttr();
 	// printf(">i = %zu\n", *i);
@@ -24,12 +25,12 @@ int		ft_solver(va_list args, const char *format, size_t *i)
 	if (ft_typesearcher(node, format, i) == SUCCESS)
 	{
 			// ft_diag_print(node);
-		ft_print_dispatcher(node, args);
+		len = ft_print_dispatcher(node, args);
 		ft_freenode(node);
-		return (SUCCESS);
+		return (len);
 	}
 	else
-		printf("SOMETHING WRONG\n");
+		printf("%s", node->type);
 	// printf("<i = %zu\n\n", *i);
 	ft_freenode(node);			//	doesn't work if type not defined
 	return (FAIL);
@@ -39,24 +40,28 @@ int		ft_printf(const char *format, ...)
 {
 	va_list args;
 	size_t	i;
+	size_t	len;
 
 	i = 0;
+	len = 0;
 	va_start(args, format);
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
 			++i;
-			ft_solver(args, format, &i);
+			len += ft_solver(args, format, &i);
+			// printf("\n>>> %d\n", len);
 		}
 		else
 		{
 			ft_putchar(format[i]);
+			++len;
 			++i;
 		}
 	}
 	va_end(args);
-	return (0);
+	return (len);
 }
 
 t_type	*ft_create_ttr()

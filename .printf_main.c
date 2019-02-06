@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 12:24:07 by dkovalch          #+#    #+#             */
-/*   Updated: 2019/02/05 17:28:35 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/06 14:20:52 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@
 
 //Testing macro - dont change!
 #define PRINTF(...){\
-		int ret = 0,ret2 = 0;\
-		printf("Args:\t%s\n", #__VA_ARGS__);\
+	    int ret = 0,ret2 = 0;\
 		printf("Origin:\t");ret = printf(__VA_ARGS__);\
-		printf("\tret: %d\n",ret);fflush(stdout);\
-		ft_printf("    Ft:\t");ret2 = ft_printf(__VA_ARGS__);\
-		printf("\t%sret: %d"NORM"\n",(ret == ret2) ? NORM : RED, ret2);\
-		printf("\n");fflush(stdout);\
+	    printf("\tret: %d\n",ret);fflush(stdout);\
+	    ft_printf("    Ft:\t");ret2 = ft_printf(__VA_ARGS__);\
+	    ft_printf("\t%sret: %d"NORM"\n",(ret == ret2) ? NORM : RED, ret2);\
 }
 #define TITLE(...){printf("\033[1m\n");printf(__VA_ARGS__);printf("\n\033[0m");}
 
@@ -35,12 +33,12 @@
 #include "ft_printf.h"
 
 //Test switchers - comment some of then to turn the tests off
-// #define	CHAR		//aka chars
+#define	CHAR		//aka chars
 // #define	PER			//aka percent(%)
 // #define	NUM			//aka numbers
 // #define	PTR			//aka pointers
 // #define	STRANGE		//aka undefined tests
-#define STR			//aka strings
+// #define STR			//aka strings
 // #define WSTR		//aka wide strings
 // #define	LENGTH		//aka hh, h, l ,ll , z, j
 
@@ -52,12 +50,12 @@ int	main(void)
 	{
 	char a = ' ';
 	for (a = ' '; a <' ' + 60 ; a+=15)
-	PRINTF("|%-2c|(%3d)\t|%-2c|(%3d)\t|%-2c|(%3d)", a, a, a+5,a+5,a+10,a+10);
+		PRINTF("|%-2c|(%3d)\t|%-2c|(%3d)\t|%-2c|(%3d)", a, a, a+5,a+5,a+10,a+10);
 	PRINTF("|%-2.3c|(%3d)\t|%-2.5c|(%3d)\t|%-2.0c|(%3d)", a, a, a+5,a+5,a+10,a+10);
 	PRINTF("|%+3c|(%3d)\t|%+3c|(%3d)\t|%+c|(%3d)", a, a, a+5, a+5, a+10, a+10);
 	PRINTF("|%3.4c|(%3d)\t|%+3.4c|(%3d)\t|%.4c|(%3d)", a, a, a+5, a+5, a+10, a+10);
-	// PRINTF("|%-3w|(%3w)\t|%3Z|(%3Z)\t|%Q|(%3Q)");
-	// PRINTF("|%3h|\t|%3l|\t|%3hhll|\t|%3llhhllQ|\t|%3z|\t|%3j|\t|%3J|");
+	PRINTF("|%-3w|(%3w)\t|%3Z|(%3Z)\t|%Q|(%3Q)");
+	PRINTF("|%3h|\t|%3l|\t|%3hhll|\t|%3llhhllQ|\t|%3z|\t|%3j|\t|%3J|");
 	PRINTF("|%-3c|\t|%3c|\t|%c|\t|%-03c|\t|%03c|\t|%.c|\t|%.5c|\t|%.C|\t|%.5C|", 0,0,0,0,0,0,0,0,0);
 	}
 #endif
@@ -66,7 +64,7 @@ int	main(void)
 	TITLE("Percent options:\n");
 	PRINTF("|%-6%|   |%6%|   |%6.2%|   |%-06%|   |%-06.3%|");
 #endif
-
+	
 #ifdef STR
 	TITLE("Strings:\n");
 	PRINTF("|%s|", NULL);
@@ -106,7 +104,7 @@ int	main(void)
 	long ptr_l = 874748;
 	PRINTF("|%.0p|\t\t|%6p|\t\t|%6.p|\t|%10.6p|", NULL,NULL,NULL,NULL);
 	PRINTF("|%12p||%17p|\t|%-22p|", ptr_c, &ptr_i, &ptr_l);
-	PRINTF("|%.0p||%6p|\t|%6.p||%.20p|", &ptr_l, &ptr_l, &ptr_l,&ptr_l);
+	PRINTF("\tOr:\t|%.0p||%6p|\t|%6.p||%.20p|", &ptr_l, &ptr_l, &ptr_l,&ptr_l);
 	free(ptr_c);
 	}
 #endif
@@ -605,7 +603,7 @@ int	main(void)
 
 //Don't remove!
 	if (errno)
-		printf(RED"\n\n\tSome error has been found:\t%s\n"NORM, strerror(errno));
+		printf(RED"\n\n\tSome error has been found:\t%s\n"NORM,strerror(errno));
 
 //LEAKS test (just make <gcc -D LEAKS> and it will work)
 #ifdef LEAKS

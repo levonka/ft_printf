@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 11:53:45 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/23 17:09:18 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/05 17:08:17 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		ft_typevalidator(t_type *node, int len, size_t *i)
 	"d", "i", "o", "u", "x", "X",
 	"hd", "hi", "ho", "hu", "hx", "hX", "hhd", "hhi", "hho", "hhu", "hhx", "hhX",
 	"ld", "li", "lo", "lu", "lx", "lX", "lld", "lli", "llo", "llu", "llx", "llX",
-	"f", "lf",  "Lf", "%", ""};
+	"f", "lf",  "Lf", "%", "b", ""};
 
 	while (len >= 1)
 	{

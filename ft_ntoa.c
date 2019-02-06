@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:30:59 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/06 11:21:15 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/06 12:04:33 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,8 +165,12 @@ void	ft_ntoa_dispatcher(t_type *node, char *n, int base)
 	node->precision > 0 ? turnoff_fl(node->flags, '0') : 0;
 	if (cmp(node->type, "x"))
 	{
-		str = ft_ntoa_base((unsigned long int)(int)n, base);
+		// printf("%d\n", n);
+		str = ft_ntoa_base((unsigned long int)n, base);
+		// printf(">>%s\n", str);
 		// ft_print_x(node, str, 0);
+		// turnoff_fl(node->flags, '-');
+
 	}
 	else if (cmp(node->type, "p"))
 	{

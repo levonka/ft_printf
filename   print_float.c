@@ -6,17 +6,12 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:36:54 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/06 11:22:25 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/07 18:12:57 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// int		nancases(char *n)
-// {
-	// const char base[][] = {"-inf", "inf", "nan"};
-
-// }
 
 void	ft_print_float(t_type *node, double n, int i)
 {

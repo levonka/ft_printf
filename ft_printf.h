@@ -50,6 +50,8 @@ int		ft_print_string(t_type *node, char *str, int i);
 
 int		ft_print_char(t_type *node, int c, int i);
 
+void	turnoff_fl(char *flags, char c);
+
 int		ft_print_int(t_type *node, char *str, int i);
 void	ft_swap(char *a, char *b);
 int		ft_isnegative(char *str);
@@ -72,9 +74,14 @@ void	ft_print_float(t_type *node, double n, int i);
 
 void	ft_print_x(t_type *node, char *str, int i);
 void	ft_ntoa_dispatcher(t_type *node, char *n, int base);
+int		ft_nlen(intmax_t n, int base);
+void	str2upcase(char *str);
+
 
 int		cmp(char *type, char *c);
 char	*ft_ftoa(double n, int afterpoint);
+void	ft_swap(char *a, char *b);
+
 
 void	print_sw(t_type *node, int c, int i);
 

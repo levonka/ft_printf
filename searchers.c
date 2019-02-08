@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 10:30:23 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/29 17:13:58 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/07 17:58:59 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,9 @@ int		ft_isflag_in_struct(t_type *node, char flag)
 	while (node->flags[i] != '\0')
 	{
 		if (node->flags[i] == flag)
-		{
-			// printf("FLAG - %c - IS FOUND IN STRUCT, SO NEXT\n", flag);
 			return (SUCCESS);
-		}
 		++i;
 	}
-	// printf("FLAG - %c - IS NOT FOUND IN STRUCT! NOW IT IS IN IT\n", flag);
 	return (FAIL);
 }
 
@@ -78,7 +74,6 @@ int		ft_precisionsearcher(t_type *node, const char *format, size_t *i)
 	char	*number;
 
 	j = 0;
-
 	while (format[*i] == '.' && format[*i] != '\0')
 	{
 		*i = *i + 1;
@@ -106,14 +101,12 @@ int		ft_typesearcher(t_type *node, const char *format, size_t *i)
 	len = 0;
 	while (len < 3 && format[*i] != '\0')
 	{
-		// printf("len = %zu | i = %zu | format = %c\n", len, *i, format[*i]);
 		++len;
 		*i = *i + 1;
 	}
 	if (len > 0)
 	{
 		node->type = ft_strsubi(format, *i - len, *i - 1);
-		// printf("type = %s\n", node->type);
 		ISFAILED(ft_typevalidator(node, len, i));
 		return (SUCCESS);
 	}

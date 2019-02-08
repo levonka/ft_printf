@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:34:59 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/01/26 15:45:25 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/07 17:37:45 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-void	ft_print_char(t_type *node, int c, int i)
+int		ft_print_char(t_type *node, int c, int i)
 {
 	int		len;
 	char	converse;
@@ -36,9 +35,12 @@ void	ft_print_char(t_type *node, int c, int i)
 		ft_flagzero(node, str2, &i);
 		ft_flagminus(node, str2, str, &i);
 		ft_putstr(str2);
+		len = ft_strlen(str2);
 		free(str2);
-		return ;
+		return (len);
 	}
 	ft_putstr(str);
+	len = ft_strlen(str);
 	free(str);
+	return (len);
 }

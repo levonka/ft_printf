@@ -10,6 +10,7 @@ void	ft_zerofiller(t_type *node, char *str, int len, int *i)
 		{
 			str[*i] = '0';
 			*i = *i + 1;
+			// printf("\n1\n");
 		}
 	else
 		while (pr_copy > 0)
@@ -17,13 +18,20 @@ void	ft_zerofiller(t_type *node, char *str, int len, int *i)
 			str[len - 1] = '0';
 			--len;
 			--pr_copy;
+			// printf("\n2\n");
 		}
 	while (*i < len)
 	{
 		if ((ft_isflag_in_struct(node, '0') == SUCCESS))
-			 str[*i] = (ft_isflag_in_struct(node, '-')) ? '0' : ' ';
+		{
+			// printf("3\n");
+			str[*i] = ((ft_isflag_in_struct(node, '-') && node->width < node->precision) || node->precision == -1) ? '0' : ' ';
+		}
 		else
+		{
+			// printf("\n4\n");
 			str[*i] = ' ';
+		}
 		*i = *i + 1;
 	}
 }
@@ -166,15 +174,17 @@ int		ft_print_int(t_type *node, char *str, int i)
 	char	*str2;
 
 	minus = ft_isnegative(str);
+	if (cmp(str, "0") && (node->precision == 0))
+		str[0] = '\0';
 	if ((node->width != -1 && node->width >= (int)ft_strlen(str) + 1) ||
 		(node->precision != -1 && node->precision >= (int)ft_strlen(str) + 1))
 	{
 		len = ((node->width > node->precision) ? node->width : node->precision);
 		str2 = ft_strnew(len + 1);
 		ft_zerofiller(node, str2, len, &i);
+		// printf(">>'%s'\n", str);
 		ft_fillin_num(node, str2, str, len);
 		(minus == 0) ? ft_flagminus_num(node, str2, len) : 0;
-		// printf("%s\n", str2);
 		ft_flagplus_num(node, str2, minus, len);
 		write(1, str2, ft_strlen(str2));
 		len = ft_strlen(str2);

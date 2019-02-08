@@ -46,11 +46,12 @@ int		cmp(char *type, char *c);
 void	ft_flagminus(t_type *node, char *to, char *from, int *i);
 void	ft_flagzero(t_type *node, char *str, int *i);
 
-void	ft_print_string(t_type *node, char *str, int i);
+int		ft_print_string(t_type *node, char *str, int i);
 
-void	ft_print_char(t_type *node, int c, int i);
+int		ft_print_char(t_type *node, int c, int i);
 
 int		ft_print_int(t_type *node, char *str, int i);
+void	ft_swap(char *a, char *b);
 int		ft_isnegative(char *str);
 void	ft_zerofiller(t_type *node, char *str, int len, int *i);
 void	ft_fillin_num(t_type *node, char *to, char *from, int len);
@@ -58,8 +59,14 @@ void	ft_flagminus_num(t_type *node, char *str, int len);
 void	ft_flagplus_num(t_type *node, char *str, int minus, int len);
 void	ft_flagsp_num(char *str, int len);
 
+int		ft_print_u(t_type *node, char *str, int i);
+
+char	*ft_itoa_ui(unsigned int n);
 char	*ft_itoa_ll(long n);
 char	*ft_itoa_ull(unsigned long n);
+char	*ft_itoa_uh(unsigned short n);
+char	*ft_itoa_uhh(unsigned char n);
+
 
 void	ft_print_float(t_type *node, double n, int i);
 
@@ -67,7 +74,8 @@ void	ft_print_x(t_type *node, char *str, int i);
 void	ft_ntoa_dispatcher(t_type *node, char *n, int base);
 
 int		cmp(char *type, char *c);
-double	ft_atof(char *s);
 char	*ft_ftoa(double n, int afterpoint);
+
+void	print_sw(t_type *node, int c, int i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 09:32:22 by agottlie          #+#    #+#             */
-/*   Updated: 2019/01/26 12:26:26 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/07 17:52:33 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_flagminus(t_type *node, char *to, char *from, int *i)
 			len = len - 1;
 		}
 	else
-		while(from[j] != '\0')
+		while (from[j] != '\0')
 		{
 			to[j] = from[j];
 			++j;

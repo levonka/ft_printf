@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_oxp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 17:20:48 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/06 13:27:53 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/07 08:39:00 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,30 +112,30 @@ static void	ft_print_x_ex(t_type *node, char *str, int minus)
 	free(str);
 }
 
-static void	ft_hashtag(t_type *node, char *str, int len)
-{
-	int		i;
+// static void	ft_hashtag(t_type *node, char *str, int len)
+// {
+// 	int		i;
 
-	i = 0;
-	if (str[0] == '0' && node->precision == -1)
-		str[0] = '-';
-	else if (ft_isdigit(str[0]))
-	{
-		len -= (str[ft_strlen(str) - 1] == ' ') ? 1 : 0;
-		while (len > 0)
-		{
-			ft_swap(&str[len], &str[len - 1]);
-			--len;
-		}
-		str[len] = '-';
-	}
-	else
-	{
-		while (str[i] == ' ' && str[i] != '0' && str[i] != '\0')
-			i++;
-		str[i - 1] = '-';
-	}
-}
+// 	i = 0;
+// 	if (str[0] == '0' && node->precision == -1)
+// 		str[0] = '-';
+// 	else if (ft_isdigit(str[0]))
+// 	{
+// 		len -= (str[ft_strlen(str) - 1] == ' ') ? 1 : 0;
+// 		while (len > 0)
+// 		{
+// 			ft_swap(&str[len], &str[len - 1]);
+// 			--len;
+// 		}
+// 		str[len] = '-';
+// 	}
+// 	else
+// 	{
+// 		while (str[i] == ' ' && str[i] != '0' && str[i] != '\0')
+// 			i++;
+// 		str[i - 1] = '-';
+// 	}
+// }
 
 void	ft_print_x(t_type *node, char *str, int i)
 {

@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 17:20:48 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/06 17:21:58 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/08 10:57:57 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	shift_npos(char *str, int n)
 	int i;
 	int j;
 
-	// printf("\n%s\n\n", str);
 	i = 0;
 	j = 0;
 	while(n > 0)
@@ -58,13 +57,10 @@ static char	*expand_str(char *str)
 static char *hashtag_mode(char *str, t_type *node)
 {
 	int i;
-	// char *ox;
 
 	i = 0;
-	// printf("%s\n", str);
 	while(str[i] == ' ' && str[i] != '\0')
 		i++;
-	// printf("%d\n", i);
 	if (i < 3)
 	{
 		if (str[0] != '0' && str[1] != '0')
@@ -77,23 +73,17 @@ static char *hashtag_mode(char *str, t_type *node)
 		{
 			if (node->precision < node->width)
 			{
-				// printf(">>%s\n", str);
 				str[0] = '0';
 				str[1] = 'x';				
 			}
-
 			else
 				return (expand_str(str));	
-			// str[0] = '0';
-			// str[1] = 'x';
 		}
-
 	}
 	else
 	{
 		str[i-2] = '0';
 		str[i-1] = 'x';
-		
 	}
 	return (str);
 }
@@ -144,7 +134,6 @@ void	ft_print_x(t_type *node, char *str, int i)
 	char	*str2;
 
 	minus = ft_isnegative(str);
-	// printf(">%s\n", minus);
 	if ((node->width != -1 && node->width >= (int)ft_strlen(str) + 1) ||
 		(node->precision != -1 && node->precision >= (int)ft_strlen(str) + 1))
 	{
@@ -155,6 +144,7 @@ void	ft_print_x(t_type *node, char *str, int i)
 		(minus == 0) ? ft_flagminus_num(node, str2, len) : 0;
 		ft_flagplus_num(node, str2, minus, len);
 		ft_isflag_in_struct(node, '#') == SUCCESS ? str2 = hashtag_mode(str2, node) : 0;
+		cmp(node->type, "X") ? str2upcase(str2) : 0;
 		ft_putstr(str2);
 		free(str2);
 		free(str);

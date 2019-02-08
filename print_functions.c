@@ -24,7 +24,7 @@ void	ft_print_dispatcher(t_type *node, va_list args)
 		ft_print_int(node, ft_itoa_ull(va_arg(args, unsigned long)), 0);
 	else if (cmp(t, "f"))
 		ft_print_float(node, va_arg(args, double), 0);
-	else if (cmp(t, "x"))
+	else if (cmp(t, "x") || cmp(t, "X"))
 		ft_ntoa_dispatcher(node, va_arg(args, char*), 16);
 	else if (cmp(t, "p"))
 		ft_ntoa_dispatcher(node, va_arg(args, char*), 16);

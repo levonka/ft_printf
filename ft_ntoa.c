@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ntoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:30:59 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/08 16:51:40 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/09 09:19:03 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,17 +122,22 @@ int		ft_ntoa_dispatcher(t_type *node, char *n, int base)
 
 	turnoff_fl(node->flags, '+');
 	node->precision > 0 ? turnoff_fl(node->flags, '0') : 0;
-	if (cmp(node->type, "x") || cmp(node->type, "X"))
+	if (cmp(node->type, "x") || cmp(node->type, "X") || cmp(node->type, "lX") || cmp(node->type, "llX") || cmp(node->type, "lx") || cmp(node->type, "llx"))
 	{
 		if ((int)n < 0)
 			str = ft_ntoa_base((unsigned long int)n, base);
 		else
 			str = ft_ntoa_base((int)n, base);
-		// if (cmp(node->type, "X"))
-		// {
-		// 	str2upcase(str);
-		// }
-
+	}
+	else if (ft_strchr(node->type, 'h'))
+	{
+		if ((int)n < 0)
+			str = ft_ntoa_base((short)n, base);
+		else
+		{
+			// printf("%d\n", n);
+			str = ft_ntoa_base((short)n, base);
+		}
 	}
 	else if (cmp(node->type, "p"))
 	{

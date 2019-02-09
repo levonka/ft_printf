@@ -28,7 +28,7 @@ static char	*expand_str(char *str)
 	int i;
 
 	i = 0;
-	// printf("YO\n");
+	printf("YO\n");
 	exp = ft_strnew(ft_strlen(str) + 2);
 	exp[i++] = '0';
 	exp[i++] = 'x';
@@ -61,6 +61,7 @@ static char *hashtag_mode(char *str, t_type *node)
 		{
 			if (node->precision < node->width)
 			{
+				// printf("HHHH\n");
 				str[0] = '0';
 				str[1] = 'x';
 			}
@@ -91,31 +92,6 @@ static int	ft_print_x_ex(t_type *node, char *str, int minus)
 	return (len - 1);
 }
 
-// static void	ft_hashtag(t_type *node, char *str, int len)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	if (str[0] == '0' && node->precision == -1)
-// 		str[0] = '-';
-// 	else if (ft_isdigit(str[0]))
-// 	{
-// 		len -= (str[ft_strlen(str) - 1] == ' ') ? 1 : 0;
-// 		while (len > 0)
-// 		{
-// 			ft_swap(&str[len], &str[len - 1]);
-// 			--len;
-// 		}
-// 		str[len] = '-';
-// 	}
-// 	else
-// 	{
-// 		while (str[i] == ' ' && str[i] != '0' && str[i] != '\0')
-// 			i++;
-// 		str[i - 1] = '-';
-// 	}
-// }
-
 int		ft_print_x(t_type *node, char *str, int i)
 {
 	int		len;
@@ -135,7 +111,8 @@ int		ft_print_x(t_type *node, char *str, int i)
 		(minus == 0) ? ft_flagminus_num(node, str2, len) : 0;
 		ft_flagplus_num(node, str2, minus, len);
 		ft_isflag_in_struct(node, '#') == SUCCESS ? str2 = hashtag_mode(str2, node) : 0;
-		cmp(node->type, "X") ? str2upcase(str2) : 0;
+		// cmp(node->type, "X") ? str2upcase(str2) : 0;
+		ft_strchr(node->type, 'X') ? str2upcase(str2) : 0;
 		ft_putstr(str2);
 		len = ft_strlen(str2);
 		free(str2);

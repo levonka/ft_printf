@@ -6,40 +6,45 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 14:53:39 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/09 09:09:02 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/09 14:27:15 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <math.h>
 
-static char	*floatpart_maker(double n, int afterpoint)
+static char	*floatpart_maker(double n, int len, long *intpart)
 {
-	unsigned long	intpart;
 	double			floatpart;
 	char			*floatres;
-	int				len;
+	int				limit;
 	int				i;
 
 	i = 0;
-	intpart = (unsigned long)n;
-	floatpart = n - (double)intpart;
+	if (n > 0.0)
+		floatpart = n - (double)(*intpart);
+	else
+		floatpart = (n * -1) - (double)(*intpart);
 	floatres = malloc(sizeof(char) * 1000);     // изменить
-	// len = 17 - ft_nlen(intpart, 10);
-	len = afterpoint;
-	intpart = 0;
-	while (len > 0 || i < 17)			// СДЕЛАТЬ НЕ 17 РАЗ, А 17 - РАЗМЕР ПЕРВОЙ ЧАСТИ ЧИСЛА
+	limit = 17 - ft_nlen(*intpart, 10);
+	(*intpart) = 0;
+	while (len > 0 || i < limit)
 	{
+		printf("\n\n>>>>>>>%f\n", floatpart);
 		floatpart *= 10;
-		if (len > 0)
+		printf("<<<<<<<%f", floatpart);
+		if (len > 0 || i < limit)
+		{
 			floatres[i] = (int)floatpart + '0';
-		intpart = (intpart * 10) + (int)floatpart;
+			printf("\n~~~~~%s", floatres);
+		}
+		*intpart = ((*intpart) * 10) + (int)floatpart;
 		floatpart -= (int)floatpart;
 		len--;
 		i++;
 	}
 	floatres[i] = '\0';
-	// printf("'>%lu'\n", intpart);
+	printf("\n>%ld\n", *intpart);
 	return (floatres);
 }
 
@@ -107,28 +112,70 @@ static char	*isconst(double n)
 		return (ft_strdup("nan"));
 	else if (n == -0)
 	{
-		if (*(unsigned long*)&n >> 63)
+		if (*(long*)&n >> 63)
 			return (ft_strdup("-0."));
 	}
 	return (NULL);
 }
 
+char		*zeroprec(long inttest, long res, int len)
+{
+	long	num;
+
+	num = 5;
+	while (len > 0)
+	{
+		num *= 10;
+		len--;
+	}
+	if (res % 2 == 0)
+	{
+		if (inttest > num)
+			return (ft_itoa_ll(res + 1));
+		else if (inttest < num)
+			return (ft_itoa_ll(res));
+		else if (inttest == num)
+			return (ft_itoa_ll(res));
+	}
+	else
+		if (inttest > num)
+			return (ft_itoa_ll(res + 1));
+		else if (inttest < num)
+			return (ft_itoa_ll(res));
+		else if (inttest == num)
+			return (ft_itoa_ll(res + 1));
+	return (ft_strdup("sw"));
+}
+
 char		*ft_ftoa(double n, int afterpoint)
 {
-	unsigned long	intpart;
+	long			intpart;
+	long			inttest;
 	char			*intres;
 	char			*floatres;
 	char			*floatrdy;
 	int				mem;
+	int				minus;
 
 	mem = 0;
+	minus = 0;
 	if ((floatrdy = isconst(n)) != NULL)
 		return (floatrdy);
-	// floatres = floatpart_maker(n);
-	intpart = (unsigned long)n;
-	floatres = floatpart_adjusting(floatpart_maker(n, afterpoint), afterpoint, &mem);
+	if (n < 0.0)
+	{
+		minus = 1;
+		intpart = (long)n * -1;
+	}
+	else
+		intpart = (long)n;
+	inttest = intpart;
+	floatrdy = floatpart_maker(n, afterpoint, &inttest);
+	if (afterpoint == 0)
+		return (zeroprec(inttest, (long)n, ft_nlen(inttest, 10) - 1));
+	floatres = floatpart_adjusting(floatrdy, afterpoint, &mem);
 	mem > 0 ? intpart++ : 0;
-	intres = ft_itoa_ull(intpart);
+	intres = ft_itoa_ll(intpart);
+	// free(floatrdy);
 	floatrdy = malloc(sizeof(char) * ft_strlen(floatres) + ft_strlen(intres) + 2);
 	if (!afterpoint)
 		return (intres);

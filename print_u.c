@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*     print_float.c                                    :+:      :+:    :+:   */
+/*   printf_u.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/30 17:36:54 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/07 18:12:57 by yharwyn-         ###   ########.fr       */
+/*   Created: 2019/02/08 10:51:06 by agottlie          #+#    #+#             */
+/*   Updated: 2019/02/08 12:07:16 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-void	ft_print_float(t_type *node, double n, int i)
+int		ft_print_u(t_type *node, char *str, int i)
 {
 	int		len;
 	int		minus;
 	char	*str2;
-	char	*str;
 
-	str = ft_ftoa(n, (node->precision) == -1 ? 6 : node->precision);
 	minus = ft_isnegative(str);
+	if (cmp(str, "0") && (node->precision == 0))
+		str[0] = '\0';
 	if ((node->width != -1 && node->width >= (int)ft_strlen(str) + 1) ||
 		(node->precision != -1 && node->precision >= (int)ft_strlen(str) + 1))
 	{
@@ -30,17 +29,16 @@ void	ft_print_float(t_type *node, double n, int i)
 		ft_zerofiller(node, str2, len, &i);
 		ft_fillin_num(node, str2, str, len);
 		(minus == 0) ? ft_flagminus_num(node, str2, len) : 0;
-		ft_flagplus_num(node, str2, minus, len);
 		write(1, str2, ft_strlen(str2));
+		len = ft_strlen(str2);
 		free(str2);
 		free(str);
-		return ;
+		return (len);
 	}
 	len = ft_strlen(str) + 1;
-	(ft_isflag_in_struct(node, ' ') == 0 || ft_isflag_in_struct(node, '+') == 0) ?
-	ft_flagsp_num(str, len) : 0;
 	(minus == 0) ? ft_flagminus_num(node, str, len) : 0;
-	ft_flagplus_num(node, str, minus, len);
 	write(1, str, ft_strlen(str));
+	len = ft_strlen(str);
 	free(str);
+	return (len);
 }

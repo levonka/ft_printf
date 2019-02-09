@@ -1,37 +1,31 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 15:35:03 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/05 17:12:47 by yharwyn-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
 int		ft_solver(va_list args, const char *format, size_t *i)
 {
 	t_type	*node;
+	int		len;
+	int		len2;
 
 	node = ft_create_ttr();
-	// printf(">i = %zu\n", *i);
 	ft_flagssearcher(node, format, i);
 	ft_widthsearcher(node, format, i);
 	ft_precisionsearcher(node, format, i);
 	if (ft_typesearcher(node, format, i) == SUCCESS)
 	{
-			// ft_diag_print(node);
-		ft_print_dispatcher(node, args);
+		len = ft_print_dispatcher(node, args);
 		ft_freenode(node);
-		return (SUCCESS);
+		return (len);
 	}
 	else
-		printf("SOMETHING WRONG\n");
-	// printf("<i = %zu\n\n", *i);
-	ft_freenode(node);			//	doesn't work if type not defined
+	{
+		free(node->type);
+		node->type = ft_strnew(1);
+		node->type[0] = format[*i];
+		len2 = ft_print_char(node, node->type[0], 0);
+		(*i)++;
+		return (len2);
+	}
+	ft_freenode(node);
 	return (FAIL);
 }
 
@@ -39,27 +33,32 @@ int		ft_printf(const char *format, ...)
 {
 	va_list args;
 	size_t	i;
+	size_t	len;
 
 	i = 0;
+	len = 0;
+	if (format == NULL)
+		exit(1);
 	va_start(args, format);
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
 			++i;
-			ft_solver(args, format, &i);
+			len += ft_solver(args, format, &i);
 		}
 		else
 		{
 			ft_putchar(format[i]);
+			++len;
 			++i;
 		}
 	}
 	va_end(args);
-	return (0);
+	return (len);
 }
 
-t_type	*ft_create_ttr()
+t_type	*ft_create_ttr(void)
 {
 	t_type	*ptr;
 

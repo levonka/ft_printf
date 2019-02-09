@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:30:59 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/08 13:03:29 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/09 09:19:03 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char		*ft_ntoa_base(uintmax_t n, int base)
 
 	res = NULL;
 	len = ft_nlen(n, base);
-	if (!(res = (char*)malloc(sizeof(char) * (len + 1))))
+	if (!(res = (char*)malloc(sizeof(char) * (len + 4))))
 		return (NULL);
 	res[len] = '\0';
 	if (n == 0)
@@ -92,11 +92,32 @@ void		str2upcase(char *str)
 	}
 }
 
-
-
-void		ft_ntoa_dispatcher(t_type *node, char *n, int base)
+static void	add0x(char *str)
 {
-	
+	int		i;
+	int		j;
+	int		len;
+
+	i = 0;
+	len = 0;
+	while (ft_isprint(str[i]))
+		i++;
+	str[i] = ' ';
+	str[++i] = ' ';
+	while (len < 2)
+	{
+		j = i + 1;
+		while (--j > 0)
+			ft_swap(&str[j], &str[j - 1]);
+		len++;
+	}
+	str[0] = '0';
+	str[1] = 'x';
+	str[ft_strlen(str)] = '\0';
+}
+
+int		ft_ntoa_dispatcher(t_type *node, char *n, int base)
+{
 	char *str = NULL;
 
 	turnoff_fl(node->flags, '+');
@@ -120,23 +141,24 @@ void		ft_ntoa_dispatcher(t_type *node, char *n, int base)
 	}
 	else if (cmp(node->type, "p"))
 	{
-		turnoff_fl(node->flags, ' ');
 		// str = ft_strdup("0x");
+		turnoff_fl(node->flags, ' ');
 		turnoff_fl(node->flags, '+');
+		turnoff_fl(node->flags, '#');
 		// if (node->precision > 12)
 		// {
 		// 	printf("his\n");
 		// 	// str = ft_ntoa_base((unsigned long int)n, base);
-
 		// }
 		// str = ft_itoa_base(n, base);
 		// a = va_arg(ap, char*);
 		str = ft_ntoa_base((unsigned long int)n, base);
-
+		add0x(str);
+		// if (node->precision == 0)
 		// ft_strcat(str, ft_ntoa_base((unsigned long int)n, base));
 		// ft_print_x(node, str, 0);
 	}
 	else if (cmp(node->type, "b"))
 		str = ft_ntoa_base((unsigned long int)n, base);
-	ft_print_x(node, str, 0);
+	return (ft_print_x(node, str, 0));
 }

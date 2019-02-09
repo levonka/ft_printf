@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   print_oxp.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/05 17:20:48 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/08 13:11:45 by yharwyn-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
 static void	shift_npos(char *str, int n)
@@ -75,10 +63,10 @@ static char *hashtag_mode(char *str, t_type *node)
 			{
 				// printf("HHHH\n");
 				str[0] = '0';
-				str[1] = 'x';				
+				str[1] = 'x';
 			}
 			else
-				return (expand_str(str));	
+				return (expand_str(str));
 		}
 	}
 	else
@@ -89,7 +77,7 @@ static char *hashtag_mode(char *str, t_type *node)
 	return (str);
 }
 
-static void	ft_print_x_ex(t_type *node, char *str, int minus)
+static int	ft_print_x_ex(t_type *node, char *str, int minus)
 {
 	int len;
 
@@ -101,39 +89,17 @@ static void	ft_print_x_ex(t_type *node, char *str, int minus)
 	ft_flagplus_num(node, str, minus, len);
 	ft_putstr(str);
 	free(str);
+	return (len - 1);
 }
 
-// static void	ft_hashtag(t_type *node, char *str, int len)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	if (str[0] == '0' && node->precision == -1)
-// 		str[0] = '-';
-// 	else if (ft_isdigit(str[0]))
-// 	{
-// 		len -= (str[ft_strlen(str) - 1] == ' ') ? 1 : 0;
-// 		while (len > 0)
-// 		{
-// 			ft_swap(&str[len], &str[len - 1]);
-// 			--len;
-// 		}
-// 		str[len] = '-';
-// 	}
-// 	else
-// 	{
-// 		while (str[i] == ' ' && str[i] != '0' && str[i] != '\0')
-// 			i++;
-// 		str[i - 1] = '-';
-// 	}
-// }
-
-void	ft_print_x(t_type *node, char *str, int i)
+int		ft_print_x(t_type *node, char *str, int i)
 {
 	int		len;
 	int		minus;
 	char	*str2;
 
+	if (node->precision == 0 && cmp(str, "0x0"))
+		str[2] = '\0';
 	minus = ft_isnegative(str);
 	if ((node->width != -1 && node->width >= (int)ft_strlen(str) + 1) ||
 		(node->precision != -1 && node->precision >= (int)ft_strlen(str) + 1))
@@ -148,9 +114,10 @@ void	ft_print_x(t_type *node, char *str, int i)
 		// cmp(node->type, "X") ? str2upcase(str2) : 0;
 		ft_strchr(node->type, 'X') ? str2upcase(str2) : 0;
 		ft_putstr(str2);
+		len = ft_strlen(str2);
 		free(str2);
 		free(str);
-		return ;
+		return (len);
 	}
-	ft_print_x_ex(node, str, minus);
+	return (ft_print_x_ex(node, str, minus));
 }

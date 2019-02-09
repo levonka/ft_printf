@@ -85,6 +85,13 @@ void				str2upcase(char *str);
 int					cmp(char *type, char *c);
 char				*ft_ftoa(double n, int afterpoint);
 void				ft_swap(char *a, char *b);
+intmax_t			ft_abs(intmax_t n);
+int					ft_nlen(intmax_t n, int base);
+void				str2upcase(char *str);
+
+char				*ft_ntoa_base(uintmax_t n, int base);
+void				shift_npos(char *str, int n);
+char				*expand_str(char *str);
 
 void				print_sw(t_type *node, int c, int i);
 

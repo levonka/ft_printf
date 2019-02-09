@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:43:54 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/08 17:19:26 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/09 11:00:01 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,40 @@ void	ft_addflag(t_type *node, char flag)
 		while (node->type[i] != '\0')
 			++i;
 		node->type[i] = flag;
+	}
+}
+
+intmax_t	ft_abs(intmax_t n)
+{
+	if (n < 0)
+		return (-n);
+	return (n);
+}
+
+int			ft_nlen(intmax_t n, int base)
+{
+	size_t		len;
+
+	len = 0;
+	if (n == 0)
+		return(1);
+	while (n)
+	{
+		len++;
+		n = n / base;
+	}
+	return (len);
+}
+
+void		str2upcase(char *str)
+{
+	int i;
+
+	i = 0;
+	while(str[i] != '\0')
+	{
+		if (str[i] >= 97 && str[i] <= 122)
+			str[i] = str[i] - 32;
+		i++;
 	}
 }

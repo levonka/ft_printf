@@ -40,8 +40,8 @@ int		ft_print_dispatcher(t_type *node, va_list args)
 		return (ft_ntoa_dispatcher(node, va_arg(args, char*), 2));
 	else if (cmp(t, "%"))
 		return (ft_print_char(node, '%', 0));
-	// else if (cmp(t, "o") == 0)
-	// 	ft_ntoa_dispatcher(node, va_arg(args, int), 8);
+	else if (ft_strchr(t, 'o') || ft_strchr(t, 'O'))
+		return (ft_ntoa_dispatcher(node, va_arg(args, char*), 8));
 
 
 	return (0);

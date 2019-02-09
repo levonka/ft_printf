@@ -1,98 +1,68 @@
 #include "ft_printf.h"
 
-static void	shift_npos(char *str, int n)
+static void		add0x(char *str, int start)
 {
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	while(n > 0)
-	{
-		while (str[i] != ' ')
-			i++;
-		j = i;
-		while(i >= 0 && str[i - 1] != ' ')
-		{
-			ft_swap(&str[i - 1], &str[i]);
-			i--;
-		}
-		n--;
-		i++;
-	}
+	str[start] = '0';
+	str[start + 1] = 'x';
 }
 
-static char	*expand_str(char *str)
+static char		*hashtag_mode_ext(char *str, t_type *node)
 {
-	char *exp;
-	int i;
-
-	i = 0;
-	printf("YO\n");
-	exp = ft_strnew(ft_strlen(str) + 2);
-	exp[i++] = '0';
-	exp[i++] = 'x';
-	while (*str)
+	if (str[0] != '0' && str[1] != '0')
 	{
-		exp[i] = *str;
-		str++;
-		i++;
-	}
-	exp[i] = '\0';
-	return (exp);
-}
-
-static char *hashtag_mode(char *str, t_type *node)
-{
-	int i;
-
-	i = 0;
-	while(str[i] == ' ' && str[i] != '\0')
-		i++;
-	if (i < 3)
-	{
-		if (str[0] != '0' && str[1] != '0')
-		{
-			shift_npos(str, 2);
-			str[0] = '0';
-			str[1] = 'x';
-		}
-		else
-		{
-			if (node->precision < node->width)
-			{
-				// printf("HHHH\n");
-				str[0] = '0';
-				str[1] = 'x';
-			}
-			else
-				return (expand_str(str));
-		}
+		shift_npos(str, 2);
+		add0x(str, 0);
 	}
 	else
 	{
-		str[i-2] = '0';
-		str[i-1] = 'x';
+		if (str[0] == ' ')
+			str = expand_str(str);
+		if (node->precision < node->width)
+		{
+			if (ft_strchr(node->flags, '-'))
+			{
+				shift_npos(str, 2);
+				add0x(str, 0);
+				return (str);
+			}
+			add0x(str, 0);
+		}
+		else
+			return (expand_str(str));
 	}
 	return (str);
 }
 
-static int	ft_print_x_ex(t_type *node, char *str, int minus)
+static char		*hashtag_mode(char *str, t_type *node, int i)
+{
+	while (str[i] == ' ' && str[i] != '\0')
+		i++;
+	if (i < 3)
+		return (hashtag_mode_ext(str, node));
+	else
+	{
+		str[i - 2] = '0';
+		str[i - 1] = 'x';
+	}
+	return (str);
+}
+
+static int		ft_print_x_ex(t_type *node, char *str, int minus)
 {
 	int len;
 
 	len = ft_strlen(str) + 1;
-	// printf("HIJ\n");
 	(ft_isflag_in_struct(node, ' ') == 0 || ft_isflag_in_struct(node, '+') == 0) ?
 	ft_flagsp_num(str, len) : 0;
 	(minus == 0) ? ft_flagminus_num(node, str, len) : 0;
 	ft_flagplus_num(node, str, minus, len);
+	ft_strchr(node->type, 'X') ? str2upcase(str) : 0;
 	ft_putstr(str);
 	free(str);
 	return (len - 1);
 }
 
-int		ft_print_x(t_type *node, char *str, int i)
+int				ft_print_x(t_type *node, char *str, int i)
 {
 	int		len;
 	int		minus;
@@ -110,8 +80,7 @@ int		ft_print_x(t_type *node, char *str, int i)
 		ft_fillin_num(node, str2, str, len);
 		(minus == 0) ? ft_flagminus_num(node, str2, len) : 0;
 		ft_flagplus_num(node, str2, minus, len);
-		ft_isflag_in_struct(node, '#') == SUCCESS ? str2 = hashtag_mode(str2, node) : 0;
-		// cmp(node->type, "X") ? str2upcase(str2) : 0;
+		ft_isflag_in_struct(node, '#') == SUCCESS ? str2 = hashtag_mode(str2, node, 0) : 0;
 		ft_strchr(node->type, 'X') ? str2upcase(str2) : 0;
 		ft_putstr(str2);
 		len = ft_strlen(str2);

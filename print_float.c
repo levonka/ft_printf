@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:36:54 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/09 07:43:36 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/09 11:33:46 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,6 @@
 
 static void	ft_zerofiller2(t_type *node, char *str, int len, int *i)
 {
-	int		pr_copy;
-
-	pr_copy = node->precision;
-	if (ft_isflag_in_struct(node, '-') == SUCCESS)
-		while (*i < node->precision)
-		{
-			str[*i] = ' ';
-			*i = *i + 1;
-		}
-	else
-		while (pr_copy > 0)
-		{
-			str[len - 1] = ' ';
-			--len;
-			--pr_copy;
-		}
 	while (*i < len)
 	{
 		if ((ft_isflag_in_struct(node, '0') == SUCCESS))
@@ -89,6 +73,7 @@ void	ft_print_float(t_type *node, double n, int i)
 	char	*str;
 
 	str = ft_ftoa(n, ((node->precision) == -1) ? 6 : node->precision);
+	// printf("'>%s'\n", str);
 	if (is_const(str) == SUCCESS)
 	{
 		ft_print_fconst(node, str, i);

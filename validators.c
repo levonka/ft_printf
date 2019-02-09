@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 11:53:45 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/08 12:29:30 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/08 14:19:03 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		ft_typevalidator(t_type *node, int len, size_t *i)
 	while (len >= 1)
 	{
 		j = 0;
-		while (strcmp(base[j], "") != 0)
+		while (ft_strcmp(base[j], "") != 0)
 		{
 			if (ft_strcmp(node->type, base[j]) == 0)
 				return (SUCCESS);

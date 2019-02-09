@@ -6,62 +6,106 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 09:32:22 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/07 17:52:33 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/08 17:22:39 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_addflag(t_type *node, char flag)
+void	ft_fillin_num(t_type *node, char *to, char *from, int len)
 {
 	int		i;
+	int		str_len;
+	int		pr_copy;
 
 	i = 0;
-	if (ft_isflag_in_struct(node, flag) == FAIL)
-	{
-		while (node->type[i] != '\0')
+	str_len = ft_strlen(from) - 1;
+	pr_copy = node->precision - 1;
+	if (ft_isflag_in_struct(node, '-') == SUCCESS)
+		while (str_len >= 0)
+		{
+			if (pr_copy > str_len)
+				to[pr_copy] = from[str_len];
+			else
+				to[i] = from[i];
 			++i;
-		node->type[i] = flag;
-	}
+			--str_len;
+			--pr_copy;
+		}
+	else
+		while (str_len >= 0)
+		{
+			to[len - 1] = from[str_len];
+			--len;
+			--str_len;
+		}
 }
 
-void	ft_flagzero(t_type *node, char *str, int *i)
+void	ft_zerofiller(t_type *node, char *str, int len, int *i)
 {
-	int flag_minus;
-	int flag_zero;
+	int		pr_copy;
 
-	flag_minus = ft_isflag_in_struct(node, '-');
-	flag_zero = ft_isflag_in_struct(node, '0');
-	while (*i < node->width)
+	pr_copy = node->precision;
+	if (ft_isflag_in_struct(node, '-') == SUCCESS)
+		while (*i < node->precision)
+		{
+			str[*i] = '0';
+			*i = *i + 1;
+		}
+	else
+		while (pr_copy > 0)
+		{
+			str[len - 1] = '0';
+			--len;
+			--pr_copy;
+		}
+	while (*i < len)
 	{
-		if (flag_minus == FAIL)
-			str[*i] = (flag_zero == SUCCESS ? '0' : ' ');
+		if ((ft_isflag_in_struct(node, '0') == SUCCESS))
+			str[*i] = ((ft_isflag_in_struct(node, '-') && node->width
+				< node->precision) || node->precision == -1) ? '0' : ' ';
 		else
 			str[*i] = ' ';
 		*i = *i + 1;
 	}
 }
 
-void	ft_flagminus(t_type *node, char *to, char *from, int *i)
+int		ft_isnegative(char *str)
 {
-	int		len;
-	int		flag_minus;
-	int		j;
+	int		i;
+	int		flag;
 
-	j = 0;
-	len = ft_strlen(from);
-	flag_minus = ft_isflag_in_struct(node, '-');
-	if (flag_minus == FAIL)
-		while (len >= 0)
+	i = 0;
+	flag = 0;
+	while (str[i] != '\0')
+		if (str[i++] == '-')
 		{
-			to[*i] = from[len];
-			*i = *i - 1;
-			len = len - 1;
+			flag = 1;
+			break ;
 		}
-	else
-		while (from[j] != '\0')
+	i = 0;
+	if (flag == 1)
+	{
+		while (str[i + 1] != '\0')
 		{
-			to[j] = from[j];
-			++j;
+			ft_swap(&str[i], &str[i + 1]);
+			++i;
 		}
+		str[i] = '\0';
+		return (SUCCESS);
+	}
+	return (FAIL);
+}
+
+void	ft_flagsp_num(char *str, int len)
+{
+	int		i;
+
+	i = 0;
+	while (len > 0)
+	{
+		ft_swap(&str[len], &str[len - 1]);
+		--len;
+	}
+	str[0] = ' ';
 }

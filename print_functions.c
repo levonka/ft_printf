@@ -33,11 +33,11 @@ int		ft_print_dispatcher(t_type *node, va_list args)
 	else if (cmp(t, "f"))
 		ft_print_float(node, va_arg(args, double), 0);
 	else if (cmp(t, "x") || cmp(t, "X"))
-		ft_ntoa_dispatcher(node, va_arg(args, char*), 16);
+		return (ft_ntoa_dispatcher(node, va_arg(args, char*), 16));
 	else if (cmp(t, "p"))
-		ft_ntoa_dispatcher(node, va_arg(args, char*), 16);
+		return (ft_ntoa_dispatcher(node, va_arg(args, char*), 16));
 	else if (cmp(t, "b"))
-		ft_ntoa_dispatcher(node, va_arg(args, char*), 2);
+		return (ft_ntoa_dispatcher(node, va_arg(args, char*), 2));
 	else if (cmp(t, "%"))
 		return (ft_print_char(node, '%', 0));
 	// else if (cmp(t, "o") == 0)

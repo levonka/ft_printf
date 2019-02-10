@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:30:59 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/09 15:31:32 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/09 18:48:01 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ static char		*ntoa_oflags(t_type *node, char *n, int base)
 int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 {
 	char *str;
+	char *tmp;
 
 	str = NULL;
 	turnoff_fl(node->flags, '+');
@@ -104,6 +105,7 @@ int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 	else if (cmp(node->type, "p"))
 	{
 		turnoff_fl(node->flags, ' ');
+		turnoff_fl(node->flags, '0');
 		turnoff_fl(node->flags, '+');
 		turnoff_fl(node->flags, '#');
 		str = ft_ntoa_base((unsigned long int)n, base);
@@ -112,6 +114,16 @@ int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 	else if (cmp(node->type, "b"))
 		str = ft_ntoa_base((unsigned long int)n, base);
 	else if (ft_strchr(node->type, 'o') || ft_strchr(node->type, 'O'))
+	{
 		str = ntoa_oflags(node, n, base);
+		if ((int)ft_strlen(str) >= node->precision && ft_strchr(node->flags, '#'))
+		{
+			tmp = str;
+			str = ft_strjoin("0", tmp);
+			free(tmp);
+		}
+		turnoff_fl(node->flags, '#');
+		// printf("!%s!\n", str);
+	}
 	return (ft_print_x(node, str, 0));
 }

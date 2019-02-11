@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 14:53:39 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/09 14:27:15 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/09 14:44:22 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,24 @@ static char	*floatpart_maker(double n, int len, long *intpart)
 	floatres = malloc(sizeof(char) * 1000);     // изменить
 	limit = 17 - ft_nlen(*intpart, 10);
 	(*intpart) = 0;
-	while (len > 0 || i < limit)
-	{
-		printf("\n\n>>>>>>>%f\n", floatpart);
-		floatpart *= 10;
-		printf("<<<<<<<%f", floatpart);
-		if (len > 0 || i < limit)
-		{
-			floatres[i] = (int)floatpart + '0';
-			printf("\n~~~~~%s", floatres);
-		}
-		*intpart = ((*intpart) * 10) + (int)floatpart;
-		floatpart -= (int)floatpart;
-		len--;
-		i++;
-	}
+	floatpart = floatpart * pow(10.0, len);
+	printf("%f", floatpart);
+	// while (len > 0 || i < limit)
+	// {
+	// 	printf("\n\n>>>>>>>%f\n", floatpart);
+	// 	floatpart *= 10;
+	// 	if (len > 0 || i < limit)
+	// 	{
+	// 		floatres[i] = (int)floatpart + '0';
+	// 		printf("\n~~~~~%s", floatres);
+	// 	}
+	// 	*intpart = ((*intpart) * 10) + (int)floatpart;
+	// 	floatpart -= (int)floatpart;
+	// 	len--;
+	// 	i++;
+	// }
 	floatres[i] = '\0';
-	printf("\n>%ld\n", *intpart);
+	// printf("\n>%ld\n", *intpart);
 	return (floatres);
 }
 

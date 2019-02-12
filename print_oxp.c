@@ -54,8 +54,8 @@ static int		ft_print_x_ex(t_type *node, char *str, int minus)
 
 	tmp = NULL;
 	len = ft_strlen(str) + 1;
-	(ft_isflag_in_struct(node, ' ') == 0 ||
-		ft_isflag_in_struct(node, '+') == 0) ?
+	(ft_isfl_in(node, ' ') == 0 ||
+		ft_isfl_in(node, '+') == 0) ?
 	ft_flagsp_num(str, len) : 0;
 	(minus == 0) ? ft_flagminus_num(node, str, len) : 0;
 	ft_flagplus_num(node, str, minus, len);
@@ -89,7 +89,7 @@ int				ft_print_x(t_type *node, char *str, int i)
 		ft_fillin_num(node, str2, str, len);
 		(minus == 0) ? ft_flagminus_num(node, str2, len) : 0;
 		ft_flagplus_num(node, str2, minus, len);
-		ft_isflag_in_struct(node, '#') == 0 ? str2 = hash(str2, node, 0) : 0;
+		ft_isfl_in(node, '#') == 0 ? str2 = hash(str2, node, 0) : 0;
 		ft_strchr(node->type, 'X') ? str2upcase(str2) : 0;
 		ft_putstr(str2);
 		len = ft_strlen(str2);

@@ -6,13 +6,13 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 10:30:23 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/07 17:58:59 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/12 10:01:55 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_isflag_in_struct(t_type *node, char flag)
+int		ft_isfl_in(t_type *node, char flag)
 {
 	int		i;
 
@@ -36,7 +36,7 @@ int		ft_flagssearcher(t_type *node, const char *format, size_t *i)
 	{
 		if (ft_flagsvalidator(format[*i]) == SUCCESS)
 		{
-			if (ft_isflag_in_struct(node, format[*i]) == FAIL)
+			if (ft_isfl_in(node, format[*i]) == FAIL)
 			{
 				node->flags[j] = format[*i];
 				++j;

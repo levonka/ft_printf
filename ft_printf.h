@@ -31,7 +31,7 @@ t_type				*ft_create_ttr();
 void				ft_freenode(t_type *node);
 void				ft_diag_print(t_type *node);
 
-int					ft_isflag_in_struct(t_type *node, char flag);
+int					ft_isfl_in(t_type *node, char flag);
 int					ft_flagssearcher(t_type *node, const char *format,
 	size_t *i);
 int					ft_widthsearcher(t_type *node, const char *format,
@@ -94,5 +94,7 @@ void				shift_npos(char *str, int n);
 char				*expand_str(char *str);
 
 void				print_sw(t_type *node, int c, int i);
+
+char				*zeroprec(double inttest, long res);
 
 #endif

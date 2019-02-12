@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:43:54 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/09 11:00:01 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/12 09:59:28 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_addflag(t_type *node, char flag)
 	int		i;
 
 	i = 0;
-	if (ft_isflag_in_struct(node, flag) == FAIL)
+	if (ft_isfl_in(node, flag) == FAIL)
 	{
 		while (node->type[i] != '\0')
 			++i;

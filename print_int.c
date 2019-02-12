@@ -46,12 +46,13 @@ void		ft_flagplus_num(t_type *node, char *str, int minus, int len)
 	int		i;
 
 	i = 0;
-	if (ft_isflag_in_struct(node, '+') == 0 && minus == -1)
+	// if (node->precision == -1 && node->width > ft_nlen(, 10))
+	if (ft_isfl_in(node, '+') == 0 && minus == -1)
 	{
 		if (ft_isdigit(str[0]))
 		{
 			(str[len - 1] == ' ') ? str[len - 1] = '\0' : 0;
-			while (len > 0)
+			while (len > 0 && ft_isdigit(str[0]) == 0)
 			{
 				ft_swap(&str[len], &str[len - 1]);
 				--len;
@@ -72,8 +73,8 @@ int			ft_print_int2(t_type *node, char *str, int minus)
 	int		len;
 
 	len = ft_strlen(str) + 1;
-	(ft_isflag_in_struct(node, ' ') == 0 ||
-		ft_isflag_in_struct(node, '+') == 0) ? ft_flagsp_num(str, len) : 0;
+	(ft_isfl_in(node, ' ') == 0 ||
+		ft_isfl_in(node, '+') == 0) ? ft_flagsp_num(str, len) : 0;
 	(minus == 0) ? ft_flagminus_num(node, str, len) : 0;
 	ft_flagplus_num(node, str, minus, len);
 	write(1, str, ft_strlen(str));
@@ -96,7 +97,9 @@ int			ft_print_int(t_type *node, char *str, int i)
 	{
 		len = ((node->width > node->precision) ? node->width : node->precision);
 		str2 = ft_strnew(len + 1);
+		// printf(">>'%s'\n", str2);
 		ft_zerofiller(node, str2, len, &i);
+		// printf("<<'%s'\n", str2);
 		ft_fillin_num(node, str2, str, len);
 		(minus == 0) ? ft_flagminus_num(node, str2, len) : 0;
 		ft_flagplus_num(node, str2, minus, len);

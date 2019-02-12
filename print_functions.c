@@ -30,7 +30,7 @@ int		ft_print_dispatcher(t_type *node, va_list args)
 		return (ft_print_u(node, ft_itoa_uhh(va_arg(args, int)), 0));
 	else if (cmp(t, "lu") || cmp(t, "llu"))
 		return (ft_print_u(node, ft_itoa_ull(va_arg(args, unsigned long)), 0));
-	else if (cmp(t, "f"))
+	else if (cmp(t, "f") || cmp(t, "lf"))
 		ft_print_float(node, va_arg(args, double), 0);
 	else if (ft_strchr(t, 'x') || ft_strchr(t, 'X'))
 		return (ft_ntoa_dispatcher(node, va_arg(args, char*), 16));

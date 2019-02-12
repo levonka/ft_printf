@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:36:54 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/09 11:33:46 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/12 09:59:59 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	ft_zerofiller2(t_type *node, char *str, int len, int *i)
 {
 	while (*i < len)
 	{
-		if ((ft_isflag_in_struct(node, '0') == SUCCESS))
-			str[*i] = ((ft_isflag_in_struct(node, '-') && node->width < node->precision) || node->precision == -1) ? ' ' : ' ';
+		if ((ft_isfl_in(node, '0') == SUCCESS))
+			str[*i] = ((ft_isfl_in(node, '-') && node->width < node->precision) || node->precision == -1) ? ' ' : ' ';
 		else
 			str[*i] = ' ';
 		*i = *i + 1;
@@ -43,7 +43,7 @@ static int	ft_print_fconst(t_type *node, char *str, int i)
 		return (10);
 	}
 	len = ft_strlen(str) + 1;
-	(ft_isflag_in_struct(node, ' ') == 0 || ft_isflag_in_struct(node, '+') == 0) ?
+	(ft_isfl_in(node, ' ') == 0 || ft_isfl_in(node, '+') == 0) ?
 	ft_flagsp_num(str, len) : 0;
 	write(1, str, ft_strlen(str));
 	free(str);
@@ -94,7 +94,7 @@ void	ft_print_float(t_type *node, double n, int i)
 		return ;
 	}
 	len = ft_strlen(str) + 1;
-	(ft_isflag_in_struct(node, ' ') == 0 || ft_isflag_in_struct(node, '+') == 0) ?
+	(ft_isfl_in(node, ' ') == 0 || ft_isfl_in(node, '+') == 0) ?
 	ft_flagsp_num(str, len) : 0;
 	(minus == 0) ? ft_flagminus_num(node, str, len) : 0;
 	ft_flagplus_num(node, str, minus, len);

@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 08:13:33 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/08 17:01:33 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/12 10:01:34 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_flagzero(t_type *node, char *str, int *i)
 	int flag_minus;
 	int flag_zero;
 
-	flag_minus = ft_isflag_in_struct(node, '-');
-	flag_zero = ft_isflag_in_struct(node, '0');
+	flag_minus = ft_isfl_in(node, '-');
+	flag_zero = ft_isfl_in(node, '0');
 	while (*i < node->width)
 	{
 		if (flag_minus == FAIL)
@@ -37,7 +37,7 @@ void	ft_flagminus(t_type *node, char *to, char *from, int *i)
 
 	j = 0;
 	len = ft_strlen(from);
-	flag_minus = ft_isflag_in_struct(node, '-');
+	flag_minus = ft_isfl_in(node, '-');
 	if (flag_minus == FAIL)
 		while (len >= 0)
 		{

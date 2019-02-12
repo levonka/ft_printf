@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flag_modifiers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 09:32:22 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/09 09:20:17 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/12 10:05:54 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	ft_fillin_num(t_type *node, char *to, char *from, int len)
 	i = 0;
 	str_len = ft_strlen(from) - 1;
 	pr_copy = node->precision - 1;
-	if (ft_isflag_in_struct(node, '-') == SUCCESS)
+	if (ft_isfl_in(node, '-') == SUCCESS)
+	{
+		turnoff_fl(node->flags, '0');
 		while (str_len >= 0)
 		{
 			if (pr_copy > str_len)
@@ -32,6 +34,7 @@ void	ft_fillin_num(t_type *node, char *to, char *from, int len)
 			--str_len;
 			--pr_copy;
 		}
+	}
 	else
 		while (str_len >= 0)
 		{
@@ -46,7 +49,7 @@ void	ft_zerofiller(t_type *node, char *str, int len, int *i)
 	int		pr_copy;
 
 	pr_copy = node->precision;
-	if (ft_isflag_in_struct(node, '-') == SUCCESS)
+	if (ft_isfl_in(node, '-') == SUCCESS)
 		while (*i < node->precision)
 		{
 			str[*i] = '0';
@@ -61,9 +64,9 @@ void	ft_zerofiller(t_type *node, char *str, int len, int *i)
 		}
 	while (*i < len)
 	{
-		if ((ft_isflag_in_struct(node, '0') == SUCCESS))
-			str[*i] = ((ft_isflag_in_struct(node, '-') && node->width
-				< node->precision) || node->precision == -1) ? '0' : ' ';
+		if ((ft_isfl_in(node, '0') == SUCCESS))
+			str[*i] = ((ft_isfl_in(node, '-') == -1 && (node->width
+				< node->precision || node->precision == -1))) ? '0' : ' ';
 		else
 			str[*i] = ' ';
 		*i = *i + 1;

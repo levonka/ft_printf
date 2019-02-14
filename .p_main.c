@@ -7,7 +7,7 @@ int main(void)
 	int t1;
 	int z;
 
-	z = -25;
+	z = 0;
 
 
 	printf("TEST \n");

@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:34:59 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/12 09:59:39 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/13 17:25:04 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,43 @@ static void	fl_minus(t_type *node, char *to, char *from, int *i)
 		}
 }
 
+int			ifzero(t_type *node, int i)
+{
+	int		sp;
+	int		zero;
+
+	sp = 32;
+	zero = 0;
+	if (ft_isfl_in(node, '-') == -1)
+	{
+		while (i < node->width - 1)
+		{
+			write(1, &sp, 1);
+			i++;
+		}
+		write(1, &zero, 1);
+	}
+	if (ft_isfl_in(node, '-') == 0)
+	{
+		write(1, &zero, 1);
+		while (i < node->width - 1)
+		{
+			write(1, &sp, 1);
+			i++;
+		}
+	}
+	return (i + 1);
+}
+
 int			ft_print_char(t_type *node, int c, int i)
 {
 	int		len;
 	char	*str2;
 	char	*str;
 
-	str = ft_strnew(1);
+	str = ft_strnew(2);
+	if (c == 0)
+		return (ifzero(node, i));
 	node->precision == 0 ? node->precision = 1 : 0; //strange bug with .{0} precision
 	str[0] = c;
 	len = ft_strlen(str);
@@ -74,12 +104,12 @@ int			ft_print_char(t_type *node, int c, int i)
 		str2 = ft_strnew(node->width);
 		fl_zero(node, str2, &i, c);
 		fl_minus(node, str2, str, &i);
-		ft_putstr(str2);
+		write(1, str2, ft_strlen(str2));
 		len = ft_strlen(str2);
 		free(str2);
 		return (len);
 	}
-	ft_putstr(str);
+	write(1, str, ft_strlen(str));
 	len = ft_strlen(str);
 	free(str);
 	return (len);

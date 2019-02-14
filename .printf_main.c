@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 12:24:07 by dkovalch          #+#    #+#             */
-/*   Updated: 2019/02/12 10:07:14 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/12 16:59:09 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 //Test switchers - comment some of then to turn the tests off
 // #define	CHAR		//aka chars
 // #define	PER			//aka percent(%)
-#define	NUM			//aka numbers
-// #define	PTR			//aka pointers
+// #define	NUM			//aka numbers
+#define	PTR			//aka pointers
 // #define	STRANGE		//aka undefined tests
 // #define STR			//aka strings
 // #define WSTR		//aka wide strings
@@ -64,7 +64,7 @@ int	main(void)
 	TITLE("Percent options:\n");
 	PRINTF("|%-6%|   |%6%|   |%6.2%|   |%-06%|   |%-06.3%|");
 #endif
-	
+
 #ifdef STR
 	TITLE("Strings:\n");
 	PRINTF("|%s|", NULL);

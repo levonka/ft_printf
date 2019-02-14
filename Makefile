@@ -6,7 +6,7 @@
 #    By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/08 15:24:16 by agottlie          #+#    #+#              #
-#    Updated: 2019/02/01 13:24:02 by agottlie         ###   ########.fr        #
+#    Updated: 2019/02/14 12:33:56 by agottlie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,12 @@ OBJ = *.o
 INC = ft_printf.h
 
 
-	# @make -C libft fclean && make -C libft
 	# @make -C libft clean
 	# @make -C libft fclean
 all: $(NAME)
 
 $(NAME):
+	# @make -C libft fclean && make -C libft
 	@gcc $(FLAGS) -c $(SRC) -I $(INC)
 	@gcc $(FLAGS) -Llibft -lft -I$(INC) -o $(NAME) $(OBJ)
 	@make clean

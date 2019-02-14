@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 09:32:22 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/12 10:05:54 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/14 17:26:47 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	ft_flagsp_num(char *str, int len)
 	int		i;
 
 	i = 0;
+	// printf("hel\n");
 	while (len > 0)
 	{
 		ft_swap(&str[len], &str[len - 1]);

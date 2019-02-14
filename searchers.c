@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 10:30:23 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/12 10:01:55 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/14 12:42:38 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,7 @@ int		ft_typesearcher(t_type *node, const char *format, size_t *i)
 		ISFAILED(ft_typevalidator(node, len, i));
 		return (SUCCESS);
 	}
+	else
+		node->type = ft_strnew(1);
 	return (FAIL);
 }

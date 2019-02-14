@@ -7,7 +7,7 @@ int main(void)
 	int t1;
 	int z;
 
-	z = -2;
+	z = 0;
 
 	printf("TEST FLAG MINUS\n");
 	printf("TEST FLAG MINUS + HP\n");

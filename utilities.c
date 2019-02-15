@@ -24,13 +24,15 @@ void		turnoff_fl(char *flags, char c)
 
 char		*ft_ntoa_base(uintmax_t n, int base)
 {
-	char	*res;
-	int		len;
+	char				*res;
+	unsigned long		len;
 	static char	*nums = "0123456789abcdef";
+
+
 
 	res = NULL;
 	len = ft_nlen(n, base);
-	if (!(res = (char*)malloc(sizeof(char) * (len + 4))))
+	if (!(res = (char*)malloc(sizeof(char) * (len + 40))))
 		return (NULL);
 	res[len] = '\0';
 	if (n == 0)
@@ -44,26 +46,43 @@ char		*ft_ntoa_base(uintmax_t n, int base)
 	return (res);
 }
 
-void		shift_npos(char *str, int n)
+char		*shift_npos(char *str, int n)
 {
 	int i;
 	int j;
 
 	i = 0;
 	j = 0;
-	while(n > 0)
+	if (str[i] == ' ' && str[i+1] != ' ')
 	{
-		while (str[i] != ' ')
-			i++;
-		j = i;
-		while(i >= 0 && str[i - 1] != ' ')
+		while(str[i] != '\0')
 		{
-			ft_swap(&str[i - 1], &str[i]);
-			i--;
+			if (str[i + 1] == '\0')
+				break ;
+			ft_swap(&str[i], &str[i+1]);
+			i++;
 		}
-		n--;
-		i++;
+		str[i] = '\0';
+		return (expand_str(str));
 	}
+	else
+	{
+		while(n > 0)
+		{
+			while (str[i] != ' ')
+				i++;
+			j = i;
+			while(i > 0 && str[i - 1] != ' ')
+			{
+				ft_swap(&str[i - 1], &str[i]);
+				i--;
+			}
+			n--;
+			i++;
+		}
+	}
+	return (str);
+	// printf(">%s<\n", str);
 }
 
 char		*expand_str(char *str)

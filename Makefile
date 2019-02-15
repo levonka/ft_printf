@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+         #
+#    By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/08 15:24:16 by agottlie          #+#    #+#              #
-#    Updated: 2019/02/01 13:24:02 by agottlie         ###   ########.fr        #
+#    Updated: 2019/02/12 13:33:57 by yharwyn-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = printf
 
-FLAGS = -Wall -Wextra
+FLAGS = -Wall -Wextra 
 
 FLAGS2 = -Wno-format-invalid-specifier -Wno-format -Wno-macro-redefined -Wno-implicitly-unsigned-literal
 

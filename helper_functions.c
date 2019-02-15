@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   helper_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:43:54 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/12 09:59:28 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/15 07:45:16 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_swap(char *a, char *b)
+void			ft_swap(char *a, char *b)
 {
 	char	buff;
 
@@ -21,7 +21,7 @@ void	ft_swap(char *a, char *b)
 	*b = buff;
 }
 
-void	ft_addflag(t_type *node, char flag)
+void			ft_addflag(t_type *node, char flag)
 {
 	int		i;
 
@@ -34,18 +34,19 @@ void	ft_addflag(t_type *node, char flag)
 	}
 }
 
-intmax_t	ft_abs(intmax_t n)
+intmax_t		ft_abs(intmax_t n)
 {
 	if (n < 0)
 		return (-n);
 	return (n);
 }
 
-int			ft_nlen(intmax_t n, int base)
+unsigned long	ft_nlen(uintmax_t n, int base)
 {
 	size_t		len;
 
 	len = 0;
+	// printf("'%zu'\n", base);
 	if (n == 0)
 		return(1);
 	while (n)
@@ -56,7 +57,7 @@ int			ft_nlen(intmax_t n, int base)
 	return (len);
 }
 
-void		str2upcase(char *str)
+void			str2upcase(char *str)
 {
 	int i;
 

@@ -58,11 +58,8 @@ void			add_flag(t_type **node, char mod)
 	(*node)->flags[i] = '\0';
 }
 
-static char			*zero_cases(t_type *node, char *n, char *str)
+static char			*zero_cases(t_type *node, char *str)
 {
-	char *hello;
-
-	hello = n;
 	turnoff_fl(node->flags, '#');
 	// ft_diag_print(node);
 	if (ft_strchr(node->type, 'p'))
@@ -105,7 +102,7 @@ int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 	{
 		if (n == NULL)
 		{
-			str = zero_cases(node, n, str);
+			str = zero_cases(node, str);
 			if (str)
 				return (ft_print_x(node, str));
 		}
@@ -114,7 +111,7 @@ int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 			add_flag(&node, '#');
 			if (n == NULL)
 			{
-				str = zero_cases(node, n, str);
+				str = zero_cases(node, str);
 				if (str)
 					return (ft_print_x(node, str));
 			}
@@ -128,7 +125,7 @@ int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 	{
 		if (n == NULL)
 		{
-			str = zero_cases(node, n, str);
+			str = zero_cases(node, str);
 			if (str)
 				return (ft_print_x(node, str));
 		}

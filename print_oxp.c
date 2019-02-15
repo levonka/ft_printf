@@ -1,5 +1,5 @@
-#include "ft_printf.h"
 
+#include "ft_printf.h"
 // static void			add_flag(t_type **node, char mod)
 // {
 // 	// printf("HO\n");
@@ -106,8 +106,10 @@ static int		ft_print_x_ex(t_type *node, char *str, int minus)
 	node->precision == 0 && str[0] == '0' && ft_strlen(str) == 1 ? ft_putstr(0) : ft_putstr(str);
 	if (ft_strchr(node->type, '^'))
 		ft_putstr(str);
+	// printf("ZDAROVA\n");
+	len = ft_strlen(str);
 	free(str);
-	return (len - 1);
+	return (len);
 }
 
 static	int		ft_print_x_ex1(t_type *node, char *str, int minus, int i)

@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:30:59 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/15 08:58:40 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/15 10:52:22 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void			add_flag(t_type **node, char mod)
 static char			*zero_cases(t_type *node, char *n, char *str)
 {
 	turnoff_fl(node->flags, '#');
+	// ft_diag_print(node);
 	if (ft_strchr(node->type, 'p'))
 	{
 		if (node->precision == 0)
@@ -92,6 +93,7 @@ static char			*zero_cases(t_type *node, char *n, char *str)
 	}
 	else if (node->precision == 0 && (ft_strchr(node->type, 'o') || ft_strchr(node->type, 'O')))
 	{
+		// printf("HELLO\n");
 		str = ft_strdup("0");
 		ft_addflag(node, '^');
 		return (str);
@@ -116,7 +118,7 @@ int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 			if (str)
 				return (ft_print_x(node, str));
 		}
-		else if (ft_strchr(node->type, 'p'))
+		else if (ft_strchr(node->type, 'p') || ft_strchr(node->type, 'lp'))
 		{
 			add_flag(&node, '#');
 			if (n == NULL)

@@ -23,6 +23,7 @@ typedef struct		s_type
 	int				width;
 	int				precision;
 	int				status;
+	char			zero;
 }					t_type;
 
 int					ft_printf(const char *format, ...);
@@ -75,7 +76,7 @@ char				*ft_itoa_ull(unsigned long n);
 char				*ft_itoa_uh(unsigned short n);
 char				*ft_itoa_uhh(unsigned char n);
 
-void				ft_print_float(t_type *node, double n, int i);
+int					ft_print_float(t_type *node, double n, int i);
 
 int					ft_print_x(t_type *node, char *str);
 int					ft_ntoa_dispatcher(t_type *node, char *n, int base);

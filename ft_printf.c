@@ -1,11 +1,32 @@
 #include "ft_printf.h"
 
+int		isempty(const char *format, int i)
+{
+	int		flag;
+
+	flag = 0;
+	while (format[i] != '\0')
+	{
+		if (format[i] != ' ' && format[i] != 39 && format[i] != 'h'
+			&& format[i] != 'l')
+		{
+			flag = 1;
+			break ;
+		}
+		i++;
+	}
+	if (flag == 1)
+		return (0);
+	return (1);
+}
+
 int		ft_solver(va_list args, const char *format, size_t *i)
 {
 	t_type	*node;
 	int		len;
 	int		len2;
 
+	len2 = 0;
 	node = ft_create_ttr();
 	ft_flagssearcher(node, format, i);
 	ft_widthsearcher(node, format, i);
@@ -21,7 +42,8 @@ int		ft_solver(va_list args, const char *format, size_t *i)
 		free(node->type);
 		node->type = ft_strnew(1);
 		node->type[0] = format[*i];
-		len2 = ft_print_char(node, node->type[0], 0);
+		if (node->type[0] != 'h' && node->type[0] != 'l')
+			len2 = ft_print_char(node, node->type[0], 0);
 		(*i)++;
 		return (len2);
 	}
@@ -46,6 +68,8 @@ int		ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			++i;
+			if (isempty(format, i))
+				return (len);
 			len += ft_solver(args, format, &i);
 		}
 		else

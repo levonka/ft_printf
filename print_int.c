@@ -46,18 +46,26 @@ void		ft_flagplus_num(t_type *node, char *str, int minus, int len)
 	int		i;
 
 	i = 0;
-	// if (node->precision == -1 && node->width > ft_nlen(, 10))
 	if (ft_isfl_in(node, '+') == 0 && minus == -1)
 	{
 		if (ft_isdigit(str[0]))
 		{
 			(str[len - 1] == ' ') ? str[len - 1] = '\0' : 0;
-			while (len > 0 && ft_isdigit(str[0]) == 0)
+			// printf("str = '%s'\n", str);
+			// ft_diag_print(node);
+			// printf("\nlen = %d\n", len);
+			if (ft_isfl_in(node, '+') == 0 && ft_isfl_in(node, '0') == 0)
+				str[0] = '+';
+			else
 			{
-				ft_swap(&str[len], &str[len - 1]);
-				--len;
+				while (len > 0 && (ft_isdigit(str[0]) == 1 || node->width == -1 || node->precision != -1 || node->zero == 1))
+				{
+					// printf("he\n");
+					ft_swap(&str[len], &str[len - 1]);
+					--len;
+				}
+				str[0] = ((istype(node->type)) ? ' ' : '+');
 			}
-			str[0] = ((istype(node->type)) ? ' ' : '+');
 		}
 		else
 		{
@@ -95,16 +103,26 @@ int			ft_print_int(t_type *node, char *str, int i)
 	if ((node->width != -1 && node->width >= (int)ft_strlen(str) + 1) ||
 		(node->precision != -1 && node->precision >= (int)ft_strlen(str) + 1))
 	{
+		node->zero = (cmp(str, "0") == 1);
 		len = ((node->width > node->precision) ? node->width : node->precision);
 		str2 = ft_strnew(len + 1);
-		// printf(">>'%s'\n", str2);
 		ft_zerofiller(node, str2, len, &i);
-		// printf("<<'%s'\n", str2);
 		ft_fillin_num(node, str2, str, len);
+		// ft_diag_print(node);
+		if (ft_isfl_in(node, '-') == -1 && ft_isfl_in(node, ' ') == 0 && ft_isfl_in(node, '0') == 0)
+			str2[0] = ' ';																						// vot ono!! printf("{% 03d}", 1);
+		// printf("'%s'\n", str2);
+		(node->precision < node->width && ft_isfl_in(node, '-') == -1) ? turnoff_fl(node->flags, ' ') : 0;
+		// ft_diag_print(node);
+		(ft_isfl_in(node, ' ') == 0) ? ft_flagsp_num(str2, len) : 0;
 		(minus == 0) ? ft_flagminus_num(node, str2, len) : 0;
 		ft_flagplus_num(node, str2, minus, len);
-		write(1, str2, ft_strlen(str2));
+		len = (node->width > node->precision) ? node->width : node->precision;
+		if (len < (int)ft_strlen(str2) && str2[ft_strlen(str2) - 1] == ' ')
+			str2[len] = '\0';
 		len = ft_strlen(str2);
+		// printf("<<'%s'\n", str2);
+		write(1, str2, ft_strlen(str2));
 		free(str2);
 		free(str);
 		return (len);

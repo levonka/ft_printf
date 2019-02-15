@@ -97,5 +97,6 @@ void				print_sw(t_type *node, int c, int i);
 
 char				*zeroprec(double inttest, long res);
 void				add_flag(t_type **node, char mod);
+void				ft_addflag(t_type *node, char flag);
 
 #endif

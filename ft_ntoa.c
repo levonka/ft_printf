@@ -60,6 +60,9 @@ void			add_flag(t_type **node, char mod)
 
 static char			*zero_cases(t_type *node, char *n, char *str)
 {
+	char *hello;
+
+	hello = n;
 	turnoff_fl(node->flags, '#');
 	// ft_diag_print(node);
 	if (ft_strchr(node->type, 'p'))

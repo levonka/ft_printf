@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_ntoa.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/25 12:30:59 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/15 10:58:12 by agottlie         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
 static char		*ntoa_xflags(t_type *node, char *n, int base)
@@ -76,6 +64,7 @@ static char			*zero_cases(t_type *node, char *n, char *str)
 
 	hello = n;
 	turnoff_fl(node->flags, '#');
+	// ft_diag_print(node);
 	if (ft_strchr(node->type, 'p'))
 	{
 		if (node->precision == 0)
@@ -95,6 +84,7 @@ static char			*zero_cases(t_type *node, char *n, char *str)
 	}
 	else if (node->precision == 0 && (ft_strchr(node->type, 'o') || ft_strchr(node->type, 'O')))
 	{
+		// printf("HELLO\n");
 		str = ft_strdup("0");
 		ft_addflag(node, '^');
 		return (str);
@@ -119,7 +109,7 @@ int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 			if (str)
 				return (ft_print_x(node, str));
 		}
-		else if (ft_strchr(node->type, 'p'))
+		else if (ft_strchr(node->type, 'p') || cmp(node->type, "lp"))
 		{
 			add_flag(&node, '#');
 			if (n == NULL)

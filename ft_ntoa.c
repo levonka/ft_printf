@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:30:59 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/15 10:52:22 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/15 11:28:47 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 			if (str)
 				return (ft_print_x(node, str));
 		}
-		else if (ft_strchr(node->type, 'p') || ft_strchr(node->type, 'lp'))
+		else if (ft_strchr(node->type, 'p') || cmp(node->type, "lp"))
 		{
 			add_flag(&node, '#');
 			if (n == NULL)

@@ -22,7 +22,6 @@ typedef struct		s_type
 	char			*flags;
 	int				width;
 	int				precision;
-	int				status;
 	char			zero;
 }					t_type;
 

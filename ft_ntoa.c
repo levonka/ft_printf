@@ -63,8 +63,16 @@ static char			*zero_cases(t_type *node, char *n, char *str)
 	char *hello;
 
 	hello = n;
-	turnoff_fl(node->flags, '#');
 	// ft_diag_print(node);
+	node->width == -1 && node->precision == 0 ? ft_addflag(node, '@')  : 0;
+	// ft_diag_print(node);
+	if (node->width == 1 && node->precision == 0)
+	{
+		str = ft_strdup(" ");
+		return (str);
+	}
+	if (!((ft_strchr(node->type, 'o') || ft_strchr(node->type, 'O')) && ft_strchr(node->flags, '#')))
+		turnoff_fl(node->flags, '#');
 	if (ft_strchr(node->type, 'p'))
 	{
 		if (node->precision == 0)
@@ -82,12 +90,22 @@ static char			*zero_cases(t_type *node, char *n, char *str)
 		ft_memset(str, ' ', node->width);
 		return (str);
 	}
-	else if (node->precision == 0 && (ft_strchr(node->type, 'o') || ft_strchr(node->type, 'O')))
+	else if (node->precision == 0 && ft_strchr(node->flags, '#') && (ft_strchr(node->type, 'o') || ft_strchr(node->type, 'O')))
 	{
 		// printf("HELLO\n");
+		// ft_diag_print(node);
+
 		str = ft_strdup("0");
 		ft_addflag(node, '^');
 		return (str);
+	}
+	else if (ft_strchr(node->type, 'o') || ft_strchr(node->type, 'O') || ft_strchr(node->type, 'x') || ft_strchr(node->type, 'X'))
+	{
+		ft_addflag(node, '@');
+		// ft_diag_print(node);
+
+		// printf("hi\n");
+		return (0);
 	}
 		return (0);
 }
@@ -128,6 +146,7 @@ int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 	{
 		if (n == NULL)
 		{
+	// ft_diag_print(node);
 			str = zero_cases(node, n, str);
 			if (str)
 				return (ft_print_x(node, str));

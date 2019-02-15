@@ -107,7 +107,14 @@ static int		ft_print_x_ex(t_type *node, char *str, int minus)
 	if (ft_strchr(node->type, '^'))
 		ft_putstr(str);
 	// printf("ZDAROVA\n");
+	// ft_diag_print(node);
+	// printf("!%s!\n", str);
 	len = ft_strlen(str);
+	// printf(">%d<\n", len);
+	ft_strchr(node->type, '@') && node->width == -1 && node->precision == 0 ? len-- : 0;
+	// ft_strchr(node->type, '@') && node->width == -1 && node->precision == 0 ? len-- : 0;
+	
+	// printf(">%d<\n", len);
 	free(str);
 	return (len);
 }

@@ -18,13 +18,15 @@ int		ft_print_dispatcher(t_type *node, va_list args)
 		return (ft_print_string(node, va_arg(args, char *), 0));
 	else if (cmp(t, "c"))
 		return (ft_print_char(node, va_arg(args, int), 0));
+	else if (cmp(t, "C"))
+		return (ft_print_char(node, (wchar_t)va_arg(args, int), 0));
 	else if (cmp(t, "d") || cmp(t, "i"))
 		return (ft_print_int(node, ft_itoa(va_arg(args, int)), 0));
 	else if (cmp(t, "hd") || cmp(t, "hi"))
 		return (ft_print_int(node, ft_itoa((short)va_arg(args, int)), 0));
 	else if (cmp(t, "hhd") || cmp(t, "hhi"))
 		return (ft_print_int(node, ft_itoa((char)va_arg(args, int)), 0));
-	else if (cmp(t, "ld") || cmp(t, "lld") || cmp(t, "li") || cmp(t, "lli"))
+	else if (cmp(t, "ld") || cmp(t, "lld") || cmp(t, "li") || cmp(t, "lli") || cmp(t, "D"))
 		return (ft_print_int(node, ft_itoa_ll(va_arg(args, long)), 0));
 	else if (cmp(t, "u"))
 		return (ft_print_u(node, ft_itoa_ui(va_arg(args, unsigned int)), 0));
@@ -32,7 +34,7 @@ int		ft_print_dispatcher(t_type *node, va_list args)
 		return (ft_print_u(node, ft_itoa_uh(va_arg(args, int)), 0));
 	else if (cmp(t, "hhu"))
 		return (ft_print_u(node, ft_itoa_uhh(va_arg(args, int)), 0));
-	else if (cmp(t, "lu") || cmp(t, "llu"))
+	else if (cmp(t, "lu") || cmp(t, "llu") || cmp(t, "U"))
 		return (ft_print_u(node, ft_itoa_ull(va_arg(args, unsigned long)), 0));
 	else if (cmp(t, "f") || cmp(t, "lf"))
 		return (ft_print_float(node, va_arg(args, double), 0));

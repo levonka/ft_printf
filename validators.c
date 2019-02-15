@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 11:53:45 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/09 16:24:17 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/15 09:04:59 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int		ft_typevalidator(t_type *node, int len, size_t *i)
 	int			j;
 	const char	base[][4] = {"c", "s", "p",
 	"d", "i", "o", "O", "u", "x", "X",
-	"hd", "hi", "ho", "hu", "hx", "hX", "hhd", "hhi", "hho", "hhu", "hhx",
+	"hd", "hi", "ho", "hu", "hx", "hX", "hhd", "hhi", "hho", "hhO", "hO", "lO", "llO", "hhu", "hhx",
 	"hhX", "ld", "li", "lo", "lu", "lx", "lX", "lld", "lli", "llo", "llu",
-	"llx", "llX", "f", "lf", "Lf", "%", "b", ""};
+	"llx", "llX", "f", "lf", "Lf", "%", "b", "U", "D", "C", ""};
 
 	while (len >= 1)
 	{

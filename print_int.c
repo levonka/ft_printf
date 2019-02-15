@@ -109,10 +109,12 @@ int			ft_print_int(t_type *node, char *str, int i)
 		ft_zerofiller(node, str2, len, &i);
 		ft_fillin_num(node, str2, str, len);
 		// ft_diag_print(node);
+		if (ft_isfl_in(node, '-') == -1 && ft_isfl_in(node, ' ') == 0 && ft_isfl_in(node, '0') == 0)
+			str2[0] = ' ';																						// vot ono!! printf("{% 03d}", 1);
+		// printf("'%s'\n", str2);
 		(node->precision < node->width && ft_isfl_in(node, '-') == -1) ? turnoff_fl(node->flags, ' ') : 0;
 		// ft_diag_print(node);
 		(ft_isfl_in(node, ' ') == 0) ? ft_flagsp_num(str2, len) : 0;
-		// printf("'%s'\n", str2);
 		(minus == 0) ? ft_flagminus_num(node, str2, len) : 0;
 		ft_flagplus_num(node, str2, minus, len);
 		len = (node->width > node->precision) ? node->width : node->precision;

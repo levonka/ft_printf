@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ntoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:30:59 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/15 08:58:40 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/15 10:58:12 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ void			add_flag(t_type **node, char mod)
 
 static char			*zero_cases(t_type *node, char *n, char *str)
 {
+	char *hello;
+
+	hello = n;
 	turnoff_fl(node->flags, '#');
 	if (ft_strchr(node->type, 'p'))
 	{

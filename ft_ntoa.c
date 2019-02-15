@@ -144,12 +144,8 @@ int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 	{
 		if (n == NULL)
 		{
-<<<<<<< HEAD
 			str = zero_cases(node, str);
-=======
 	// ft_diag_print(node);
-			str = zero_cases(node, n, str);
->>>>>>> ee1a97e8d9caf11434b4d989e5fa265b4eb070ad
 			if (str)
 				return (ft_print_x(node, str));
 		}

@@ -50,6 +50,7 @@ static char		*hashtag_mode_ext(char *str, t_type *node)
 	{
 		if (str[0] == ' ')
 		{
+			// printf("HI\n");
 			str = expand_str(str);
 		}
 		if (node->precision < node->width)
@@ -57,11 +58,11 @@ static char		*hashtag_mode_ext(char *str, t_type *node)
 			if (ft_strchr(node->flags, '-'))
 			{
 				str = shift_npos(str, 1);
-			// printf("HI\n");
-				// printf("'%s'\n", str);
+				printf("'%s'\n", str);
 				return (add0x(str, 0, node));
 				// return (str);
 			}
+			// printf("'%s'\n", str);
 			return(add0x(str, 0, node));
 		}
 		else
@@ -105,15 +106,24 @@ static int		ft_print_x_ex(t_type *node, char *str, int minus)
 	ft_strchr(node->type, 'X') ? str2upcase(str) : 0;
 	node->precision == 0 && str[0] == '0' && ft_strlen(str) == 1 ? ft_putstr(0) : ft_putstr(str);
 	if (ft_strchr(node->type, '^'))
+	{
+		if (node->width == -1 && node->precision == -1)
+		{
+			tmp = ft_strjoin("0", str);
+			str = tmp;
+			free(tmp);
+
+		}
 		ft_putstr(str);
+	}
 	// printf("ZDAROVA\n");
-	// ft_diag_print(node);
 	// printf("!%s!\n", str);
 	len = ft_strlen(str);
 	// printf(">%d<\n", len);
 	ft_strchr(node->type, '@') && node->width == -1 && node->precision == 0 ? len-- : 0;
 	// ft_strchr(node->type, '@') && node->width == -1 && node->precision == 0 ? len-- : 0;
 	
+	// ft_diag_print(node);
 	// printf(">%d<\n", len);
 	free(str);
 	return (len);
@@ -132,7 +142,8 @@ static	int		ft_print_x_ex1(t_type *node, char *str, int minus, int i)
 		ft_flagplus_num(node, str2, minus, len);
 		ft_isfl_in(node, '#') == 0 ? str2 = hash(str2, node, 0) : 0;
 		// printf(">>strlen: %d  node->width %d\n", ft_strlen(str2), node->width );
-		(int)ft_strlen(str2) > node->width && node->width > node->precision ? str2[ft_strlen(str2) - 1] = '\0' : 0;
+		// printf(">%s<\n", str2);
+		(int)ft_strlen(str2) > node->width && !ft_strchr(node->type, 'p') && node->width > node->precision ? str2[ft_strlen(str2) - 1] = '\0' : 0;
 		ft_strchr(node->type, 'X') ? str2upcase(str2) : 0;
 		if (node->precision == 0 && node->width != 0 && ft_strchr(str2, '0') && ft_strlen(str2) < 2)
 			ft_strchr(str2, '0')[0] = ' ';

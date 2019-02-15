@@ -25,8 +25,16 @@ static char		*ntoa_xflags(t_type *node, char *n, int base)
 static char		*ntoa_oflags(t_type *node, char *n, int base)
 {
 	if (cmp(node->type, "o"))
+	{
+	// printf("ZDARP\n");
 			return (ft_ntoa_base((unsigned int)n, base));
-	if (cmp(node->type, "lo") || cmp(node->type, "llo"))
+	}
+	if (cmp(node->type, "O"))
+	{
+	// printf("ZDARP\n");
+			return (ft_ntoa_base((unsigned long)n, base));
+	}
+	if (cmp(node->type, "lo") || cmp(node->type, "llo") || cmp(node->type, "lO") || cmp(node->type, "llO"))
 		return (ft_ntoa_base((long)n, base));
 	if (!ft_strchr(node->type, 'h'))
 	{
@@ -37,8 +45,10 @@ static char		*ntoa_oflags(t_type *node, char *n, int base)
 	}
 	else
 	{
-		if (cmp(node->type, "ho") || cmp(node->type, "hO"))
+		if (cmp(node->type, "ho"))
 				return (ft_ntoa_base((unsigned short)n, base));
+		else if (cmp(node->type, "hO") || cmp(node->type, "hhO"))
+				return (ft_ntoa_base((unsigned long)n, base));
 		else
 				return (ft_ntoa_base((unsigned char)n, base));
 	}
@@ -146,7 +156,6 @@ int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 	{
 		if (n == NULL)
 		{
-	// ft_diag_print(node);
 			str = zero_cases(node, n, str);
 			if (str)
 				return (ft_print_x(node, str));
@@ -160,6 +169,7 @@ int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 		}
 		if (ft_strchr(node->flags, '#'))
 			ft_strchr(node->flags, '#')[0] = '^';
+	// ft_diag_print(node);
 	}
 
 	return (ft_print_x(node, str));

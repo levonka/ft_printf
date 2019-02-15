@@ -95,7 +95,9 @@ char		*expand_str(char *str)
 	j = 0;
 	while (str[j] == ' ')
 		j++;
+
 	j != 1 ? j = 0 : 0;
+	// printf(">%d<\n", j);
 	exp = ft_strnew(ft_strlen(str) + 2);
 	exp[i++] = '0';
 	exp[i++] = 'x';
@@ -106,6 +108,7 @@ char		*expand_str(char *str)
 		i++;
 	}
 	exp[i] = '\0';
+	// printf(">%s<\n", exp);
 	return (exp);
 }
 

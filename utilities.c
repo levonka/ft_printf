@@ -26,7 +26,7 @@ char		*ft_ntoa_base(uintmax_t n, int base)
 {
 	char				*res;
 	unsigned long		len;
-	static char	*nums = "0123456789abcdef";
+	static char	*nums = "0123456789abcdefghijklmnopqrstuvwxyzABCDEF";
 
 
 

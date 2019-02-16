@@ -148,8 +148,12 @@ int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 		}
 		str = ntoa_xflags(node, n, base);
 	}
-	else if (cmp(node->type, "b"))
+	else if (cmp(node->type, "b") || cmp(node->type, "bs"))
+	{
 		str = ft_ntoa_base((unsigned long int)n, base);
+		if (cmp(node->type, "bs"))
+			node->width = 0;
+	}
 	else if (ft_strchr(node->type, 'o') || ft_strchr(node->type, 'O'))
 	{
 		if (n == NULL)

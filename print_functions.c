@@ -44,6 +44,8 @@ int		ft_print_dispatcher(t_type *node, va_list args)
 		return (ft_ntoa_dispatcher(node, va_arg(args, char*), 16));
 	else if (cmp(t, "b"))
 		return (ft_ntoa_dispatcher(node, va_arg(args, char*), 2));
+	else if (cmp(t, "bs"))
+		return (ft_ntoa_dispatcher(node, va_arg(args, char*), node->width));
 	else if (cmp(t, "%"))
 		return (ft_print_char(node, '%', 0));
 	else if (ft_strchr(t, 'o') || ft_strchr(t, 'O'))

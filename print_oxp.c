@@ -58,7 +58,7 @@ static char		*hashtag_mode_ext(char *str, t_type *node)
 			if (ft_strchr(node->flags, '-'))
 			{
 				str = shift_npos(str, 1);
-				printf("'%s'\n", str);
+				// printf("'%s'\n", str);
 				return (add0x(str, 0, node));
 				// return (str);
 			}

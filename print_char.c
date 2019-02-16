@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 09:12:20 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/15 10:48:35 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/15 17:00:05 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,28 @@ static void	fl_minus(t_type *node, char *to, char *from, int *i)
 
 int			ifzero(t_type *node, int i)
 {
-	int		sp;
-	int		zero;
+	char	sp;
+	char	zero;
+	char	nul;
 
 	sp = 32;
-	zero = 0;
+	nul = 0;
+	zero = '0';
 	if (ft_isfl_in(node, '-') == -1)
 	{
 		while (i < node->width - 1)
 		{
-			write(1, &sp, 1);
+			if (ft_isfl_in(node, '0') == 0)
+				write(1, &zero, 1);
+			else
+				write(1, &sp, 1);
 			i++;
 		}
-		write(1, &zero, 1);
+		write(1, &nul, 1);
 	}
 	if (ft_isfl_in(node, '-') == 0)
 	{
-		write(1, &zero, 1);
+		write(1, &nul, 1);
 		while (i < node->width - 1)
 		{
 			write(1, &sp, 1);

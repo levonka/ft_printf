@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:36:54 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/16 15:06:10 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/16 16:05:15 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,23 @@ static void	ft_zerofiller2(t_type *node, char *str, int len, int *i)
 
 static void	ft_zerofiller3(t_type *node, char *str, int len, int i)
 {
+	int		sp;
+
+	sp = ft_isfl_in(node, ' ') == -1;
 	// printf("%d\n", i);
 	// printf("|% 0+20.f|", 102420484096.0);
 	if (ft_isfl_in(node, '0') == 0 && ft_isfl_in(node, '-') == -1)
 	{
-		while (i < len)
+		// printf("|% 020.F|", 102420484096.);
 		{
-			str[i] = '0';
-			i++;
+			while (i < len)
+			{
+				str[i] = '0';
+				i++;
+			}
 		}
+		if (sp == 0)
+			str[0] = ' ';
 	}
 }
 
@@ -183,8 +191,13 @@ int			ft_print_float(t_type *node, double n, int i)
 		ft_fillin_num(node, str2, str, len);
 		(node->precision < node->width && ft_isfl_in(node, '-') == -1) ? turnoff_fl(node->flags, ' ') : 0;
 		(ft_isfl_in(node, ' ') == 0) ? ft_flagsp_num(str2, len) : 0;
-		// printf("<<'%s'\n", str2);
 		(minus == 0) ? ft_flagminus_num(node, str2, len) : 0;
+		// printf("|%010.f|", -0.);
+		// if (minus == 0 && node->precision > node->width)
+			// ft_flagminus_num(node, str2, len);
+		// else
+			// str2[0] = '-';
+		// printf("<<'%s'\n", str2);
 		ft_flagplus_num(node, str2, minus, len);
 		len = (node->width > node->precision) ? node->width : node->precision;
 		if (len < (int)ft_strlen(str2) && str2[ft_strlen(str2) - 1] == ' ')

@@ -26,15 +26,21 @@ int		ft_print_dispatcher(t_type *node, va_list args)
 		return (ft_print_int(node, ft_itoa((short)va_arg(args, int)), 0));
 	else if (cmp(t, "hhd") || cmp(t, "hhi"))
 		return (ft_print_int(node, ft_itoa((char)va_arg(args, int)), 0));
-	else if (cmp(t, "ld") || cmp(t, "lld") || cmp(t, "li") || cmp(t, "lli") || cmp(t, "D") || cmp(t, "lD") || cmp(t, "llD") || cmp(t, "hD") || cmp(t, "hhD"))
+	else if (cmp(t, "ld") || cmp(t, "lld") || cmp(t, "li") || cmp(t, "lli") || cmp(t, "D") || cmp(t, "lD") || cmp(t, "llD") || cmp(t, "hD") || cmp(t, "hhD") || cmp(t, "zd") || cmp(t, "zi"))
 		return (ft_print_int(node, ft_itoa_ll(va_arg(args, long)), 0));
+	else if (cmp(t, "jd") || cmp(t, "ji") || cmp(t, "jD") || cmp(t, "zD"))
+		return (ft_print_int(node, ft_itoa_im(va_arg(args, intmax_t)), 0));
 	else if (cmp(t, "u"))
 		return (ft_print_u(node, ft_itoa_ui(va_arg(args, unsigned int)), 0));
+	// else if (cmp(t, "zu") || cmp(t, "zU"))
+		// return (ft_print_u(node, ft_itoa_st(va_arg(args, ssize_t)), 0));
+	else if (cmp(t, "ju") || cmp(t, "jU"))
+		return (ft_print_u(node, ft_itoa_uim(va_arg(args, uintmax_t)), 0));
 	else if (cmp(t, "hu"))
 		return (ft_print_u(node, ft_itoa_uh(va_arg(args, int)), 0));
 	else if (cmp(t, "hhu"))
 		return (ft_print_u(node, ft_itoa_uhh(va_arg(args, int)), 0));
-	else if (cmp(t, "lu") || cmp(t, "llu") || cmp(t, "U") || cmp(t, "hU") || cmp(t, "hhU") || cmp(t, "lU") || cmp(t, "llU"))
+	else if (cmp(t, "lu") || cmp(t, "llu") || cmp(t, "U") || cmp(t, "hU") || cmp(t, "hhU") || cmp(t, "lU") || cmp(t, "llU") || (cmp(t, "zu") || cmp(t, "zU")))
 		return (ft_print_u(node, ft_itoa_ull(va_arg(args, unsigned long)), 0));
 	else if (cmp(t, "f") || cmp(t, "lf") || cmp(t, "F"))
 		return (ft_print_float(node, va_arg(args, double), 0));

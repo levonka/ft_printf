@@ -34,7 +34,7 @@ int		ft_solver(va_list args, const char *format, size_t *i)
 	if (ft_typesearcher(node, format, i) == SUCCESS)
 	{
 		len = ft_print_dispatcher(node, args);
-		ft_freenode(node);
+		// ft_freenode(node);
 		return (len);
 	}
 	else
@@ -48,7 +48,7 @@ int		ft_solver(va_list args, const char *format, size_t *i)
 		return (len2);
 	}
 
-	ft_freenode(node);
+	// ft_freenode(node);
 	return (FAIL);
 }
 

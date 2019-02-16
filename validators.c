@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/16 14:07:54 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/16 14:08:17 by yharwyn-         ###   ########.fr       */
+/*   Created: 2019/02/16 15:08:20 by yharwyn-          #+#    #+#             */
+/*   Updated: 2019/02/16 15:08:33 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int		ft_typevalidator(t_type *node, int len, size_t *i)
 	"d", "i", "o", "O", "u", "x", "X",
 	"hd", "hi", "ho", "hu", "hx", "hX", "hhd", "hhi", "hho", "hhO", "hO", "lO", "llO", "hhu", "hhx",
 	"hhX", "ld", "li", "lo", "lu", "lx", "lX", "lld", "lli", "llo", "llu",
-	"llx", "llX", "f", "lf", "Lf", "%", "b", "U", "hU", "hhU", "lU", "llU", "D", "hD", "hhD", "lD", "llD", "C", "lc", "lp", "F", "bs", ""};
+	"llx", "llX", "f", "lf", "Lf", "%", "b", "U", "hU", "hhU", "lU", "llU", "D", "hD", "hhD", "lD", "llD", "C", "lc", "lp", "F", "bs",
+	"jd", "ji", "ju", "zd", "zi", "zu", "jD", "zD", "jU", "zU", ""};
 
 	while (len >= 1)
 	{

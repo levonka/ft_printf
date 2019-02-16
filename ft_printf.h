@@ -83,7 +83,7 @@ unsigned long		ft_nlen(uintmax_t n, int base);
 void				str2upcase(char *str);
 
 int					cmp(char *type, char *c);
-char				*ft_ftoa(double n, int afterpoint);
+char				*ft_ftoa(double n, int afterpoint, t_type *node);
 void				ft_swap(char *a, char *b);
 intmax_t			ft_abs(intmax_t n);
 void				str2upcase(char *str);
@@ -97,5 +97,9 @@ void				print_sw(t_type *node, int c, int i);
 char				*zeroprec(double inttest, long res);
 void				add_flag(t_type **node, char mod);
 void				ft_addflag(t_type *node, char flag);
+
+char				*ft_itoa_im(intmax_t n);
+char				*ft_itoa_uim(uintmax_t n);
+char				*ft_itoa_st(ssize_t n);
 
 #endif

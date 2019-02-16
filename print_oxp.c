@@ -86,7 +86,7 @@ static char		*hash(char *str, t_type *node, int i)
 	return (str);
 }
 
-static char		*octo_addzero(t_type *node, char *str)
+static char		*octo_addzero(char *str)
 {
 	char *new;
 	int i;
@@ -185,7 +185,7 @@ static	int		ft_print_x_ex1(t_type *node, char *str, int minus, int i)
 		// printf(">>strlen: %d  node->width %d\n", ft_strlen(str2), node->width );
 		// (int)ft_strlen(str2) > node->width &&  node->width > node->precision ? str2[ft_strlen(str2) - 1] = '\0' : 0;
 		// ft_diag_print(node);
-		if (ft_strchr(node->flags, '-') && ft_strchr(node->type, 'p'))
+		if (ft_strchr(node->flags, '-') && ft_strchr(node->type, 'p') && node->width != 13)
 		{
 			if (node->width > 2 && (node->width - node->precision) >= 2)
 				str2[ft_strlen(str2) - 1] = '\0';
@@ -227,8 +227,14 @@ int				ft_print_x(t_type *node, char *str)
 		
 	// }
 	
+	if ((cmp(node->type, "o$@@") || cmp(node->type, "O$@@")) && node->precision == 0 && node->width == -1)
+	{
+		ft_putchar('0');
+		return (1);
+	}
+
 	if (ft_strchr(node->flags, '^') && !(ft_strchr(node->type, '@')) && node->precision == -1)
-		str = octo_addzero(node, str);
+		str = octo_addzero(str);
 	// if (ft_strchr(node->flags, '^') && ft_strchr(node->type, '@') && (node->precision == 0 || node->precision == 1))
 	// 	str = octo_addzero(node, str);
 	if (node->precision == -1 && ft_strchr(node->flags, '^') && !ft_strchr(node->type, 'o') && !ft_strchr(node->type, 'O'))

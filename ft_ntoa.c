@@ -24,6 +24,7 @@ static char		*ntoa_xflags(t_type *node, char *n, int base)
 
 static char		*ntoa_oflags(t_type *node, char *n, int base)
 {
+
 	if (cmp(node->type, "o"))
 	{
 	// printf("ZDARP\n");
@@ -175,6 +176,8 @@ int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 	}
 	else if (ft_strchr(node->type, 'o') || ft_strchr(node->type, 'O'))
 	{
+		if (ft_strchr(node->flags, '#'))
+			ft_addflag(node, '$');
 		if (n == NULL)
 		{
 			str = zero_cases(node, str);

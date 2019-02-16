@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 14:53:39 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/13 13:01:23 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/16 10:59:43 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ static char		*floatpart_maker(double n, int prec, long intpart)
 	int		i;
 
 	i = 0;
-	if (n > 0.0)
+	if (n == 0.0)
+		floatpart = 0.0;
+	else if (n > 0.0)
 		floatpart = n - (double)(intpart);
 	else
 		floatpart = (n * -1) - (double)(intpart);
@@ -86,17 +88,17 @@ static char		*isconst(double n)
 		return (ft_strdup("inf"));
 	else if (n != n)
 		return (ft_strdup("nan"));
-	else if (n == -0)
-	{
+	else if (n == 0.0)
 		if (*(long*)&n >> 63)
 			return (ft_strdup("-0"));
-	}
 	return (NULL);
 }
 
 char			*zeroprec(double floatpart, long res)
 {
-	if (res % 2 == 0)
+	if (floatpart == 0.00)
+		return (ft_itoa_ll(res));
+	else if (res % 2 == 0)
 	{
 		if (floatpart > 0.50000000000000000)
 			return (ft_itoa_ll(res + 1));
@@ -106,7 +108,9 @@ char			*zeroprec(double floatpart, long res)
 	else
 	{
 		if (floatpart > 0.50000000000000000 || floatpart == 0.50000000000000000)
+		{
 			return (ft_itoa_ll(res + 1));
+		}
 		else if (floatpart < 0.50000000000000000)
 			return (ft_itoa_ll(res));
 	}
@@ -138,7 +142,15 @@ void		ft_flagminus_float(char *str, int len)
 	}
 }
 
-char			*ft_ftoa(double n, int afterpoint)
+void			sharpmod(char *floatrdy)
+{
+	int		len;
+
+	len = ft_strlen(floatrdy);
+	floatrdy[len] = '.';
+}
+
+char			*ft_ftoa(double n, int afterpoint, t_type *node)
 {
 	long			intpart;
 	char			*intres;
@@ -146,32 +158,38 @@ char			*ft_ftoa(double n, int afterpoint)
 	char			*floatrdy;
 	int				minus;
 
-	minus = (n < 0.0) ? 1 : 0;
+	// printf(">>>%f\n", n);
 	intpart = (n < 0.0) ? (long)n * -1 : (long)n;
 	floatres = floatpart_maker(n, afterpoint, intpart);
+	// printf("><><><>%s\n", floatres);
 	intres = ft_itoa_ll(intpart);
+	// printf("><><><>%s\n", intres);
 	if ((floatrdy = isconst(n)) != NULL)
 	{
-		join_parts(floatrdy, intres, floatres);
-		// printf(">'%s'\n", floatres);
+		if (n == 0.0)
+			join_parts(floatrdy, intres, floatres);
 		// printf(">'%s'\n", floatrdy);
+		// printf(">'%s'\n", floatres);
 		return (floatrdy);
 	}
+	minus = (n < 0.0) ? 1 : 0;
 	// printf(">%s\n", floatres);
 	if (afterpoint == 0)
 	{
 		if (minus == 1)
 		{
-			floatrdy = ft_strnew(ft_strlen(floatres) + 2);
+			floatrdy = ft_strnew(ft_strlen(floatres) + 6);
 			floatrdy = ft_strcat(floatrdy, floatres);
 			ft_flagminus_float(floatrdy, ft_strlen(floatrdy));
+			(ft_isfl_in(node, '#') == 0) ? sharpmod(floatrdy) : 0;
 			free(floatres);
 			return (floatrdy);
 		}
-		return (intres);
+		(ft_isfl_in(node, '#') == 0) ? sharpmod(floatres) : 0;
+		return (floatres);
 	}
 	floatrdy = malloc(sizeof(char) * ft_strlen(floatres) +
-		ft_strlen(intres) + 2);
+		ft_strlen(intres) + 4);
 	join_parts(floatrdy, intres, floatres);
 	(minus == 1) ? ft_flagminus_float(floatrdy, ft_strlen(floatrdy)) : 0;
 	free(floatres);

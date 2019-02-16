@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:36:54 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/13 13:03:49 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/16 15:06:10 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,28 @@
 
 static void	ft_zerofiller2(t_type *node, char *str, int len, int *i)
 {
+	// printf("%d\n", len);
 	while (*i < len)
 	{
 		if (ft_isfl_in(node, '0') == 0)
-			str[*i] = ((ft_isfl_in(node, '-') && node->width < node->precision) || node->precision == -1) ? ' ' : ' ';
+			str[*i] = (ft_isfl_in(node, '-') == 0 && (node->width < node->precision || node->precision == -1)) ? ' ' : ' ';
 		else
 			str[*i] = ' ';
 		*i = *i + 1;
+	}
+}
+
+static void	ft_zerofiller3(t_type *node, char *str, int len, int i)
+{
+	// printf("%d\n", i);
+	// printf("|% 0+20.f|", 102420484096.0);
+	if (ft_isfl_in(node, '0') == 0 && ft_isfl_in(node, '-') == -1)
+	{
+		while (i < len)
+		{
+			str[i] = '0';
+			i++;
+		}
 	}
 }
 
@@ -145,17 +160,18 @@ int			ft_print_float(t_type *node, double n, int i)
 	char	*str;
 
 
- 	str = ft_ftoa(n, ((node->precision) == -1) ? 6 : node->precision);
-	minus = ft_isnegative(str);
-	// if (cmp(str, "0") && (node->precision == 0))
-	// 	str[0] = '\0';
+ 	str = ft_ftoa(n, (((node->precision) == -1) ? 6 : node->precision), node);
+	// printf(">>>'%s'\n", str);
 	if (is_const(str) == SUCCESS)
 	{
 		ft_print_fconst(node, str, i);
 		len = ft_strlen(str);
-		free(str);
+		// free(str);
 		return (len);
 	}
+	// if (cmp(str, "0") && (node->precision == 0))
+	// 	str[0] = '\0';
+	minus = ft_isnegative(str);
 	if ((node->width != -1 && node->width >= (int)ft_strlen(str) + 1))
 		// (node->precision != -1 && node->precision >= (int)ft_strlen(str) + 1))
 	{
@@ -163,17 +179,17 @@ int			ft_print_float(t_type *node, double n, int i)
 		len = ((node->width > (int)ft_strlen(str)) ? node->width : ft_strlen(str));
 		str2 = ft_strnew(len + 2);
 		ft_zerofiller(node, str2, len, &i);
+		ft_zerofiller3(node, str2, len, 0);
 		ft_fillin_num(node, str2, str, len);
 		(node->precision < node->width && ft_isfl_in(node, '-') == -1) ? turnoff_fl(node->flags, ' ') : 0;
 		(ft_isfl_in(node, ' ') == 0) ? ft_flagsp_num(str2, len) : 0;
+		// printf("<<'%s'\n", str2);
 		(minus == 0) ? ft_flagminus_num(node, str2, len) : 0;
 		ft_flagplus_num(node, str2, minus, len);
-		// printf("'%s'\n", str2);
 		len = (node->width > node->precision) ? node->width : node->precision;
 		if (len < (int)ft_strlen(str2) && str2[ft_strlen(str2) - 1] == ' ')
 			str2[len] = '\0';
 		len = ft_strlen(str2);
-		// printf("<<'%s'\n", str2);
 		write(1, str2, ft_strlen(str2));
 		free(str2);
 		free(str);

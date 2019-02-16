@@ -227,11 +227,17 @@ int				ft_print_x(t_type *node, char *str)
 		
 	// }
 	
-	if ((cmp(node->type, "o$@@") || cmp(node->type, "O$@@")) && node->precision == 0 && node->width == -1)
+	if ((cmp(node->type, "o$@@") || cmp(node->type, "O$@@") || cmp(node->type, "ho$@@") || cmp(node->type, "hO$@@") || cmp(node->type, "hho$@@") || cmp(node->type, "hhO$@@")) && node->precision == 0 && node->width == -1)
 	{
 		ft_putchar('0');
 		return (1);
 	}
+	else if ((cmp(node->type, "lo$@@") || cmp(node->type, "lO$@@") || cmp(node->type, "llo$@@") || cmp(node->type, "llO$@@")) && node->precision == 0 && node->width == -1)
+	{
+		ft_putchar('0');
+		return (1);
+	}
+	// if (ft_strchr())
 
 	if (ft_strchr(node->flags, '^') && !(ft_strchr(node->type, '@')) && node->precision == -1)
 		str = octo_addzero(str);

@@ -211,10 +211,97 @@ int		main(int argc, char *argv[])
 	// ft_printf("%hhO, %hhO", 0, USHRT_MAX);
 
 
-	printf("{%15p}", &a);
+	// a = printf("%.0s, %S", "dff", "dfdfs");
+	// printf("\n");
+	// b = ft_printf("%.0s, %S", "dff", "dfdfs");
 
+	// printf("%#5.f, %#5.0f", 15.0, 15.0);
+	// printf("\n");
+	// ft_printf("%#5.f, %#5.0f", 15.0, 15.0);
+
+
+
+
+
+	// PRINTF("|%#6"CNV"|\t|%#-12"CNV"|\t|%#"CNV"|\t\t|%#09"CNV"|\t|%#02"CNV"|", 8400,8400,0,8400,8400);
+
+
+
+
+
+
+	// printf("%#.o, %#.0o", 0, 0);
+	// printf("\n");
+	// ft_printf("%#.o, %#.0o", 0, 0);
+
+
+	// printf("\n");
+	// printf("\n");
+
+	// a = printf("'%# 1.o'", 0);
+	// printf("\n");
+	// b = ft_printf("'%# 1.o'", 0);
+		// PRINTF("|%#6"CNV"|\t|%#-12"CNV"|\t|%#"CNV"|\t\t|%#09"CNV"|\t|%#02"CNV"|", 8400,8400,0,8400,8400);
+
+
+// %012x|\t|%-12x|\t|%012x
+
+
+	a = printf("'%-12.1x'", -8400);
 	printf("\n");
-	ft_printf("{%15p}", &a);
+	b = ft_printf("'%-12.1x'", -8400);
+
+	// a = printf("'%# -1x'", 10);
+	// printf("\n");
+	// b = ft_printf("'%# -1x'", 10);
+
+
+
+
+
+
+
+	// a = printf("%#.o, %#.0o", 0, 0);
+	// printf("\n");
+	// b = ft_printf("%#.o, %#.0o", 0, 0);
+
+
+	// a = printf("%#.o, %#.0o", 0, 0);
+	// printf("\n");
+	// b = ft_printf("%#.o, %#.0o", 0, 0);
+
+
+
+
+
+
+	// a = printf("@moulitest: %#.o %#.0o", 0, 0);
+	// printf("\n");
+	// b = ft_printf("@moulitest: %#.o %#.0o", 0, 0);
+
+
+	// printf("'%#- .0p'", 0);
+	// printf("\n");
+	// ft_printf("'%#- .0p'", 0);
+
+	// a = printf("%#- .0x", 0);
+	// printf("\n");
+	// b = ft_printf("%#- .0x", 0);
+
+
+	// printf("@moulitest: %#.o %#.0o", 0, 0);
+	// ft_printf("@moulitest: %#.o %#.0o", 0, 0);
+
+	// printf("%.0p, %.p", 0, 0)
+
+	// a = printf("@moulitest: %#.o %#.0o", 0, 0);
+	// printf("\n");
+	// b = ft_printf("@moulitest: %#.o %#.0o", 0, 0);
+
+
+	// printf("{%15p}", &a);
+
+	// ft_printf("{%15p}", &a);
 
 	// ft_printf("%hhO, %hhO", 0, USHRT_MAX);
 

@@ -76,9 +76,17 @@ static char			*zero_cases(t_type *node, char *n, char *str)
 	// ft_diag_print(node);
 	node->width == -1 && node->precision == 0 ? ft_addflag(node, '@')  : 0;
 	// ft_diag_print(node);
-	if (node->width == 1 && node->precision == 0)
+	if (node->width == 1 && node->precision == 0 && ft_strchr(node->flags, '#'))
 	{
-		str = ft_strdup(" ");
+		if (ft_strchr(node->type, 'x') || ft_strchr(node->type, 'X'))
+			str = ft_strdup(" ");
+		else
+		{
+			// str = ft_strdup("0");
+			ft_addflag(node, '@');
+
+		}
+		turnoff_fl(node->flags, '#');
 		return (str);
 	}
 	if (!((ft_strchr(node->type, 'o') || ft_strchr(node->type, 'O')) && ft_strchr(node->flags, '#')))
@@ -97,24 +105,35 @@ static char			*zero_cases(t_type *node, char *n, char *str)
 	else if (node->precision == 0 && node->width > 1)
 	{
 		str = ft_strnew(node->width);
+		// printf("hi\n");
 		ft_memset(str, ' ', node->width);
+		if ((ft_strchr(node->type, 'o') || ft_strchr(node->type, 'O')) && ft_strchr(node->flags, '#'))
+		{
+			if (ft_strchr(node->flags, '-'))
+				str[0] = '0';
+			else
+				str[node->width - 1] = '0';
+
+			turnoff_fl(node->flags, '#');
+		}
 		return (str);
 	}
-	else if (node->precision == 0 && ft_strchr(node->flags, '#') && (ft_strchr(node->type, 'o') || ft_strchr(node->type, 'O')))
+	else if ((node->precision == 0 || node->precision == 1) && ft_strchr(node->flags, '#') && (ft_strchr(node->type, 'o') || ft_strchr(node->type, 'O')))
 	{
-		// printf("HELLO\n");
 		// ft_diag_print(node);
 
-		str = ft_strdup("0");
+		// str = ft_strdup("0");
+		node->precision = 0;
 		ft_addflag(node, '^');
-		return (str);
+		return (0);
 	}
 	else if (ft_strchr(node->type, 'o') || ft_strchr(node->type, 'O') || ft_strchr(node->type, 'x') || ft_strchr(node->type, 'X'))
 	{
-		ft_addflag(node, '@');
 		// ft_diag_print(node);
+		// printf("'%s'\n", str);
+			// printf("HELLO\n");
+		ft_addflag(node, '@');
 
-		// printf("hi\n");
 		return (0);
 	}
 		return (0);
@@ -161,12 +180,19 @@ int				ft_ntoa_dispatcher(t_type *node, char *n, int base)
 				return (ft_print_x(node, str));
 		}
 		str = ntoa_oflags(node, n, base);
-		if ((int)ft_strlen(str) >= node->precision && ft_strchr(node->flags, '#'))
+		// printf("'%s'\n", str);
+		if ((int)ft_strlen(str) >= node->precision && ft_strchr(node->flags, '#') && !ft_strchr(node->type, '^'))
 		{
-			tmp = str;
-			str = ft_strjoin("0", tmp);
-			free(tmp);
+			if (node->precision == -1 && (ft_strchr(node->type, 'o') || ft_strchr(node->type, 'O')))
+				;
+			else
+			{
+				tmp = str;
+				str = ft_strjoin("0", tmp);
+				free(tmp);
+			}
 		}
+		// printf("'%s'\n", str);
 		if (ft_strchr(node->flags, '#'))
 			ft_strchr(node->flags, '#')[0] = '^';
 	// ft_diag_print(node);

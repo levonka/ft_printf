@@ -97,9 +97,19 @@ void				print_sw(t_type *node, int c, int i);
 char				*zeroprec(double inttest, long res);
 void				add_flag(t_type **node, char mod);
 void				ft_addflag(t_type *node, char flag);
+void				add_flag(t_type **node, char mod);
+char				*zero_cases(t_type *node, char *str);
+char				*ntoa_xflags(t_type *node, char *n, int base);
+char				*ntoa_oflags(t_type *node, char *n, int base);
+char				*hash(char *str, t_type *node, int i);
+char				*octo_addzero(char *str);
+int					printf_len_corrector(t_type *node, char *str, int len);
 
 char				*ft_itoa_im(intmax_t n);
 char				*ft_itoa_uim(uintmax_t n);
 char				*ft_itoa_st(ssize_t n);
+
+
+
 
 #endif

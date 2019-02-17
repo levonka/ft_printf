@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 14:53:39 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/16 10:59:43 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/17 12:28:58 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static double	roundgenerator(int prec)
 	return (round);
 }
 
-static char		*floatpart_maker(double n, int prec, long intpart)
+static char		*floatpart_maker(double n, int prec, long *intpart)
 {
 	double	floatpart;
 	char	*floatres;
@@ -37,21 +37,29 @@ static char		*floatpart_maker(double n, int prec, long intpart)
 	if (n == 0.0)
 		floatpart = 0.0;
 	else if (n > 0.0)
-		floatpart = n - (double)(intpart);
+		floatpart = n - (double)(*intpart);
 	else
-		floatpart = (n * -1) - (double)(intpart);
+		floatpart = (n * -1) - (double)(*intpart);
+	// printf("hel\n");
 	if (prec == 0)
-		return (zeroprec(floatpart, intpart));
-	floatres = malloc(sizeof(char) * 2000);
+		return (zeroprec(floatpart, *intpart));
+	floatres = ft_strnew(2000);
 	floatpart += roundgenerator(prec);
+	if (floatpart >= 1.0)
+		(*intpart)++;
 	while (prec > 0)
 	{
 		floatpart *= 10;
-		floatres[i] = (int)floatpart + '0';
+		if ((int)floatpart == 10)
+			floatres[i] = '0';
+		else
+			floatres[i] = (int)floatpart + '0';
+		// printf("%c\n", floatres[i]);
 		floatpart -= (int)floatpart;
 		prec--;
 		i++;
 	}
+	// printf(">>%s\n", floatres);
 	floatres[i] = '\0';
 	return (floatres);
 }
@@ -160,7 +168,7 @@ char			*ft_ftoa(double n, int afterpoint, t_type *node)
 
 	// printf(">>>%f\n", n);
 	intpart = (n < 0.0) ? (long)n * -1 : (long)n;
-	floatres = floatpart_maker(n, afterpoint, intpart);
+	floatres = floatpart_maker(n, afterpoint, &intpart);
 	// printf("><><><>%s\n", floatres);
 	intres = ft_itoa_ll(intpart);
 	// printf("><><><>%s\n", intres);

@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:36:54 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/16 17:43:39 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/17 13:06:29 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,9 @@ static int	ft_print_fconst(t_type *node, char *str, int i)
 		str2 = ft_strnew(len);
 		ft_zerofiller2(node, str2, len, &i);
 		ft_fillin_num(node, str2, str, len);
-		// printf("%s\n", str2);
-		(ft_isfl_in(node, ' ') == 0) || (ft_isfl_in(node, '+') == 0) ? ft_flagsp_num(str2, len) : 0;
+		((ft_isfl_in(node, ' ') == 0) || (ft_isfl_in(node, '+') == 0)) &&
+			str2[0] != ' ' && (ft_isfl_in(node, ' ') == 0) && ft_strcmp(str, "nan") != 0 ? ft_flagsp_num(str2, len) : 0;
+		// printf(">>'%s'\n", str2);
 		ft_flagplus_num(node, str2, minus, len);
 		if (cmp(node->type, "F"))
 			str2upcase(str2);
@@ -223,7 +224,11 @@ int			ft_print_float(t_type *node, double n, int i)
 		(node->precision < node->width && ft_isfl_in(node, '-') == -1) ? turnoff_fl(node->flags, ' ') : 0;
 		(ft_isfl_in(node, ' ') == 0) ? ft_flagsp_num(str2, len) : 0;
 		// printf("<<'%s'\n", str2);
-		(minus == 0) ? ft_flagminus_num(node, str2, len) : 0;
+		if (minus == 0 && str2[0] == '0')
+			str2[0] = '-';
+		else if (minus == 0)
+			ft_flagminus_num(node, str2, len);
+		// printf("|%08.2f|", -999.999);
 		ft_flagplus_num(node, str2, minus, len);
 		len = (node->width > node->precision) ? node->width : node->precision;
 		if (len < (int)ft_strlen(str2) && str2[ft_strlen(str2) - 1] == ' ')

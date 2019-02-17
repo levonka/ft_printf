@@ -42,8 +42,10 @@ int		ft_print_dispatcher(t_type *node, va_list args)
 		return (ft_print_u(node, ft_itoa_uhh(va_arg(args, int)), 0));
 	else if (cmp(t, "lu") || cmp(t, "llu") || cmp(t, "U") || cmp(t, "hU") || cmp(t, "hhU") || cmp(t, "lU") || cmp(t, "llU") || (cmp(t, "zu") || cmp(t, "zU")))
 		return (ft_print_u(node, ft_itoa_ull(va_arg(args, unsigned long)), 0));
-	else if (cmp(t, "f") || cmp(t, "lf") || cmp(t, "F"))
+	else if (cmp(t, "f") || cmp(t, "lf") || cmp(t, "F") || cmp(t, "lF"))
 		return (ft_print_float(node, va_arg(args, double), 0));
+	else if (cmp(t, "Lf") || cmp(t, "LF"))
+		return (ft_print_float(node, va_arg(args, long double), 0));
 	else if (ft_strchr(t, 'x') || ft_strchr(t, 'X'))
 		return (ft_ntoa_dispatcher(node, va_arg(args, char*), 16));
 	else if (cmp(t, "p") || cmp(t, "lp"))

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ftoa.c                                          :+:      :+:    :+:   */
+/*   ft_ldtoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/30 14:53:39 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/17 15:52:37 by agottlie         ###   ########.fr       */
+/*   Created: 2019/02/17 15:52:52 by agottlie          #+#    #+#             */
+/*   Updated: 2019/02/17 15:53:32 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char			*zeroprec(double floatpart, long res);
+static char			*zeroprec(long double floatpart, long res);
 
-static double	roundgenerator(int prec)
+static long double	roundgenerator(int prec)
 {
 	int				i;
-	double			round;
+	long double			round;
 
 	i = 0;
 	round = 0.5;
@@ -29,9 +29,9 @@ static double	roundgenerator(int prec)
 	return (round);
 }
 
-static char		*floatpart_maker(double n, int prec, long *intpart)
+static char		*floatpart_maker(long double n, int prec, long *intpart)
 {
-	double	floatpart;
+	long double	floatpart;
 	char	*floatres;
 	int		i;
 
@@ -39,9 +39,9 @@ static char		*floatpart_maker(double n, int prec, long *intpart)
 	if (n == 0.0)
 		floatpart = 0.0;
 	else if (n > 0.0)
-		floatpart = n - (double)(*intpart);
+		floatpart = n - (long double)(*intpart);
 	else
-		floatpart = (n * -1) - (double)(*intpart);
+		floatpart = (n * -1) - (long double)(*intpart);
 	// printf("hel\n");
 	if (prec == 0)
 		return (zeroprec(floatpart, *intpart));
@@ -90,7 +90,7 @@ static void		join_parts(char *floatrdy, char *intres, char *floatres)
 	floatrdy[j] = '\0';
 }
 
-static char		*isconst(double n)
+static char		*isconst(long double n)
 {
 	if (n == -1.00 / 0.00)
 		return (ft_strdup("-inf"));
@@ -104,7 +104,7 @@ static char		*isconst(double n)
 	return (NULL);
 }
 
-static char			*zeroprec(double floatpart, long res)
+static char			*zeroprec(long double floatpart, long res)
 {
 	if (floatpart == 0.00)
 		return (ft_itoa_ll(res));
@@ -164,7 +164,7 @@ static void			sharpmod(char *floatrdy)
 	floatrdy[len] = '.';
 }
 
-char			*ft_ftoa(double n, int afterpoint, t_type *node)
+char			*ft_ldtoa(long double n, int afterpoint, t_type *node)
 {
 	long			intpart;
 	char			*intres;

@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 09:32:22 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/16 14:25:47 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/17 13:56:06 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,24 @@ void	ft_fillin_num(t_type *node, char *to, char *from, int len)
 	int		i;
 	int		str_len;
 	int		pr_copy;
+	int		inf;
 
 	i = 0;
 	str_len = ft_strlen(from) - 1;
 	pr_copy = node->precision - 1;
+	inf = ft_strcmp(from, "-inf") == 0 || ft_strcmp(from, "inf") == 0;
 	if (ft_isfl_in(node, '-') == SUCCESS)
 	{
+		// printf("from '%s'\n", from);
 		turnoff_fl(node->flags, '0');
 		while (str_len >= 0)
 		{
-			if (pr_copy > str_len)
+			// printf("%d\n", str_len);
+			if (pr_copy > str_len && inf != 1)
+			{
+				// printf("hel\n");
 				to[pr_copy] = from[str_len];
+			}
 			else
 				to[i] = from[i];
 			++i;

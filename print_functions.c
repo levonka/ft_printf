@@ -56,8 +56,6 @@ int		ft_print_dispatcher(t_type *node, va_list args)
 		return (ft_print_char(node, '%', 0));
 	else if (ft_strchr(t, 'o') || ft_strchr(t, 'O'))
 		return (ft_ntoa_dispatcher(node, va_arg(args, char*), 8));
-	else if (ft_strchr(t, 'z') || ft_strchr(t, 'O'))
-		return (ft_ntoa_dispatcher(node, va_arg(args, char*), 8));
 	return (0);
 }
 

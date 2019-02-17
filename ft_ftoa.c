@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 14:53:39 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/16 10:59:43 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/17 14:37:40 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static double	roundgenerator(int prec)
 	return (round);
 }
 
-static char		*floatpart_maker(double n, int prec, long intpart)
+static char		*floatpart_maker(double n, int prec, long *intpart)
 {
 	double	floatpart;
 	char	*floatres;
@@ -37,21 +37,29 @@ static char		*floatpart_maker(double n, int prec, long intpart)
 	if (n == 0.0)
 		floatpart = 0.0;
 	else if (n > 0.0)
-		floatpart = n - (double)(intpart);
+		floatpart = n - (double)(*intpart);
 	else
-		floatpart = (n * -1) - (double)(intpart);
+		floatpart = (n * -1) - (double)(*intpart);
+	// printf("hel\n");
 	if (prec == 0)
-		return (zeroprec(floatpart, intpart));
-	floatres = malloc(sizeof(char) * 2000);
+		return (zeroprec(floatpart, *intpart));
+	floatres = ft_strnew(2000);
 	floatpart += roundgenerator(prec);
+	if (floatpart >= 1.0)
+		(*intpart)++;
 	while (prec > 0)
 	{
 		floatpart *= 10;
-		floatres[i] = (int)floatpart + '0';
+		if ((int)floatpart == 10)
+			floatres[i] = '0';
+		else
+			floatres[i] = (int)floatpart + '0';
+		// printf("%c\n", floatres[i]);
 		floatpart -= (int)floatpart;
 		prec--;
 		i++;
 	}
+	// printf(">>%s\n", floatres);
 	floatres[i] = '\0';
 	return (floatres);
 }
@@ -124,6 +132,9 @@ void		ft_flagminus_float(char *str, int len)
 	i = 0;
 	// if (str[0] == '0' && node->precision == -1)
 	// 	str[0] = '-';
+	// printf("len = %d\n", len);
+	str[len] = '\0';
+	str[len + 1] = '\0';
 	if (ft_isdigit(str[0]))
 	{
 		len -= (str[ft_strlen(str) - 1] == ' ') ? 1 : 0;
@@ -133,6 +144,7 @@ void		ft_flagminus_float(char *str, int len)
 			--len;
 		}
 		str[len] = '-';
+		// printf("vot><>'%s'\n", str);
 	}
 	else
 	{
@@ -160,7 +172,7 @@ char			*ft_ftoa(double n, int afterpoint, t_type *node)
 
 	// printf(">>>%f\n", n);
 	intpart = (n < 0.0) ? (long)n * -1 : (long)n;
-	floatres = floatpart_maker(n, afterpoint, intpart);
+	floatres = floatpart_maker(n, afterpoint, &intpart);
 	// printf("><><><>%s\n", floatres);
 	intres = ft_itoa_ll(intpart);
 	// printf("><><><>%s\n", intres);
@@ -173,7 +185,6 @@ char			*ft_ftoa(double n, int afterpoint, t_type *node)
 		return (floatrdy);
 	}
 	minus = (n < 0.0) ? 1 : 0;
-	// printf(">%s\n", floatres);
 	if (afterpoint == 0)
 	{
 		if (minus == 1)
@@ -191,7 +202,9 @@ char			*ft_ftoa(double n, int afterpoint, t_type *node)
 	floatrdy = malloc(sizeof(char) * ft_strlen(floatres) +
 		ft_strlen(intres) + 4);
 	join_parts(floatrdy, intres, floatres);
+	// printf(">>>>'%s'\n", floatrdy);
 	(minus == 1) ? ft_flagminus_float(floatrdy, ft_strlen(floatrdy)) : 0;
+	// printf("<<<<'%s'\n", floatrdy);
 	free(floatres);
 	free(intres);
 	return (floatrdy);

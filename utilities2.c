@@ -6,25 +6,11 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 15:23:17 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/17 15:27:07 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/17 15:49:47 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void			add_flag(t_type **node, char mod)
-{
-	int i;
-	
-	i = 0;
-	if (!(*node)->flags)
-		(*node)->flags = ft_strnew(5);
-	while ((*node)->flags[i] != '\0')
-		i++;
-	(*node)->flags[i] = mod;
-	i++;
-	(*node)->flags[i] = '\0';
-}
 
 static char		*add0x(char *str, int start, t_type *node)
 {

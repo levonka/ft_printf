@@ -46,6 +46,8 @@ void		ft_flagplus_num(t_type *node, char *str, int minus, int len)
 	int		i;
 
 	i = 0;
+	if (ft_strstr(str, "nan"))
+		return ;
 	if (ft_isfl_in(node, '+') == 0 && minus == -1)
 	{
 		if (ft_isdigit(str[0]))
@@ -53,7 +55,6 @@ void		ft_flagplus_num(t_type *node, char *str, int minus, int len)
 			(str[len - 1] == ' ') ? str[len - 1] = '\0' : 0;
 			// ft_diag_print(node);
 			// printf("\nlen = %d\n", len);
-			// printf("str = '%s'\n", str);
 			if (ft_isfl_in(node, '+') == 0 && ft_isfl_in(node, '0') == 0 && (node->precision == -1 || node->width > 0))
 				str[0] = '+';
 			else
@@ -69,6 +70,7 @@ void		ft_flagplus_num(t_type *node, char *str, int minus, int len)
 		}
 		else
 		{
+			// printf("str = '%s'\n", str);
 			while (str[i] == ' ' && str[i] != '\0')
 				++i;
 			str[(i == 0) ? 0 : i - 1] = ((istype(node->type)) ? ' ' : '+');

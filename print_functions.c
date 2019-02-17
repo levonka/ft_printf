@@ -45,7 +45,7 @@ int		ft_print_dispatcher(t_type *node, va_list args)
 	else if (cmp(t, "f") || cmp(t, "lf") || cmp(t, "F") || cmp(t, "lF"))
 		return (ft_print_float(node, va_arg(args, double), 0));
 	else if (cmp(t, "Lf") || cmp(t, "LF"))
-		return (ft_print_float(node, va_arg(args, long double), 0));
+		return (ft_print_ld(node, va_arg(args, long double), 0));
 	else if (ft_strchr(t, 'x') || ft_strchr(t, 'X'))
 		return (ft_ntoa_dispatcher(node, va_arg(args, char*), 16));
 	else if (cmp(t, "p") || cmp(t, "lp"))

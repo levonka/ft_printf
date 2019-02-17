@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utilities.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/17 14:04:02 by yharwyn-          #+#    #+#             */
+/*   Updated: 2019/02/17 14:59:18 by yharwyn-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void		turnoff_fl(char *flags, char c)
 {
-	int i;
-	char buf;
+	int		i;
+	char	buf;
 
 	i = -1;
-	while(flags[++i] != '\0')
+	while (flags[++i] != '\0')
 	{
 		if (flags[i] == c)
 		{
@@ -24,11 +36,9 @@ void		turnoff_fl(char *flags, char c)
 
 char		*ft_ntoa_base(uintmax_t n, int base)
 {
+	static char			*nums = "0123456789abcdefghijklmnopqrstuvwxyzABCDEF";
 	char				*res;
 	unsigned long		len;
-	static char	*nums = "0123456789abcdefghijklmnopqrstuvwxyzABCDEF";
-
-
 
 	res = NULL;
 	len = ft_nlen(n, base);
@@ -46,63 +56,62 @@ char		*ft_ntoa_base(uintmax_t n, int base)
 	return (res);
 }
 
+static char	*shift_npos_static(char *str, int n, int i, int j)
+{
+	while (n > 0)
+	{
+		while (str[i] != ' ')
+			i++;
+		j = i;
+		while (i > 0 && str[i - 1] != ' ')
+		{
+			ft_swap(&str[i - 1], &str[i]);
+			i--;
+		}
+		n--;
+		i++;
+	}
+	return (str);
+}
+
 char		*shift_npos(char *str, int n)
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
-	if (str[i] == ' ' && str[i+1] != ' ')
+	if (str[i] == ' ' && str[i + 1] != ' ')
 	{
-		while(str[i] != '\0')
+		while (str[i] != '\0')
 		{
 			if (str[i + 1] == '\0')
 				break ;
-			ft_swap(&str[i], &str[i+1]);
+			ft_swap(&str[i], &str[i + 1]);
 			i++;
 		}
 		str[i] = '\0';
 		return (expand_str(str));
 	}
 	else
-	{
-		while(n > 0)
-		{
-			while (str[i] != ' ')
-				i++;
-			j = i;
-			while(i > 0 && str[i - 1] != ' ')
-			{
-				ft_swap(&str[i - 1], &str[i]);
-				i--;
-			}
-			n--;
-			i++;
-		}
-	}
+		str = shift_npos_static(str, n, i, j);
 	return (str);
-	// printf(">%s<\n", str);
 }
 
 char		*expand_str(char *str)
 {
-	char *exp;
-	int i;
-	int j;
+	char	*exp;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
-
 	while (str[j] == ' ')
 		j++;
-
 	j != 1 ? j = 0 : 0;
-	// printf(">%d<\n", j);
 	exp = ft_strnew(ft_strlen(str) + 2);
 	exp[i++] = '0';
 	exp[i++] = 'x';
-	// printf(">%s<\n", str);
 	while (str[j] != '\0')
 	{
 		exp[i] = str[j];
@@ -110,7 +119,6 @@ char		*expand_str(char *str)
 		i++;
 	}
 	exp[i] = '\0';
-	// printf(">%s<\n", exp);
 	return (exp);
 }
 

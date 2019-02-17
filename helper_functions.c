@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:43:54 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/15 12:29:38 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/16 19:01:22 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ unsigned long	ft_nlen(uintmax_t n, int base)
 	size_t		len;
 
 	len = 0;
-	// printf("'%zu'\n", base);
 	if (n == 0)
 		return(1);
 	while (n)

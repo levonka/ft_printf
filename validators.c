@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 15:08:20 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/17 15:43:25 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/17 15:59:51 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		ft_typevalidator(t_type *node, int len, size_t *i)
 	"hhX", "ld", "li", "lo", "lu", "lx", "lX", "lld", "lli", "llo", "llu",
 	"llx", "llX", "f", "lf", "Lf", "F", "lF", "LF", "%", "b", "U", "hU", "hhU", "lU", "llU",
 	"D", "hD", "hhD", "lD", "llD", "C", "lc", "lp", "bs",
+	// "llx", "llX", "f", "lf", "Lf", "%", "b", "U", "hU", "hhU", "lU", "llU", "D", "hD", "hhD", "lD", "llD", "C", "lc", "lp", "F", "bs",
 	"jd", "ji", "ju", "zd", "zi", "zu", "jD", "zD", "jU", "zU", "zO", "zo", "zX", "zx", "jo", "jO", "jx", "jX", ""};
 
 	while (len >= 1)

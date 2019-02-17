@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   print_float.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/30 17:36:54 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/17 15:48:32 by agottlie         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
 static void	ft_zerofiller2(t_type *node, char *str, int len, int *i)
@@ -149,14 +137,14 @@ static int	is_const(char *str)
 	return (FAIL);
 }
 
-int			ft_print_float(t_type *node, double n, int i)
+int			ft_print_ld(t_type *node, long double n, int i)
 {
 	int		len;
 	int		minus;
 	char	*str2;
 	char	*str;
 
- 	str = ft_ftoa(n, (((node->precision) == -1) ? 6 : node->precision), node);
+ 	str = ft_ldtoa(n, (((node->precision) == -1) ? 6 : node->precision), node);
 	if (is_const(str) == SUCCESS)
 	{
 		len = ft_print_fconst(node, str, i);

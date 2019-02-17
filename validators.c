@@ -6,11 +6,16 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 15:08:20 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/17 17:19:28 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/17 17:27:44 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+********* */
 ########.fr       */
 >>>>>>> 070013efd92548c9d2781a66fb646cfd8fd3c6ff
+=======
+/*   Created: 2019/02/17 17:11:57 by yharwyn-          #+#    #+#             */
+/*   Updated: 2019/02/17 17:15:44 by yharwyn-         ###   ########.fr       */
+>>>>>>> 36206090cacf95cfc9fb7efc005e09a3b3af8803
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +58,17 @@ int		ft_numvalidator(const char *format, size_t *i)
 int		ft_typevalidator(t_type *node, int len, size_t *i)
 {
 	int			j;
-	const char	base[][4] = {"c", "s", "p",
-	"d", "i", "o", "O", "u", "x", "X",
-	"hd", "hi", "ho", "hu", "hx", "hX", "hhd", "hhi", "hho", "hhO", "hO", "lO", "llO", "hhu", "hhx",
-	"hhX", "ld", "li", "lo", "lu", "lx", "lX", "lld", "lli", "llo", "llu",
-	"llx", "llX", "f", "lf", "Lf", "F", "lF", "LF", "%", "b", "U", "hU", "hhU", "lU", "llU",
-	"D", "hD", "hhD", "lD", "llD", "C", "lc", "lp", "bs",
-	"jd", "ji", "ju", "zd", "zi", "zu", "jD", "zD", "jU", "zU", "zO", "zo", "zX", "zx", "jo", "jO", "jx", "jX", ""};
+	const char	base[][4] = {"c", "s",
+	"d", "i", "u", "hu",
+	"hd", "hi",
+	"o", "O", "ho", "hho", "hhO", "hO", "lo", "llo", "lO", "llO", "jo", "jO", "zO", "zo",
+	"x", "X", "hx", "hX", "hhx", "hhX", "lx", "lX", "llx", "llX", "zX", "zx", "jx", "jX",
+	"p", "lp", "b",
+	"hhd", "hhi", "hhu",
+	"ld", "li", "lu", "lld", "lli", "llu",
+	"f", "lf", "Lf", "%", "U", "hU", "hhU", "lU", "llU",
+	"D", "hD", "hhD", "lD", "llD", "C", "lc", "F", "lF", "LF", "bs",
+	"jd", "ji", "ju", "zd", "zi", "zu", "jD", "zD", "jU", "zU", ""};
 
 	while (len >= 1)
 	{

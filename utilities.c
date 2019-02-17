@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utilities.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/17 14:04:02 by yharwyn-          #+#    #+#             */
+/*   Updated: 2019/02/17 14:59:18 by yharwyn-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void		turnoff_fl(char *flags, char c)
@@ -24,7 +36,7 @@ void		turnoff_fl(char *flags, char c)
 
 char		*ft_ntoa_base(uintmax_t n, int base)
 {
-	static char	*nums = "0123456789abcdefghijklmnopqrstuvwxyzABCDEF";
+	static char			*nums = "0123456789abcdefghijklmnopqrstuvwxyzABCDEF";
 	char				*res;
 	unsigned long		len;
 
@@ -44,6 +56,24 @@ char		*ft_ntoa_base(uintmax_t n, int base)
 	return (res);
 }
 
+static char	*shift_npos_static(char *str, int n, int i, int j)
+{
+	while (n > 0)
+	{
+		while (str[i] != ' ')
+			i++;
+		j = i;
+		while (i > 0 && str[i - 1] != ' ')
+		{
+			ft_swap(&str[i - 1], &str[i]);
+			i--;
+		}
+		n--;
+		i++;
+	}
+	return (str);
+}
+
 char		*shift_npos(char *str, int n)
 {
 	int		i;
@@ -57,28 +87,14 @@ char		*shift_npos(char *str, int n)
 		{
 			if (str[i + 1] == '\0')
 				break ;
-			ft_swap(&str[i], &str[i+1]);
+			ft_swap(&str[i], &str[i + 1]);
 			i++;
 		}
 		str[i] = '\0';
 		return (expand_str(str));
 	}
 	else
-	{
-		while (n > 0)
-		{
-			while (str[i] != ' ')
-				i++;
-			j = i;
-			while (i > 0 && str[i - 1] != ' ')
-			{
-				ft_swap(&str[i - 1], &str[i]);
-				i--;
-			}
-			n--;
-			i++;
-		}
-	}
+		str = shift_npos_static(str, n, i, j);
 	return (str);
 }
 

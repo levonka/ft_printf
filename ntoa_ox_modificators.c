@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 11:28:32 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/17 14:48:02 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/17 15:51:07 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,40 @@ char			*ntoa_oflags(t_type *node, char *n, int base)
 	}
 	else
 		return (ntoa_oflags_ext(node, n, base));
+}
+
+void			add_flag(t_type **node, char mod)
+{
+	int i;
+	
+	i = 0;
+	if (!(*node)->flags)
+		(*node)->flags = ft_strnew(5);
+	while ((*node)->flags[i] != '\0')
+		i++;
+	(*node)->flags[i] = mod;
+	i++;
+	(*node)->flags[i] = '\0';
+}
+
+void		turnoff_fl(char *flags, char c)
+{
+	int		i;
+	char	buf;
+
+	i = -1;
+	while (flags[++i] != '\0')
+	{
+		if (flags[i] == c)
+		{
+			if (flags[i + 1] == '\0')
+				flags[i] = '\0';
+			else
+			{
+				buf = flags[i];
+				flags[i] = flags[i + 1];
+				flags[i + 1] = buf;
+			}
+		}
+	}
 }

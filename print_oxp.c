@@ -6,7 +6,7 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 13:19:37 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/17 13:21:25 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/17 15:52:10 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static	int		ft_print_x_ex1(t_type *node, char *str, int minus, int i)
 
 int				ft_print_x(t_type *node, char *str)
 {
-	int		len;
+	// int		len;
 	int		minus;
 
 	if (ft_strstr(node->type, "$@@"))
@@ -120,8 +120,8 @@ int				ft_print_x(t_type *node, char *str)
 	if ((node->width != -1 && node->width >= (int)ft_strlen(str) + 1) ||
 		(node->precision != -1 && node->precision >= (int)ft_strlen(str) + 1))
 	{
-		len = ft_print_x_ex1(node, str, minus, 0);
-		return (len);
+		// len = ft_print_x_ex1(node, str, minus, 0);
+		return (ft_print_x_ex1(node, str, minus, 0));
 	}
 	return (ft_print_x_ex(node, str, minus));
 }

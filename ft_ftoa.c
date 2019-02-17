@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/30 14:53:39 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/17 15:52:37 by agottlie         ###   ########.fr       */
+/*   Created: 2019/02/17 17:11:57 by yharwyn-          #+#    #+#             */
+/*   Updated: 2019/02/17 17:13:32 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ static char		*floatpart_maker(double n, int prec, long *intpart)
 	else
 		floatpart = (n * -1) - (double)(*intpart);
 	// printf("hel\n");
+	printf("prec: %d\n", prec);
 	if (prec == 0)
 		return (zeroprec(floatpart, *intpart));
-	floatres = ft_strnew(2000);
+	floatres = ft_strnew(prec + 500);
 	floatpart += roundgenerator(prec);
 	if (floatpart >= 1.0)
 		(*intpart)++;

@@ -6,33 +6,11 @@
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 14:04:02 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/17 14:59:18 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/17 15:57:35 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void		turnoff_fl(char *flags, char c)
-{
-	int		i;
-	char	buf;
-
-	i = -1;
-	while (flags[++i] != '\0')
-	{
-		if (flags[i] == c)
-		{
-			if (flags[i + 1] == '\0')
-				flags[i] = '\0';
-			else
-			{
-				buf = flags[i];
-				flags[i] = flags[i + 1];
-				flags[i + 1] = buf;
-			}
-		}
-	}
-}
 
 char		*ft_ntoa_base(uintmax_t n, int base)
 {

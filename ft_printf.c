@@ -45,6 +45,7 @@ int		ft_solver(va_list args, const char *format, size_t *i)
 		if (node->type[0] != 'h' && node->type[0] != 'l')
 			len2 = ft_print_char(node, node->type[0], 0);
 		(*i)++;
+		ft_freenode(node);
 		return (len2);
 	}
 	ft_freenode(node);

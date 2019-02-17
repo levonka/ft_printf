@@ -50,11 +50,10 @@ void		ft_flagplus_num(t_type *node, char *str, int minus, int len)
 		return ;
 	if (ft_isfl_in(node, '+') == 0 && minus == -1)
 	{
-		if (ft_isdigit(str[0]))
+		if (ft_isdigit(str[0]) || str[0] == 'i')
 		{
 			(str[len - 1] == ' ') ? str[len - 1] = '\0' : 0;
 			// ft_diag_print(node);
-			// printf("\nlen = %d\n", len);
 			if (ft_isfl_in(node, '+') == 0 && ft_isfl_in(node, '0') == 0 && (node->precision == -1 || node->width > 0))
 				str[0] = '+';
 			else

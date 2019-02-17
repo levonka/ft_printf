@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 14:53:39 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/17 12:28:58 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/17 14:08:14 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,9 @@ void		ft_flagminus_float(char *str, int len)
 	i = 0;
 	// if (str[0] == '0' && node->precision == -1)
 	// 	str[0] = '-';
+	// printf("len = %d\n", len);
+	str[len] = '\0';
+	str[len + 1] = '\0';
 	if (ft_isdigit(str[0]))
 	{
 		len -= (str[ft_strlen(str) - 1] == ' ') ? 1 : 0;
@@ -141,6 +144,7 @@ void		ft_flagminus_float(char *str, int len)
 			--len;
 		}
 		str[len] = '-';
+		// printf("vot><>'%s'\n", str);
 	}
 	else
 	{
@@ -181,7 +185,6 @@ char			*ft_ftoa(double n, int afterpoint, t_type *node)
 		return (floatrdy);
 	}
 	minus = (n < 0.0) ? 1 : 0;
-	// printf(">%s\n", floatres);
 	if (afterpoint == 0)
 	{
 		if (minus == 1)
@@ -199,7 +202,9 @@ char			*ft_ftoa(double n, int afterpoint, t_type *node)
 	floatrdy = malloc(sizeof(char) * ft_strlen(floatres) +
 		ft_strlen(intres) + 4);
 	join_parts(floatrdy, intres, floatres);
+	// printf(">>>>'%s'\n", floatrdy);
 	(minus == 1) ? ft_flagminus_float(floatrdy, ft_strlen(floatrdy)) : 0;
+	// printf("<<<<'%s'\n", floatrdy);
 	free(floatres);
 	free(intres);
 	return (floatrdy);

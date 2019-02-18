@@ -6,13 +6,35 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 17:11:57 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/18 10:46:20 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/18 11:03:04 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char			*zeroprec(double floatpart, long res);
+static char			*zeroprec(double floatpart, long res)
+{
+	if (floatpart == 0.00)
+		return (ft_itoa_ll(res));
+	else if (res % 2 == 0)
+	{
+		if (floatpart > 0.50000000000000000)
+			return (ft_itoa_ll(res + 1));
+		else if (floatpart < 0.50000000000000000 ||
+			floatpart == 0.5000000000000000)
+			return (ft_itoa_ll(res));
+	}
+	else
+	{
+		if (floatpart > 0.50000000000000000 || floatpart == 0.50000000000000000)
+		{
+			return (ft_itoa_ll(res + 1));
+		}
+		else if (floatpart < 0.50000000000000000)
+			return (ft_itoa_ll(res));
+	}
+	return (ft_strdup("sw"));
+}
 
 static double	roundgenerator(int prec)
 {
@@ -46,18 +68,13 @@ static char		*floatpart_maker(double n, int prec, long *intpart)
 		return (zeroprec(floatpart, *intpart));
 	floatres = ft_strnew(prec + 500);
 	floatpart += roundgenerator(prec);
-	if (floatpart >= 1.0)
-		(*intpart)++;
+	(floatpart >= 1.0) ? (*intpart)++ : 0;
 	while (prec > 0)
 	{
 		floatpart *= 10;
-		if ((int)floatpart == 10)
-			floatres[i] = '0';
-		else
-			floatres[i] = (int)floatpart + '0';
+		floatres[i++] = ((int)floatpart == 10) ? '0' : (int)floatpart + '0';
 		floatpart -= (int)floatpart;
 		prec--;
-		i++;
 	}
 	floatres[i] = '\0';
 	return (floatres);
@@ -101,29 +118,6 @@ static char		*isconst(double n)
 	return (NULL);
 }
 
-static char			*zeroprec(double floatpart, long res)
-{
-	if (floatpart == 0.00)
-		return (ft_itoa_ll(res));
-	else if (res % 2 == 0)
-	{
-		if (floatpart > 0.50000000000000000)
-			return (ft_itoa_ll(res + 1));
-		else if (floatpart < 0.50000000000000000 || floatpart == 0.5000000000000000)
-			return (ft_itoa_ll(res));
-	}
-	else
-	{
-		if (floatpart > 0.50000000000000000 || floatpart == 0.50000000000000000)
-		{
-			return (ft_itoa_ll(res + 1));
-		}
-		else if (floatpart < 0.50000000000000000)
-			return (ft_itoa_ll(res));
-	}
-	return (ft_strdup("sw"));
-}
-
 static void		ft_flagminus_float(char *str, int len)
 {
 	int		i;
@@ -157,47 +151,53 @@ static void			sharpmod(char *floatrdy)
 	floatrdy[len] = '.';
 }
 
+static char			*afterminus(t_type *node, char *fres, char *intres)
+{
+	char	*floatrdy;
+
+	floatrdy = ft_strnew(ft_strlen(fres) + 6);
+	floatrdy = ft_strcat(floatrdy, fres);
+	ft_flagminus_float(floatrdy, ft_strlen(floatrdy));
+	(ft_isfl_in(node, '#') == 0) ? sharpmod(floatrdy) : 0;
+	free(fres);
+	free(intres);
+	return (floatrdy);
+}
+
+char			*retconst(char *floatrdy, char *intres, char *floatres, double n)
+{
+	if (n == 0.0)
+	{
+		join_parts(floatrdy, intres, floatres);
+		free(intres);
+		free(floatres);
+	}
+	return (floatrdy);
+}
+
 char			*ft_ftoa(double n, int afterpoint, t_type *node)
 {
 	long			intpart;
 	char			*intres;
 	char			*floatres;
 	char			*floatrdy;
-	int				minus;
 
 	intpart = (n < 0.0) ? (long)n * -1 : (long)n;
 	floatres = floatpart_maker(n, afterpoint, &intpart);
 	intres = ft_itoa_ll(intpart);
 	if ((floatrdy = isconst(n)) != NULL)
-	{
-		if (n == 0.0)
-		{
-			join_parts(floatrdy, intres, floatres);
-			free(intres);
-			free(floatres);
-		}
-		return (floatrdy);
-	}
-	minus = (n < 0.0) ? 1 : 0;
+		return (retconst(floatrdy, intres, floatres, n));
 	if (afterpoint == 0)
 	{
-		if (minus == 1)
-		{
-			floatrdy = ft_strnew(ft_strlen(floatres) + 6);
-			floatrdy = ft_strcat(floatrdy, floatres);
-			ft_flagminus_float(floatrdy, ft_strlen(floatrdy));
-			(ft_isfl_in(node, '#') == 0) ? sharpmod(floatrdy) : 0;
-			free(floatres);
-			free(intres);
-			return (floatrdy);
-		}
+		if (n < 0.0)
+			return (afterminus(node, floatres, intres));
 		(ft_isfl_in(node, '#') == 0) ? sharpmod(floatres) : 0;
 		return (floatres);
 	}
 	floatrdy = malloc(sizeof(char) * ft_strlen(floatres) +
 		ft_strlen(intres) + 4);
 	join_parts(floatrdy, intres, floatres);
-	(minus == 1) ? ft_flagminus_float(floatrdy, ft_strlen(floatrdy)) : 0;
+	(n < 0.0) ? ft_flagminus_float(floatrdy, ft_strlen(floatrdy)) : 0;
 	free(floatres);
 	free(intres);
 	return (floatrdy);

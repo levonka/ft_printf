@@ -21,10 +21,8 @@ $(NAME):
 	@gcc $(FLAGS) -Llibft -lft -I$(INC) -o $(NAME) $(OBJ)
 	@make clean
 
-hi:
-	@gcc $(FLAGS2) -c $(SRC) -I $(INC)
-	@gcc $(FLAGS2) -Llibft -lft -I$(INC) -o $(NAME) $(OBJ)
-	@make clean
+norme:
+	norminette $(SRC)
 
 ex:
 	gcc -Wall -Wextra .examples.c

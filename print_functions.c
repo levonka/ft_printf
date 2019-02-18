@@ -4,9 +4,7 @@ int		cmp(char *type, char *c)
 {
 	return ((ft_strcmp(type, c) == 0) ? 1 : 0);
 }
-/*
-** s c d i hd hi hhd hhi ld lld li lli u lu llu hu hhu
-*/
+
 int		ft_print_dispatcher(t_type *node, va_list args)
 {
 	char	*t;
@@ -60,6 +58,3 @@ int		ft_print_dispatcher(t_type *node, va_list args)
 		return (print_color_string(node, va_arg(args, char *), 0, node->precision));
 	return (0);
 }
-
-
-// остались: %lf, %Lf, ho, hho, lo, llo, hx, hhx, lx, llx, X, hX, hhX, lX, llX

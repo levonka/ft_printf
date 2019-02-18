@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 09:12:20 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/15 17:00:05 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/18 15:30:54 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	fl_minus(t_type *node, char *to, char *from, int *i)
 		}
 }
 
-int			ifzero(t_type *node, int i)
+int			ifzerowrite(t_type *node, int i)
 {
 	char	sp;
 	char	zero;
@@ -66,54 +66,49 @@ int			ifzero(t_type *node, int i)
 	sp = 32;
 	nul = 0;
 	zero = '0';
-	if (ft_isfl_in(node, '-') == -1)
+	while (i < node->width - 1)
 	{
-		while (i < node->width - 1)
-		{
-			if (ft_isfl_in(node, '0') == 0)
-				write(1, &zero, 1);
-			else
-				write(1, &sp, 1);
-			i++;
-		}
-		write(1, &nul, 1);
-	}
-	if (ft_isfl_in(node, '-') == 0)
-	{
-		write(1, &nul, 1);
-		while (i < node->width - 1)
-		{
+		if (ft_isfl_in(node, '0') == 0)
+			write(1, &zero, 1);
+		else
 			write(1, &sp, 1);
-			i++;
-		}
+		i++;
 	}
-	return (i + 1);
+	write(1, &nul, 1);
+	return (i);
+}
+
+static int	ft_print_char2(t_type *node, int len, char *str, int c)
+{
+	char	*str2;
+	int		i;
+
+	i = 0;
+	str2 = ft_strnew(node->width);
+	fl_zero(node, str2, &i, c);
+	fl_minus(node, str2, str, &i);
+	write(1, str2, ft_strlen(str2));
+	len = ft_strlen(str2);
+	free(str);
+	free(str2);
+	return (len);
 }
 
 int			ft_print_char(t_type *node, int c, int i)
 {
 	int		len;
-	char	*str2;
 	char	*str;
 
 	str = ft_strnew(2);
 	if (c == 0)
 		return (ifzero(node, i));
-	node->precision == 0 ? node->precision = 1 : 0; //strange bug with .{0} precision
+	node->precision == 0 ? node->precision = 1 : 0;
 	str[0] = c;
 	len = ft_strlen(str);
 	while (node->precision <= len && node->precision != -1)
 		str[len--] = '\0';
 	if (node->width != -1 && node->width >= len + 1)
-	{
-		str2 = ft_strnew(node->width);
-		fl_zero(node, str2, &i, c);
-		fl_minus(node, str2, str, &i);
-		write(1, str2, ft_strlen(str2));
-		len = ft_strlen(str2);
-		free(str2);
-		return (len);
-	}
+		return (ft_print_char2(node, len, str, c));
 	write(1, str, ft_strlen(str));
 	len = ft_strlen(str);
 	free(str);

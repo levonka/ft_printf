@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:43:54 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/16 19:01:22 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/18 13:20:29 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ unsigned long	ft_nlen(uintmax_t n, int base)
 
 	len = 0;
 	if (n == 0)
-		return(1);
+		return (1);
 	while (n)
 	{
 		len++;
@@ -61,7 +61,7 @@ void			str2upcase(char *str)
 	int i;
 
 	i = 0;
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 	{
 		if (str[i] >= 97 && str[i] <= 122)
 			str[i] = str[i] - 32;

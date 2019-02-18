@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/18 15:36:49 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/18 15:39:08 by yharwyn-         ###   ########.fr       */
+/*   Created: 2019/02/18 15:40:39 by yharwyn-          #+#    #+#             */
+/*   Updated: 2019/02/18 15:40:50 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,13 @@ int		ft_numvalidator(const char *format, size_t *i)
 int		ft_typevalidator(t_type *node, int len, size_t *i)
 {
 	int			j;
-	const char	base[][4] = {"c", "s",
-	"d", "i", "u", "hu",
-	"hd", "hi",
-	"o", "O", "ho", "hho", "hhO", "hO", "lo", "llo", "lO", "llO", "jo", "jO", "zO", "zo",
-	"x", "X", "hx", "hX", "hhx", "hhX", "lx", "lX", "llx", "llX", "zX", "zx", "jx", "jX",
-	"p", "lp", "b",
-	"hhd", "hhi", "hhu",
-	"ld", "li", "lu", "lld", "lli", "llu",
-	"f", "lf", "Lf", "%", "U", "hU", "hhU", "lU", "llU",
-	"D", "hD", "hhD", "lD", "llD", "C", "lc", "F", "lF", "LF", "bs", "sc",
-	"jd", "ji", "ju", "zd", "zi", "zu", "jD", "zD", "jU", "zU", ""};
+	const char	base[][4] = {"c", "s", "p", "lp", "b", "bs", "C", "lc",
+	"u", "hu", "hhu", "lu", "llu", "U", "hU", "hhU", "lU", "llU", "jU", "zU",
+	"ju", "zu", "hd", "hi", "d", "i", "ld", "li", "lld", "lli", "hhd", "hhi",
+	"D", "hD", "hhD", "lD", "llD", "jd", "ji", "o", "O", "ho", "hO", "hho",
+	"hhO", "lo", "llo", "lO", "llO", "x", "X", "hx", "hX", "hhx", "hhX", "lx",
+	"llx", "lX", "llX", "jo", "jO", "zO", "zo", "zX", "zx", "jx", "jX", "zd",
+	"zi", "jD", "zD", "f", "lf", "Lf", "F", "lF", "LF", "%", "sc", ""};
 
 	while (len >= 1)
 	{

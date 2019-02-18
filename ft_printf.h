@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/18 15:40:10 by yharwyn-          #+#    #+#             */
+/*   Updated: 2019/02/18 15:41:31 by yharwyn-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -54,6 +66,7 @@ void				ft_flagzero(t_type *node, char *str, int *i);
 int					ft_print_string(t_type *node, char *str, int i);
 
 int					ft_print_char(t_type *node, int c, int i);
+int					ifzerowrite(t_type *node, int i);
 
 void				turnoff_fl(char *flags, char c);
 
@@ -111,5 +124,26 @@ char				*ft_itoa_uim(uintmax_t n);
 char				*ft_itoa_st(ssize_t n);
 
 int					ft_print_ld(t_type *node, long double n, int i);
+
+void				join_parts(char *floatrdy, char *intres, char *floatres);
+void				ft_flagminus_float(char *str, int len);
+void				sharpmod(char *floatrdy);
+char				*afterminus(t_type *node, char *fres, char *intres);
+
+char				*zeroprec(double floatpart, long res);
+double				roundgenerator(int prec);
+char				*zeroprec2(long double floatpart, long res);
+long double			roundgenerator2(int prec);
+
+void				ft_zerofiller2(t_type *node, char *str, int len, int *i);
+void				ft_zerofiller3(t_type *node, char *str, int len, int i);
+int					ft_isnegative2(char *str);
+void				ft_flagminus_num2(char *str, int len);
+int					is_const(char *str);
+
+int					ft_print_fconst(t_type *node, char *str, int i);
+int					ft_print_fconst2(t_type *node, char *str, int i, int minus);
+
+int					ft_print_float2(t_type *node, char *str, int minus);
 
 #endif

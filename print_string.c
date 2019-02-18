@@ -5,12 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/24 08:13:33 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/18 07:23:12 by yharwyn-         ###   ########.fr       */
+/*   Created: 2019/02/18 15:40:10 by yharwyn-          #+#    #+#             */
+/*   Updated: 2019/02/18 15:41:07 by yharwyn-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		ifzero(t_type *node, int i)
+{
+	char	sp;
+	char	zero;
+	char	nul;
+
+	sp = 32;
+	nul = 0;
+	zero = '0';
+	if (ft_isfl_in(node, '-') == -1)
+		i = ifzerowrite(node, i);
+	if (ft_isfl_in(node, '-') == 0)
+	{
+		write(1, &nul, 1);
+		while (i < node->width - 1)
+		{
+			write(1, &sp, 1);
+			i++;
+		}
+	}
+	return (i + 1);
+}
 
 void	ft_flagzero(t_type *node, char *str, int *i)
 {

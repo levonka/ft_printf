@@ -6,13 +6,23 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 09:32:22 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/17 13:56:06 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/18 13:04:31 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_fillin_num(t_type *node, char *to, char *from, int len)
+static void	ft_fillin_num2(int str_len, char *to, char *from, int len)
+{
+	while (str_len >= 0)
+	{
+		to[len - 1] = from[str_len];
+		--len;
+		--str_len;
+	}
+}
+
+void		ft_fillin_num(t_type *node, char *to, char *from, int len)
 {
 	int		i;
 	int		str_len;
@@ -25,16 +35,11 @@ void	ft_fillin_num(t_type *node, char *to, char *from, int len)
 	inf = ft_strcmp(from, "-inf") == 0 || ft_strcmp(from, "inf") == 0;
 	if (ft_isfl_in(node, '-') == SUCCESS)
 	{
-		// printf("from '%s'\n", from);
 		turnoff_fl(node->flags, '0');
 		while (str_len >= 0)
 		{
-			// printf("%d\n", str_len);
 			if (pr_copy > str_len && inf != 1)
-			{
-				// printf("hel\n");
 				to[pr_copy] = from[str_len];
-			}
 			else
 				to[i] = from[i];
 			++i;
@@ -43,15 +48,10 @@ void	ft_fillin_num(t_type *node, char *to, char *from, int len)
 		}
 	}
 	else
-		while (str_len >= 0)
-		{
-			to[len - 1] = from[str_len];
-			--len;
-			--str_len;
-		}
+		ft_fillin_num2(str_len, to, from, len);
 }
 
-void	ft_zerofiller(t_type *node, char *str, int len, int *i)
+void		ft_zerofiller(t_type *node, char *str, int len, int *i)
 {
 	int		pr_copy;
 
@@ -80,7 +80,7 @@ void	ft_zerofiller(t_type *node, char *str, int len, int *i)
 	}
 }
 
-int		ft_isnegative(char *str)
+int			ft_isnegative(char *str)
 {
 	int		i;
 	int		flag;
@@ -107,12 +107,11 @@ int		ft_isnegative(char *str)
 	return (FAIL);
 }
 
-void	ft_flagsp_num(char *str, int len)
+void		ft_flagsp_num(char *str, int len)
 {
 	int		i;
 
 	i = 0;
-	// printf("hel\n");
 	while (len > 0)
 	{
 		ft_swap(&str[len], &str[len - 1]);

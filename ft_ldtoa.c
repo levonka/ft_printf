@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 15:52:52 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/17 15:53:32 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/18 09:38:11 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,9 @@ static char		*floatpart_maker(long double n, int prec, long *intpart)
 		floatpart = n - (long double)(*intpart);
 	else
 		floatpart = (n * -1) - (long double)(*intpart);
-	// printf("hel\n");
 	if (prec == 0)
 		return (zeroprec(floatpart, *intpart));
-	floatres = ft_strnew(2000);
+	floatres = ft_strnew(prec + 500);
 	floatpart += roundgenerator(prec);
 	if (floatpart >= 1.0)
 		(*intpart)++;
@@ -56,12 +55,10 @@ static char		*floatpart_maker(long double n, int prec, long *intpart)
 			floatres[i] = '0';
 		else
 			floatres[i] = (int)floatpart + '0';
-		// printf("%c\n", floatres[i]);
 		floatpart -= (int)floatpart;
 		prec--;
 		i++;
 	}
-	// printf(">>%s\n", floatres);
 	floatres[i] = '\0';
 	return (floatres);
 }
@@ -132,9 +129,6 @@ static void		ft_flagminus_float(char *str, int len)
 	int		i;
 
 	i = 0;
-	// if (str[0] == '0' && node->precision == -1)
-	// 	str[0] = '-';
-	// printf("len = %d\n", len);
 	str[len] = '\0';
 	str[len + 1] = '\0';
 	if (ft_isdigit(str[0]))
@@ -146,7 +140,6 @@ static void		ft_flagminus_float(char *str, int len)
 			--len;
 		}
 		str[len] = '-';
-		// printf("vot><>'%s'\n", str);
 	}
 	else
 	{
@@ -172,18 +165,17 @@ char			*ft_ldtoa(long double n, int afterpoint, t_type *node)
 	char			*floatrdy;
 	int				minus;
 
-	// printf(">>>%f\n", n);
 	intpart = (n < 0.0) ? (long)n * -1 : (long)n;
 	floatres = floatpart_maker(n, afterpoint, &intpart);
-	// printf("><><><>%s\n", floatres);
 	intres = ft_itoa_ll(intpart);
-	// printf("><><><>%s\n", intres);
 	if ((floatrdy = isconst(n)) != NULL)
 	{
 		if (n == 0.0)
+		{
 			join_parts(floatrdy, intres, floatres);
-		// printf(">'%s'\n", floatrdy);
-		// printf(">'%s'\n", floatres);
+			free(intres);
+			free(floatres);
+		}
 		return (floatrdy);
 	}
 	minus = (n < 0.0) ? 1 : 0;
@@ -196,6 +188,7 @@ char			*ft_ldtoa(long double n, int afterpoint, t_type *node)
 			ft_flagminus_float(floatrdy, ft_strlen(floatrdy));
 			(ft_isfl_in(node, '#') == 0) ? sharpmod(floatrdy) : 0;
 			free(floatres);
+			free(intres);
 			return (floatrdy);
 		}
 		(ft_isfl_in(node, '#') == 0) ? sharpmod(floatres) : 0;
@@ -204,9 +197,7 @@ char			*ft_ldtoa(long double n, int afterpoint, t_type *node)
 	floatrdy = malloc(sizeof(char) * ft_strlen(floatres) +
 		ft_strlen(intres) + 4);
 	join_parts(floatrdy, intres, floatres);
-	// printf(">>>>'%s'\n", floatrdy);
 	(minus == 1) ? ft_flagminus_float(floatrdy, ft_strlen(floatrdy)) : 0;
-	// printf("<<<<'%s'\n", floatrdy);
 	free(floatres);
 	free(intres);
 	return (floatrdy);

@@ -4,9 +4,7 @@ int		cmp(char *type, char *c)
 {
 	return ((ft_strcmp(type, c) == 0) ? 1 : 0);
 }
-/*
-** s c d i hd hi hhd hhi ld lld li lli u lu llu hu hhu
-*/
+
 int		ft_print_dispatcher(t_type *node, va_list args)
 {
 	char	*t;
@@ -32,8 +30,6 @@ int		ft_print_dispatcher(t_type *node, va_list args)
 		return (ft_print_int(node, ft_itoa_im(va_arg(args, intmax_t)), 0));
 	else if (cmp(t, "u"))
 		return (ft_print_u(node, ft_itoa_ui(va_arg(args, unsigned int)), 0));
-	// else if (cmp(t, "zu") || cmp(t, "zU"))
-		// return (ft_print_u(node, ft_itoa_st(va_arg(args, ssize_t)), 0));
 	else if (cmp(t, "ju") || cmp(t, "jU"))
 		return (ft_print_u(node, ft_itoa_uim(va_arg(args, uintmax_t)), 0));
 	else if (cmp(t, "hu"))
@@ -60,6 +56,3 @@ int		ft_print_dispatcher(t_type *node, va_list args)
 		return (ft_ntoa_dispatcher(node, va_arg(args, char*), 8));
 	return (0);
 }
-
-
-// остались: %lf, %Lf, ho, hho, lo, llo, hx, hhx, lx, llx, X, hX, hhX, lX, llX

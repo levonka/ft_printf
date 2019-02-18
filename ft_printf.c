@@ -99,11 +99,3 @@ void	ft_freenode(t_type *node)
 	free(node->flags);
 	free(node);
 }
-
-void	ft_diag_print(t_type *node)
-{
-	printf("\n[flags:\t%s]\n", node->flags);
-	printf("[width:\t%d]\n", node->width);
-	printf("[pre-n:\t%d]\n", node->precision);
-	printf("[type:\t%s]\n\n", node->type);
-}

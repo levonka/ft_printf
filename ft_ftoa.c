@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yharwyn- <yharwyn-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 17:11:57 by yharwyn-          #+#    #+#             */
-/*   Updated: 2019/02/17 17:13:32 by yharwyn-         ###   ########.fr       */
+/*   Updated: 2019/02/17 18:01:32 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ static char		*floatpart_maker(double n, int prec, long *intpart)
 		floatpart = n - (double)(*intpart);
 	else
 		floatpart = (n * -1) - (double)(*intpart);
-	// printf("hel\n");
-	printf("prec: %d\n", prec);
 	if (prec == 0)
 		return (zeroprec(floatpart, *intpart));
 	floatres = ft_strnew(prec + 500);

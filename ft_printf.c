@@ -48,7 +48,6 @@ int		ft_solver(va_list args, const char *format, size_t *i)
 		ft_freenode(node);
 		return (len2);
 	}
-
 	ft_freenode(node);
 	return (FAIL);
 }

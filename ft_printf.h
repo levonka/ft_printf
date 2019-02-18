@@ -110,7 +110,6 @@ char				*ft_itoa_im(intmax_t n);
 char				*ft_itoa_uim(uintmax_t n);
 char				*ft_itoa_st(ssize_t n);
 
-
-
+int					ft_print_ld(t_type *node, long double n, int i);
 
 #endif

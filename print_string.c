@@ -6,11 +6,34 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 08:13:33 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/12 10:01:34 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/18 15:32:40 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		ifzero(t_type *node, int i)
+{
+	char	sp;
+	char	zero;
+	char	nul;
+
+	sp = 32;
+	nul = 0;
+	zero = '0';
+	if (ft_isfl_in(node, '-') == -1)
+		i = ifzerowrite(node, i);
+	if (ft_isfl_in(node, '-') == 0)
+	{
+		write(1, &nul, 1);
+		while (i < node->width - 1)
+		{
+			write(1, &sp, 1);
+			i++;
+		}
+	}
+	return (i + 1);
+}
 
 void	ft_flagzero(t_type *node, char *str, int *i)
 {

@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 15:52:52 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/18 12:14:47 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/18 14:51:13 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char		*floatpart_maker(long double n, int prec, long *intpart)
 	return (floatres);
 }
 
-static char		*isconst(long double n)
+static char		*isconst(double n)
 {
 	if (n == -1.00 / 0.00)
 		return (ft_strdup("-inf"));

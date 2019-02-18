@@ -54,6 +54,7 @@ void				ft_flagzero(t_type *node, char *str, int *i);
 int					ft_print_string(t_type *node, char *str, int i);
 
 int					ft_print_char(t_type *node, int c, int i);
+int					ifzerowrite(t_type *node, int i);
 
 void				turnoff_fl(char *flags, char c);
 

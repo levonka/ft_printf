@@ -6,7 +6,7 @@
 /*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 09:33:38 by agottlie          #+#    #+#             */
-/*   Updated: 2019/02/18 12:21:21 by agottlie         ###   ########.fr       */
+/*   Updated: 2019/02/18 13:52:34 by agottlie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ void	ft_zerofiller2(t_type *node, char *str, int len, int *i)
 	while (*i < len)
 	{
 		if (ft_isfl_in(node, '0') == 0)
-			str[*i] = (ft_isfl_in(node, '-') == 0 && (node->width < node->precision ||
-				node->precision == -1)) ? ' ' : ' ';
+			str[*i] = (ft_isfl_in(node, '-') == 0 &&
+				(node->width < node->precision ||
+					node->precision == -1)) ? ' ' : ' ';
 		else
 			str[*i] = ' ';
 		*i = *i + 1;
@@ -61,7 +62,7 @@ int		ft_isnegative2(char *str)
 	return (FAIL);
 }
 
-void		ft_flagminus_num2(char *str, int len)
+void	ft_flagminus_num2(char *str, int len)
 {
 	int		i;
 
@@ -84,10 +85,10 @@ void		ft_flagminus_num2(char *str, int len)
 	}
 }
 
-int			is_const(char *str)
+int		is_const(char *str)
 {
-	const char base[][5] = { "inf", "-inf", "nan", "" };
-	int		i;
+	const char	base[][5] = { "inf", "-inf", "nan", "" };
+	int			i;
 
 	i = 0;
 	while (ft_strcmp(base[i], "") != 0)

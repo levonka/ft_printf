@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agottlie <agottlie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/18 15:05:20 by agottlie          #+#    #+#             */
+/*   Updated: 2019/02/18 15:16:22 by agottlie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int		isempty(const char *format, int i)
+int			isempty(const char *format, int i)
 {
 	int		flag;
 
@@ -20,7 +32,19 @@ int		isempty(const char *format, int i)
 	return (1);
 }
 
-int		ft_solver(va_list args, const char *format, size_t *i)
+static int	ft_solver2(t_type *node, int len2, size_t *i, const char *format)
+{
+	free(node->type);
+	node->type = ft_strnew(1);
+	node->type[0] = format[*i];
+	if (node->type[0] != 'h' && node->type[0] != 'l')
+		len2 = ft_print_char(node, node->type[0], 0);
+	(*i)++;
+	ft_freenode(node);
+	return (len2);
+}
+
+int			ft_solver(va_list args, const char *format, size_t *i)
 {
 	t_type	*node;
 	int		len;
@@ -38,21 +62,12 @@ int		ft_solver(va_list args, const char *format, size_t *i)
 		return (len);
 	}
 	else
-	{
-		free(node->type);
-		node->type = ft_strnew(1);
-		node->type[0] = format[*i];
-		if (node->type[0] != 'h' && node->type[0] != 'l')
-			len2 = ft_print_char(node, node->type[0], 0);
-		(*i)++;
-		ft_freenode(node);
-		return (len2);
-	}
+		return (ft_solver2(node, len2, i, format));
 	ft_freenode(node);
 	return (FAIL);
 }
 
-int		ft_printf(const char *format, ...)
+int			ft_printf(const char *format, ...)
 {
 	va_list args;
 	size_t	i;
@@ -64,7 +79,6 @@ int		ft_printf(const char *format, ...)
 		exit(1);
 	va_start(args, format);
 	while (format[i] != '\0')
-	{
 		if (format[i] == '%')
 		{
 			++i;
@@ -78,12 +92,11 @@ int		ft_printf(const char *format, ...)
 			++len;
 			++i;
 		}
-	}
 	va_end(args);
 	return (len);
 }
 
-t_type	*ft_create_ttr(void)
+t_type		*ft_create_ttr(void)
 {
 	t_type	*ptr;
 
@@ -91,11 +104,4 @@ t_type	*ft_create_ttr(void)
 	if (ptr == NULL)
 		return (NULL);
 	return (ptr);
-}
-
-void	ft_freenode(t_type *node)
-{
-	free(node->type);
-	free(node->flags);
-	free(node);
 }

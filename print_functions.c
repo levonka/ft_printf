@@ -32,8 +32,6 @@ int		ft_print_dispatcher(t_type *node, va_list args)
 		return (ft_print_int(node, ft_itoa_im(va_arg(args, intmax_t)), 0));
 	else if (cmp(t, "u"))
 		return (ft_print_u(node, ft_itoa_ui(va_arg(args, unsigned int)), 0));
-	// else if (cmp(t, "zu") || cmp(t, "zU"))
-		// return (ft_print_u(node, ft_itoa_st(va_arg(args, ssize_t)), 0));
 	else if (cmp(t, "ju") || cmp(t, "jU"))
 		return (ft_print_u(node, ft_itoa_uim(va_arg(args, uintmax_t)), 0));
 	else if (cmp(t, "hu"))
@@ -58,6 +56,8 @@ int		ft_print_dispatcher(t_type *node, va_list args)
 		return (ft_print_char(node, '%', 0));
 	else if (ft_strchr(t, 'o') || ft_strchr(t, 'O'))
 		return (ft_ntoa_dispatcher(node, va_arg(args, char*), 8));
+	else if (cmp(t, "sc"))
+		return (print_color_string(node, va_arg(args, char *), 0, node->precision));
 	return (0);
 }
 

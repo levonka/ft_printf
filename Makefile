@@ -25,7 +25,7 @@ norme:
 	norminette $(SRC)
 
 ex:
-	gcc -Wall -Wextra .examples.c
+	gcc -Wall -Wextra examples/.examples.c
 
 clean:
 	@/bin/rm -f $(OBJ)

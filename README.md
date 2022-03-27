@@ -37,3 +37,9 @@ $ ./a.out
 - %f and %F to handle double and float numbers.
 - %a and %A to handle hexadecimal double numbers
 - colors
+
+## Made by
+|                                Person | Intra/Slack |
+|--------------------------------------:|------:|
+|   [Levon](https://github.com/levonka) | [agottlie](https://profile.intra.42.fr/users/agottlie) |
+| [Sergey](https://github.com/yharwyn-) |  [yharwyn](https://profile.intra.42.fr/users/yharwyn-) |

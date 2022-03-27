@@ -5,3 +5,4 @@ some2.c
 *.o
 ft_printf.c
 main.c
+.idea
